@@ -2,11 +2,16 @@ import { ordersData, getStatusColor } from "../../data/ordersData";
 import { useState } from "react";
 import StatsCard from "../../components/common/StatsCard";
 import SearchInput from "../../components/common/SearchInput";
+import OrderViewModal from "../../components/orders/OrderViewModal";
+import OrderEditModal from "../../components/orders/OrderEditModal";
 
 const Orders = () => {
-     const orders = ordersData;
+     const [orders, setOrders] = useState(ordersData);
      const [searchQuery, setSearchQuery] = useState("");
      const [statusFilter, setStatusFilter] = useState("همه وضعیت‌ها");
+     const [showViewModal, setShowViewModal] = useState(false);
+     const [showEditModal, setShowEditModal] = useState(false);
+     const [selectedOrder, setSelectedOrder] = useState(null);
 
      // Filter orders based on search and status
      const filteredOrders = orders.filter((order) => {
@@ -26,6 +31,28 @@ const Orders = () => {
           .filter((o) => o.status === "تکمیل شده")
           .reduce((sum, o) => sum + parseInt(o.amount.replace(/,/g, "")), 0)
           .toLocaleString();
+
+     const handleViewOrder = (order) => {
+          setSelectedOrder(order);
+          setShowViewModal(true);
+     };
+
+     const handleEditOrder = (order) => {
+          setSelectedOrder(order);
+          setShowEditModal(true);
+     };
+
+     const handleSaveOrder = (newStatus) => {
+          const updatedOrders = orders.map((order) => {
+               if (order.id === selectedOrder.id) {
+                    return { ...order, status: newStatus };
+               }
+               return order;
+          });
+          setOrders(updatedOrders);
+          setShowEditModal(false);
+          setSelectedOrder(null);
+     };
 
      return (
           <div className="space-y-6">
@@ -170,7 +197,11 @@ const Orders = () => {
                                              </td>
                                              <td className="px-6 py-4">
                                                   <div className="flex items-center gap-2">
-                                                       <button className="p-2 hover:bg-bright-snow-100 rounded-lg transition-colors">
+                                                       <button
+                                                            onClick={() => handleViewOrder(order)}
+                                                            className="p-2 hover:bg-bright-snow-100 rounded-lg transition-colors"
+                                                            title="مشاهده جزئیات"
+                                                       >
                                                             <svg
                                                                  className="w-4 h-4 text-sapphire-sky-600"
                                                                  fill="none"
@@ -191,7 +222,11 @@ const Orders = () => {
                                                                  />
                                                             </svg>
                                                        </button>
-                                                       <button className="p-2 hover:bg-bright-snow-100 rounded-lg transition-colors">
+                                                       <button
+                                                            onClick={() => handleEditOrder(order)}
+                                                            className="p-2 hover:bg-bright-snow-100 rounded-lg transition-colors"
+                                                            title="تغییر وضعیت"
+                                                       >
                                                             <svg
                                                                  className="w-4 h-4 text-ink-black-600"
                                                                  fill="none"
@@ -230,6 +265,21 @@ const Orders = () => {
                          </div>
                     </div>
                </div>
+
+               {/* Modals */}
+               <OrderViewModal
+                    key={selectedOrder?.id}
+                    show={showViewModal}
+                    onClose={() => setShowViewModal(false)}
+                    order={selectedOrder}
+               />
+               <OrderEditModal
+                    key={selectedOrder?.id}
+                    show={showEditModal}
+                    onClose={() => setShowEditModal(false)}
+                    order={selectedOrder}
+                    onSave={handleSaveOrder}
+               />
           </div>
      );
 };
