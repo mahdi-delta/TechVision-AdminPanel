@@ -2,11 +2,25 @@ import { usersTableData } from "../../data/usersData";
 import { useState } from "react";
 import StatsCard from "../../components/common/StatsCard";
 import SearchInput from "../../components/common/SearchInput";
+import AddUserModal from "../../components/users/AddUserModal";
+import DeleteUserModal from "../../components/users/DeleteUserModal";
 
 const Users = () => {
-     const users = usersTableData;
+     const [users, setUsers] = useState(usersTableData);
      const [searchQuery, setSearchQuery] = useState("");
      const [statusFilter, setStatusFilter] = useState("همه");
+     const [showModal, setShowModal] = useState(false);
+     const [showDeleteModal, setShowDeleteModal] = useState(false);
+     const [userToDelete, setUserToDelete] = useState(null);
+     const [editingUser, setEditingUser] = useState(null);
+     const [newUser, setNewUser] = useState({
+          name: "",
+          email: "",
+          role: "",
+          status: "فعال",
+          avatarImage: null,
+          orders: 0,
+     });
 
      // Filter users based on search and status
      const filteredUsers = users.filter((user) => {
@@ -16,6 +30,105 @@ const Users = () => {
           const matchesStatus = statusFilter === "همه" || user.status === statusFilter;
           return matchesSearch && matchesStatus;
      });
+
+     const handleAddUser = () => {
+          const today = new Date();
+          const persianDate = `${today.getFullYear() - 621}/${String(today.getMonth() + 1).padStart(2, "0")}/${String(today.getDate()).padStart(2, "0")}`;
+
+          const userToAdd = {
+               id: users.length + 1,
+               name: newUser.name,
+               email: newUser.email,
+               role: newUser.role,
+               status: newUser.status,
+               avatar: newUser.avatarImage ? null : newUser.name.charAt(0),
+               avatarImage: newUser.avatarImage,
+               joinDate: persianDate,
+               orders: 0,
+          };
+
+          setUsers([...users, userToAdd]);
+          setShowModal(false);
+          setNewUser({
+               name: "",
+               email: "",
+               role: "",
+               status: "فعال",
+               avatarImage: null,
+               orders: 0,
+          });
+     };
+
+     const handleEditUser = (user) => {
+          setEditingUser(user);
+          setNewUser({
+               name: user.name,
+               email: user.email,
+               role: user.role,
+               status: user.status,
+               avatarImage: user.avatarImage || null,
+               orders: user.orders,
+          });
+          setShowModal(true);
+     };
+
+     const handleUpdateUser = () => {
+          const updatedUsers = users.map((user) => {
+               if (user.id === editingUser.id) {
+                    return {
+                         ...user,
+                         name: newUser.name,
+                         email: newUser.email,
+                         role: newUser.role,
+                         status: newUser.status,
+                         avatar: newUser.avatarImage ? null : newUser.name.charAt(0),
+                         avatarImage: newUser.avatarImage,
+                    };
+               }
+               return user;
+          });
+
+          setUsers(updatedUsers);
+          setShowModal(false);
+          setEditingUser(null);
+          setNewUser({
+               name: "",
+               email: "",
+               role: "",
+               status: "فعال",
+               avatarImage: null,
+               orders: 0,
+          });
+     };
+
+     const handleDeleteClick = (user) => {
+          setUserToDelete(user);
+          setShowDeleteModal(true);
+     };
+
+     const handleConfirmDelete = () => {
+          setUsers(users.filter((user) => user.id !== userToDelete.id));
+          setShowDeleteModal(false);
+          setUserToDelete(null);
+     };
+
+     const handleCancelDelete = () => {
+          setShowDeleteModal(false);
+          setUserToDelete(null);
+     };
+
+     const handleCloseModal = () => {
+          setShowModal(false);
+          setEditingUser(null);
+          setNewUser({
+               name: "",
+               email: "",
+               role: "",
+               status: "فعال",
+               avatarImage: null,
+               orders: 0,
+          });
+     };
 
      return (
           <div className="space-y-6">
@@ -56,7 +169,10 @@ const Users = () => {
                                         <option>فعال</option>
                                         <option>غیرفعال</option>
                                    </select>
-                                   <button className="px-4 py-2 bg-sapphire-sky-600 text-white rounded-lg hover:bg-sapphire-sky-700 transition-colors text-sm flex items-center gap-2">
+                                   <button
+                                        onClick={() => setShowModal(true)}
+                                        className="px-4 py-2 bg-sapphire-sky-600 text-white rounded-lg hover:bg-sapphire-sky-700 transition-colors text-sm flex items-center gap-2"
+                                   >
                                         <span>+</span>
                                         <span>افزودن کاربر</span>
                                    </button>
@@ -95,9 +211,17 @@ const Users = () => {
                                         >
                                              <td className="px-6 py-4">
                                                   <div className="flex items-center gap-3">
-                                                       <div className="w-10 h-10 rounded-full bg-linear-to-br from-sapphire-sky-500 to-sapphire-sky-700 flex items-center justify-center text-white font-semibold text-sm">
-                                                            {user.avatar}
-                                                       </div>
+                                                       {user.avatarImage ? (
+                                                            <img
+                                                                 src={user.avatarImage}
+                                                                 alt={user.name}
+                                                                 className="w-10 h-10 rounded-full object-cover border-2 border-sapphire-sky-300"
+                                                            />
+                                                       ) : (
+                                                            <div className="w-10 h-10 rounded-full bg-linear-to-br from-sapphire-sky-500 to-sapphire-sky-700 flex items-center justify-center text-white font-semibold text-sm">
+                                                                 {user.avatar}
+                                                            </div>
+                                                       )}
                                                        <div>
                                                             <p className="text-sm font-medium text-ink-black-900">
                                                                  {user.name}
@@ -132,7 +256,11 @@ const Users = () => {
                                              </td>
                                              <td className="px-6 py-4">
                                                   <div className="flex items-center gap-2">
-                                                       <button className="p-2 hover:bg-bright-snow-100 rounded-lg transition-colors">
+                                                       <button
+                                                            onClick={() => handleEditUser(user)}
+                                                            className="p-2 hover:bg-bright-snow-100 rounded-lg transition-colors"
+                                                            title="ویرایش کاربر"
+                                                       >
                                                             <svg
                                                                  className="w-4 h-4 text-sapphire-sky-600"
                                                                  fill="none"
@@ -147,7 +275,11 @@ const Users = () => {
                                                                  />
                                                             </svg>
                                                        </button>
-                                                       <button className="p-2 hover:bg-red-50 rounded-lg transition-colors">
+                                                       <button
+                                                            onClick={() => handleDeleteClick(user)}
+                                                            className="p-2 hover:bg-red-50 rounded-lg transition-colors"
+                                                            title="حذف کاربر"
+                                                       >
                                                             <svg
                                                                  className="w-4 h-4 text-red-600"
                                                                  fill="none"
@@ -193,6 +325,24 @@ const Users = () => {
                          </div>
                     </div>
                </div>
+
+               {/* Add/Edit User Modal */}
+               <AddUserModal
+                    show={showModal}
+                    onClose={handleCloseModal}
+                    onSave={editingUser ? handleUpdateUser : handleAddUser}
+                    user={newUser}
+                    setUser={setNewUser}
+                    isEditing={!!editingUser}
+               />
+
+               {/* Delete User Modal */}
+               <DeleteUserModal
+                    show={showDeleteModal}
+                    onClose={handleCancelDelete}
+                    onConfirm={handleConfirmDelete}
+                    userName={userToDelete?.name}
+               />
           </div>
      );
 };
