@@ -2,7 +2,7 @@ import { useState } from "react";
 import Arrow from "../assets/icons/Arrow";
 import Logo from "../assets/icons/logo/Logo";
 import SidebarItems from "./SidebarItems";
-import { sidebarItems } from "../constants";
+import { mainMenuItems, settingsItem } from "../constants";
 
 const Sidebar = () => {
      const [SiderbarStatus, setSiderbarStatus] = useState("open");
@@ -21,10 +21,21 @@ const Sidebar = () => {
                     <div className="mb-8 pt-2">
                          <Logo className="mx-auto" width="120" height="40" />
                     </div>
+
+                    {/* منوی اصلی */}
                     <div className="flex-1 overflow-y-auto px-2">
-                         {sidebarItems.map((item, index) => (
+                         {mainMenuItems.map((item, index) => (
                               <SidebarItems key={index} item={item} />
                          ))}
+                    </div>
+
+                    {/* بخش پایینی: تنظیمات */}
+                    <div className="px-2 pb-4">
+                         {/* جداکننده */}
+                         <div className="border-t border-ink-black-800 my-2"></div>
+
+                         {/* آیتم تنظیمات */}
+                         <SidebarItems item={settingsItem} isSettings={true} />
                     </div>
                </main>
 

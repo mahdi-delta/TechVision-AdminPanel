@@ -4,7 +4,7 @@ import UsersIcon from "../assets/icons/Dashboard/UsersIcon";
 import ReceiptIcon from "../assets/icons/Dashboard/ReceiptIcon";
 import SettingsIcon from "../assets/icons/Dashboard/SettingsIcon";
 
-export const sidebarItems = [
+export const mainMenuItems = [
      {
           title: "داشبورد",
           icon: DashboardIcon,
@@ -21,8 +21,12 @@ export const sidebarItems = [
           title: "سفارشات",
           icon: ReceiptIcon,
      },
-     {
-          title: "تنظیمات",
-          icon: SettingsIcon,
-     },
 ];
+
+export const settingsItem = {
+     title: "تنظیمات",
+     icon: SettingsIcon,
+};
+
+// برای سازگاری با کد قبلی
+export const sidebarItems = [...mainMenuItems, settingsItem];

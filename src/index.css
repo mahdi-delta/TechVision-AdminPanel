@@ -61,3 +61,12 @@
 --color-bright-snow-900: #0f1924;
 --color-bright-snow-950: #0b1219;
 }
+
+* {
+    font-family: Vazirmatn, sans-serif;
+}
+
+body {
+    font-family: Vazirmatn, sans-serif;
+    
+}
