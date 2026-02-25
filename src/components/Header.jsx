@@ -1,16 +1,10 @@
 import { usePage } from "../context/PageContext";
-import { useState } from "react";
+import SearchInput from "./common/SearchInput";
+import NotificationDropdown from "./header/NotificationDropdown";
+import ProfileDropdown from "./header/ProfileDropdown";
 
 const Header = () => {
      const { activePage } = usePage();
-     const [showNotifications, setShowNotifications] = useState(false);
-     const [showProfile, setShowProfile] = useState(false);
-
-     const notifications = [
-          { id: 1, text: "سفارش جدید ثبت شد", time: "۵ دقیقه پیش", unread: true },
-          { id: 2, text: "موجودی محصول کاهش یافت", time: "۱ ساعت پیش", unread: true },
-          { id: 3, text: "کاربر جدید ثبت‌نام کرد", time: "۲ ساعت پیش", unread: false },
-     ];
 
      return (
           <div className="bg-white shadow-sm border-b border-bright-snow-200">
@@ -32,72 +26,23 @@ const Header = () => {
                          {/* بخش چپ: جستجو و اطلاعات کاربر */}
                          <div className="flex items-center gap-4">
                               {/* Search Bar */}
-                              <div className="relative hidden md:block">
-                                   <input
-                                        type="text"
-                                        placeholder="جستجو..."
-                                        className="w-64 px-4 py-2 pr-10 rounded-lg border border-bright-snow-300 focus:border-sapphire-sky-500 focus:ring-2 focus:ring-sapphire-sky-200 outline-none transition-all"
-                                   />
-                                   <svg
-                                        className="w-5 h-5 absolute right-3 top-1/2 -translate-y-1/2 text-ink-black-400"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        viewBox="0 0 24 24"
-                                   >
-                                        <path
-                                             strokeLinecap="round"
-                                             strokeLinejoin="round"
-                                             strokeWidth={2}
-                                             d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                                        />
-                                   </svg>
+                              <div className="hidden md:block w-64">
+                                   <SearchInput value="" onChange={() => {}} />
                               </div>
 
                               {/* Notification Bell */}
-                              <div className="relative">
-                                   <button
-                                        onClick={() => setShowNotifications(!showNotifications)}
-                                        className="relative p-2 rounded-lg hover:bg-bright-snow-100 transition-colors group"
-                                   >
-                                        <svg
-                                             className="w-6 h-6 text-ink-black-600 group-hover:text-sapphire-sky-600 transition-colors"
-                                             fill="none"
-                                             stroke="currentColor"
-                                             viewBox="0 0 24 24"
-                                        >
-                                             <path
-                                                  strokeLinecap="round"
-                                                  strokeLinejoin="round"
-                                                  strokeWidth={2}
-                                                  d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-                                             />
-                                        </svg>
-                                        {/* Badge */}
-                                        <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
-                                   </button>
+                              <NotificationDropdown />
 
-                                   {/* Dropdown */}
-                                   {showNotifications && (
-                                        <div className="absolute left-0 mt-2 w-80 bg-white rounded-2xl shadow-xl border border-bright-snow-200 z-50 overflow-hidden">
-                                             <div className="p-4 bg-linear-to-r from-sapphire-sky-500 to-sapphire-sky-600">
-                                                  <h3 className="text-base font-bold text-white">
-                                                       اعلان‌ها
-                                                  </h3>
-                                                  <p className="text-xs text-white/80 mt-1">
-                                                       {
-                                                            notifications.filter((n) => n.unread)
-                                                                 .length
-                                                       }{" "}
-                                                       اعلان خوانده نشده
-                                                  </p>
-                                             </div>
-                                             <div className="max-h-96 overflow-y-auto">
-                                                  {notifications.map((notif) => (
-                                                       <div
-                                                            key={notif.id}
-                                                            className={`p-4 border-b border-bright-snow-100 hover:bg-bright-snow-50 cursor-pointer transition-colors ${
-                                                                 notif.unread
-                                                                      ? "bg-sapphire-sky-50/50"
+                              {/* User Profile */}
+                              <ProfileDropdown />
+                         </div>
+                    </div>
+               </div>
+          </div>
+     );
+};
+
+export default Header;
                                                                       : ""
                                                             }`}
                                                        >

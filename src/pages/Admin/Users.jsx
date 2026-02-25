@@ -1,5 +1,7 @@
 import { usersTableData } from "../../data/usersData";
 import { useState } from "react";
+import StatsCard from "../../components/common/StatsCard";
+import SearchInput from "../../components/common/SearchInput";
 
 const Users = () => {
      const users = usersTableData;
@@ -19,26 +21,18 @@ const Users = () => {
           <div className="space-y-6">
                {/* Stats Cards */}
                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                    <div className="bg-white rounded-2xl p-6 shadow-sm border border-bright-snow-100">
-                         <p className="text-sm text-ink-black-600 mb-2">کل کاربران</p>
-                         <h3 className="text-3xl font-bold text-ink-black-900">{users.length}</h3>
-                    </div>
-                    <div className="bg-white rounded-2xl p-6 shadow-sm border border-bright-snow-100">
-                         <p className="text-sm text-ink-black-600 mb-2">کاربران فعال</p>
-                         <h3 className="text-3xl font-bold text-green-600">
-                              {users.filter((u) => u.status === "فعال").length}
-                         </h3>
-                    </div>
-                    <div className="bg-white rounded-2xl p-6 shadow-sm border border-bright-snow-100">
-                         <p className="text-sm text-ink-black-600 mb-2">مدیران</p>
-                         <h3 className="text-3xl font-bold text-sapphire-sky-600">
-                              {users.filter((u) => u.role === "مدیر").length}
-                         </h3>
-                    </div>
-                    <div className="bg-white rounded-2xl p-6 shadow-sm border border-bright-snow-100">
-                         <p className="text-sm text-ink-black-600 mb-2">کاربر جدید امروز</p>
-                         <h3 className="text-3xl font-bold text-purple-600">2</h3>
-                    </div>
+                    <StatsCard title="کل کاربران" value={users.length} />
+                    <StatsCard
+                         title="کاربران فعال"
+                         value={users.filter((u) => u.status === "فعال").length}
+                         valueColor="text-green-600"
+                    />
+                    <StatsCard
+                         title="مدیران"
+                         value={users.filter((u) => u.role === "مدیر").length}
+                         valueColor="text-sapphire-sky-600"
+                    />
+                    <StatsCard title="کاربر جدید امروز" value={2} valueColor="text-purple-600" />
                </div>
 
                {/* Main Table */}
@@ -49,28 +43,10 @@ const Users = () => {
                                    لیست کاربران
                               </h2>
                               <div className="flex items-center gap-3">
-                                   <div className="relative">
-                                        <input
-                                             type="text"
-                                             placeholder="جستجو..."
-                                             value={searchQuery}
-                                             onChange={(e) => setSearchQuery(e.target.value)}
-                                             className="pl-4 pr-10 py-2 border border-bright-snow-300 rounded-lg focus:border-sapphire-sky-500 focus:ring-2 focus:ring-sapphire-sky-200 outline-none text-sm"
-                                        />
-                                        <svg
-                                             className="w-5 h-5 absolute right-3 top-1/2 -translate-y-1/2 text-ink-black-400"
-                                             fill="none"
-                                             stroke="currentColor"
-                                             viewBox="0 0 24 24"
-                                        >
-                                             <path
-                                                  strokeLinecap="round"
-                                                  strokeLinejoin="round"
-                                                  strokeWidth={2}
-                                                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                                             />
-                                        </svg>
-                                   </div>
+                                   <SearchInput
+                                        value={searchQuery}
+                                        onChange={(e) => setSearchQuery(e.target.value)}
+                                   />
                                    <select
                                         value={statusFilter}
                                         onChange={(e) => setStatusFilter(e.target.value)}

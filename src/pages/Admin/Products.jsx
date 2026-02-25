@@ -1,5 +1,8 @@
 import { productsData } from "../../data/productsData";
 import { useState } from "react";
+import StatsCard from "../../components/common/StatsCard";
+import SearchInput from "../../components/common/SearchInput";
+import AddProductModal from "../../components/products/AddProductModal";
 
 const Products = () => {
      const [products, setProducts] = useState(productsData);
@@ -26,11 +29,6 @@ const Products = () => {
      const lowStock = filteredProducts.filter((p) => p.stock < 10).length;
 
      const handleAddProduct = () => {
-          if (!newProduct.name || !newProduct.price || !newProduct.stock) {
-               alert("لطفا تمام فیلدها را پر کنید");
-               return;
-          }
-
           const productToAdd = {
                id: products.length + 1,
                name: newProduct.name,
@@ -57,26 +55,18 @@ const Products = () => {
           <div className="space-y-6">
                {/* Stats */}
                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                    <div className="bg-white rounded-2xl p-6 shadow-sm border border-bright-snow-100">
-                         <p className="text-sm text-ink-black-600 mb-2">کل محصولات</p>
-                         <h3 className="text-3xl font-bold text-ink-black-900">
-                              {products.length}
-                         </h3>
-                    </div>
-                    <div className="bg-white rounded-2xl p-6 shadow-sm border border-bright-snow-100">
-                         <p className="text-sm text-ink-black-600 mb-2">موجودی کل</p>
-                         <h3 className="text-3xl font-bold text-sapphire-sky-600">{totalStock}</h3>
-                    </div>
-                    <div className="bg-white rounded-2xl p-6 shadow-sm border border-bright-snow-100">
-                         <p className="text-sm text-ink-black-600 mb-2">موجودی کم</p>
-                         <h3 className="text-3xl font-bold text-orange-600">{lowStock}</h3>
-                    </div>
-                    <div className="bg-white rounded-2xl p-6 shadow-sm border border-bright-snow-100">
-                         <p className="text-sm text-ink-black-600 mb-2">دسته‌بندی‌ها</p>
-                         <h3 className="text-3xl font-bold text-purple-600">
-                              {new Set(products.map((p) => p.category)).size}
-                         </h3>
-                    </div>
+                    <StatsCard title="کل محصولات" value={products.length} />
+                    <StatsCard
+                         title="موجودی کل"
+                         value={totalStock}
+                         valueColor="text-sapphire-sky-600"
+                    />
+                    <StatsCard title="موجودی کم" value={lowStock} valueColor="text-orange-600" />
+                    <StatsCard
+                         title="دسته‌بندی‌ها"
+                         value={new Set(products.map((p) => p.category)).size}
+                         valueColor="text-purple-600"
+                    />
                </div>
 
                {/* Main Table */}
@@ -87,28 +77,10 @@ const Products = () => {
                                    لیست محصولات
                               </h2>
                               <div className="flex items-center gap-3">
-                                   <div className="relative">
-                                        <input
-                                             type="text"
-                                             placeholder="جستجو..."
-                                             value={searchQuery}
-                                             onChange={(e) => setSearchQuery(e.target.value)}
-                                             className="pl-4 pr-10 py-2 border border-bright-snow-300 rounded-lg focus:border-sapphire-sky-500 focus:ring-2 focus:ring-sapphire-sky-200 outline-none text-sm"
-                                        />
-                                        <svg
-                                             className="w-5 h-5 absolute right-3 top-1/2 -translate-y-1/2 text-ink-black-400"
-                                             fill="none"
-                                             stroke="currentColor"
-                                             viewBox="0 0 24 24"
-                                        >
-                                             <path
-                                                  strokeLinecap="round"
-                                                  strokeLinejoin="round"
-                                                  strokeWidth={2}
-                                                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                                             />
-                                        </svg>
-                                   </div>
+                                   <SearchInput
+                                        value={searchQuery}
+                                        onChange={(e) => setSearchQuery(e.target.value)}
+                                   />
                                    <select
                                         value={categoryFilter}
                                         onChange={(e) => setCategoryFilter(e.target.value)}
@@ -240,153 +212,13 @@ const Products = () => {
                </div>
 
                {/* Add Product Modal */}
-               {showAddModal && (
-                    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-                         <div className="bg-white rounded-2xl shadow-xl max-w-md w-full p-6">
-                              <div className="flex items-center justify-between mb-6">
-                                   <h3 className="text-xl font-bold text-ink-black-900">
-                                        افزودن محصول جدید
-                                   </h3>
-                                   <button
-                                        onClick={() => setShowAddModal(false)}
-                                        className="text-ink-black-400 hover:text-ink-black-600"
-                                   >
-                                        <svg
-                                             className="w-6 h-6"
-                                             fill="none"
-                                             stroke="currentColor"
-                                             viewBox="0 0 24 24"
-                                        >
-                                             <path
-                                                  strokeLinecap="round"
-                                                  strokeLinejoin="round"
-                                                  strokeWidth={2}
-                                                  d="M6 18L18 6M6 6l12 12"
-                                             />
-                                        </svg>
-                                   </button>
-                              </div>
-
-                              <div className="space-y-4">
-                                   <div>
-                                        <label className="block text-sm font-medium text-ink-black-700 mb-2">
-                                             نام محصول
-                                        </label>
-                                        <input
-                                             type="text"
-                                             value={newProduct.name}
-                                             onChange={(e) =>
-                                                  setNewProduct({
-                                                       ...newProduct,
-                                                       name: e.target.value,
-                                                  })
-                                             }
-                                             placeholder="مثال: لپ‌تاپ ایسوس"
-                                             className="w-full px-4 py-2.5 border border-bright-snow-300 rounded-xl focus:border-sapphire-sky-500 focus:ring-2 focus:ring-sapphire-sky-200 outline-none text-sm"
-                                        />
-                                   </div>
-
-                                   <div>
-                                        <label className="block text-sm font-medium text-ink-black-700 mb-2">
-                                             دسته‌بندی
-                                        </label>
-                                        <select
-                                             value={newProduct.category}
-                                             onChange={(e) =>
-                                                  setNewProduct({
-                                                       ...newProduct,
-                                                       category: e.target.value,
-                                                  })
-                                             }
-                                             className="w-full px-4 py-2.5 border border-bright-snow-300 rounded-xl focus:border-sapphire-sky-500 focus:ring-2 focus:ring-sapphire-sky-200 outline-none text-sm"
-                                        >
-                                             <option>لپ‌تاپ</option>
-                                             <option>لوازم جانبی</option>
-                                             <option>مانیتور</option>
-                                        </select>
-                                   </div>
-
-                                   <div className="grid grid-cols-2 gap-4">
-                                        <div>
-                                             <label className="block text-sm font-medium text-ink-black-700 mb-2">
-                                                  قیمت (تومان)
-                                             </label>
-                                             <input
-                                                  type="text"
-                                                  value={newProduct.price}
-                                                  onChange={(e) =>
-                                                       setNewProduct({
-                                                            ...newProduct,
-                                                            price: e.target.value,
-                                                       })
-                                                  }
-                                                  placeholder="12,500,000"
-                                                  className="w-full px-4 py-2.5 border border-bright-snow-300 rounded-xl focus:border-sapphire-sky-500 focus:ring-2 focus:ring-sapphire-sky-200 outline-none text-sm"
-                                             />
-                                        </div>
-                                        <div>
-                                             <label className="block text-sm font-medium text-ink-black-700 mb-2">
-                                                  موجودی
-                                             </label>
-                                             <input
-                                                  type="number"
-                                                  value={newProduct.stock}
-                                                  onChange={(e) =>
-                                                       setNewProduct({
-                                                            ...newProduct,
-                                                            stock: e.target.value,
-                                                       })
-                                                  }
-                                                  placeholder="25"
-                                                  className="w-full px-4 py-2.5 border border-bright-snow-300 rounded-xl focus:border-sapphire-sky-500 focus:ring-2 focus:ring-sapphire-sky-200 outline-none text-sm"
-                                             />
-                                        </div>
-                                   </div>
-
-                                   <div>
-                                        <label className="block text-sm font-medium text-ink-black-700 mb-2">
-                                             آیکون محصول
-                                        </label>
-                                        <div className="flex gap-2">
-                                             {["💻", "🖱️", "⌨️", "🖥️", "📱", "🎧"].map((icon) => (
-                                                  <button
-                                                       key={icon}
-                                                       onClick={() =>
-                                                            setNewProduct({
-                                                                 ...newProduct,
-                                                                 image: icon,
-                                                            })
-                                                       }
-                                                       className={`w-12 h-12 rounded-lg flex items-center justify-center text-2xl transition-all ${
-                                                            newProduct.image === icon
-                                                                 ? "bg-sapphire-sky-100 border-2 border-sapphire-sky-500"
-                                                                 : "bg-bright-snow-100 hover:bg-bright-snow-200"
-                                                       }`}
-                                                  >
-                                                       {icon}
-                                                  </button>
-                                             ))}
-                                        </div>
-                                   </div>
-                              </div>
-
-                              <div className="flex gap-3 mt-6">
-                                   <button
-                                        onClick={() => setShowAddModal(false)}
-                                        className="flex-1 px-4 py-2.5 border border-bright-snow-300 text-ink-black-700 rounded-xl hover:bg-bright-snow-50 transition-colors font-medium text-sm"
-                                   >
-                                        لغو
-                                   </button>
-                                   <button
-                                        onClick={handleAddProduct}
-                                        className="flex-1 px-4 py-2.5 bg-sapphire-sky-600 text-white rounded-xl hover:bg-sapphire-sky-700 transition-colors font-medium text-sm"
-                                   >
-                                        افزودن محصول
-                                   </button>
-                              </div>
-                         </div>
-                    </div>
-               )}
+               <AddProductModal
+                    show={showAddModal}
+                    onClose={() => setShowAddModal(false)}
+                    onSave={handleAddProduct}
+                    product={newProduct}
+                    setProduct={setNewProduct}
+               />
           </div>
      );
 };

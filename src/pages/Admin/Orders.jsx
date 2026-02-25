@@ -1,5 +1,7 @@
 import { ordersData, getStatusColor } from "../../data/ordersData";
 import { useState } from "react";
+import StatsCard from "../../components/common/StatsCard";
+import SearchInput from "../../components/common/SearchInput";
 
 const Orders = () => {
      const orders = ordersData;
@@ -29,62 +31,32 @@ const Orders = () => {
           <div className="space-y-6">
                {/* Stats Cards */}
                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div className="bg-white p-6 rounded-2xl shadow-sm border border-bright-snow-100">
-                         <div className="flex items-center justify-between">
-                              <div>
-                                   <p className="text-sm text-ink-black-600">کل سفارشات</p>
-                                   <p className="text-3xl font-bold text-ink-black-900 mt-2">
-                                        {totalOrders}
-                                   </p>
-                              </div>
-                              <div className="w-14 h-14 rounded-xl bg-sapphire-sky-100 flex items-center justify-center text-2xl">
-                                   📦
-                              </div>
-                         </div>
-                    </div>
-
-                    <div className="bg-white p-6 rounded-2xl shadow-sm border border-bright-snow-100">
-                         <div className="flex items-center justify-between">
-                              <div>
-                                   <p className="text-sm text-ink-black-600">در انتظار</p>
-                                   <p className="text-3xl font-bold text-yellow-600 mt-2">
-                                        {pendingOrders}
-                                   </p>
-                              </div>
-                              <div className="w-14 h-14 rounded-xl bg-yellow-100 flex items-center justify-center text-2xl">
-                                   ⏳
-                              </div>
-                         </div>
-                    </div>
-
-                    <div className="bg-white p-6 rounded-2xl shadow-sm border border-bright-snow-100">
-                         <div className="flex items-center justify-between">
-                              <div>
-                                   <p className="text-sm text-ink-black-600">تکمیل شده</p>
-                                   <p className="text-3xl font-bold text-green-600 mt-2">
-                                        {completedOrders}
-                                   </p>
-                              </div>
-                              <div className="w-14 h-14 rounded-xl bg-green-100 flex items-center justify-center text-2xl">
-                                   ✅
-                              </div>
-                         </div>
-                    </div>
-
-                    <div className="bg-white p-6 rounded-2xl shadow-sm border border-bright-snow-100">
-                         <div className="flex items-center justify-between">
-                              <div>
-                                   <p className="text-sm text-ink-black-600">درآمد کل</p>
-                                   <p className="text-2xl font-bold text-ink-black-900 mt-2">
-                                        {totalRevenue}
-                                   </p>
-                                   <p className="text-xs text-ink-black-500 mt-1">تومان</p>
-                              </div>
-                              <div className="w-14 h-14 rounded-xl bg-purple-100 flex items-center justify-center text-2xl">
-                                   💰
-                              </div>
-                         </div>
-                    </div>
+                    <StatsCard
+                         title="کل سفارشات"
+                         value={totalOrders}
+                         icon="📦"
+                         iconBg="bg-sapphire-sky-100"
+                    />
+                    <StatsCard
+                         title="در انتظار"
+                         value={pendingOrders}
+                         icon="⏳"
+                         iconBg="bg-yellow-100"
+                         valueColor="text-yellow-600"
+                    />
+                    <StatsCard
+                         title="تکمیل شده"
+                         value={completedOrders}
+                         icon="✅"
+                         iconBg="bg-green-100"
+                         valueColor="text-green-600"
+                    />
+                    <StatsCard
+                         title="درآمد کل"
+                         value={totalRevenue}
+                         icon="💰"
+                         iconBg="bg-purple-100"
+                    />
                </div>
 
                {/* Orders Table */}
@@ -95,12 +67,11 @@ const Orders = () => {
                                    سفارشات اخیر
                               </h2>
                               <div className="flex gap-3 w-full lg:w-auto">
-                                   <input
-                                        type="text"
-                                        placeholder="جستجو در سفارشات..."
+                                   <SearchInput
                                         value={searchQuery}
                                         onChange={(e) => setSearchQuery(e.target.value)}
-                                        className="flex-1 lg:w-64 px-4 py-2 border border-bright-snow-300 rounded-xl focus:border-sapphire-sky-500 focus:ring-2 focus:ring-sapphire-sky-200 outline-none text-sm"
+                                        placeholder="جستجو در سفارشات..."
+                                        className="flex-1 lg:w-64"
                                    />
                                    <select
                                         value={statusFilter}
