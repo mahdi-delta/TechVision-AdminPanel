@@ -20,6 +20,17 @@ const SidebarItems = ({ item, isSettings = false }) => {
                     }`}
                >
                     <span
+                         className={`w-5 h-5 shrink-0 transition-all duration-300 ${
+                              isActive
+                                   ? "text-white scale-110"
+                                   : isSettings
+                                     ? "text-sapphire-sky-300 group-hover:text-white group-hover:scale-110 group-hover:rotate-12"
+                                     : "text-sapphire-sky-400 group-hover:text-sapphire-sky-300 group-hover:scale-110 group-hover:rotate-3"
+                         }`}
+                    >
+                         <Icon className="w-full h-full fill-white" />
+                    </span>
+                    <span
                          className={`text-right flex-1 font-medium text-sm transition-colors duration-300 ${
                               isActive
                                    ? "text-white"
@@ -29,17 +40,6 @@ const SidebarItems = ({ item, isSettings = false }) => {
                          }`}
                     >
                          {item.title}
-                    </span>
-                    <span
-                         className={`w-5 h-5 shrink-0 transition-all duration-300 ${
-                              isActive
-                                   ? "text-white scale-110"
-                                   : isSettings
-                                     ? "text-sapphire-sky-300 group-hover:text-white group-hover:scale-110 group-hover:rotate-12"
-                                     : "text-sapphire-sky-400 group-hover:text-sapphire-sky-300 group-hover:scale-110 group-hover:rotate-3"
-                         }`}
-                    >
-                         <Icon className="w-full h-full" />
                     </span>
                </button>
           </div>

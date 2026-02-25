@@ -1,0 +1,224 @@
+import { usersTableData } from "../../data/usersData";
+import { useState } from "react";
+
+const Users = () => {
+     const users = usersTableData;
+     const [searchQuery, setSearchQuery] = useState("");
+     const [statusFilter, setStatusFilter] = useState("همه");
+
+     // Filter users based on search and status
+     const filteredUsers = users.filter((user) => {
+          const matchesSearch =
+               user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+               user.email.toLowerCase().includes(searchQuery.toLowerCase());
+          const matchesStatus = statusFilter === "همه" || user.status === statusFilter;
+          return matchesSearch && matchesStatus;
+     });
+
+     return (
+          <div className="space-y-6">
+               {/* Stats Cards */}
+               <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div className="bg-white rounded-2xl p-6 shadow-sm border border-bright-snow-100">
+                         <p className="text-sm text-ink-black-600 mb-2">کل کاربران</p>
+                         <h3 className="text-3xl font-bold text-ink-black-900">{users.length}</h3>
+                    </div>
+                    <div className="bg-white rounded-2xl p-6 shadow-sm border border-bright-snow-100">
+                         <p className="text-sm text-ink-black-600 mb-2">کاربران فعال</p>
+                         <h3 className="text-3xl font-bold text-green-600">
+                              {users.filter((u) => u.status === "فعال").length}
+                         </h3>
+                    </div>
+                    <div className="bg-white rounded-2xl p-6 shadow-sm border border-bright-snow-100">
+                         <p className="text-sm text-ink-black-600 mb-2">مدیران</p>
+                         <h3 className="text-3xl font-bold text-sapphire-sky-600">
+                              {users.filter((u) => u.role === "مدیر").length}
+                         </h3>
+                    </div>
+                    <div className="bg-white rounded-2xl p-6 shadow-sm border border-bright-snow-100">
+                         <p className="text-sm text-ink-black-600 mb-2">کاربر جدید امروز</p>
+                         <h3 className="text-3xl font-bold text-purple-600">2</h3>
+                    </div>
+               </div>
+
+               {/* Main Table */}
+               <div className="bg-white rounded-2xl shadow-sm border border-bright-snow-100">
+                    <div className="p-6 border-b border-bright-snow-200">
+                         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                              <h2 className="text-xl font-semibold text-ink-black-900">
+                                   لیست کاربران
+                              </h2>
+                              <div className="flex items-center gap-3">
+                                   <div className="relative">
+                                        <input
+                                             type="text"
+                                             placeholder="جستجو..."
+                                             value={searchQuery}
+                                             onChange={(e) => setSearchQuery(e.target.value)}
+                                             className="pl-4 pr-10 py-2 border border-bright-snow-300 rounded-lg focus:border-sapphire-sky-500 focus:ring-2 focus:ring-sapphire-sky-200 outline-none text-sm"
+                                        />
+                                        <svg
+                                             className="w-5 h-5 absolute right-3 top-1/2 -translate-y-1/2 text-ink-black-400"
+                                             fill="none"
+                                             stroke="currentColor"
+                                             viewBox="0 0 24 24"
+                                        >
+                                             <path
+                                                  strokeLinecap="round"
+                                                  strokeLinejoin="round"
+                                                  strokeWidth={2}
+                                                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                                             />
+                                        </svg>
+                                   </div>
+                                   <select
+                                        value={statusFilter}
+                                        onChange={(e) => setStatusFilter(e.target.value)}
+                                        className="px-4 py-2 border border-bright-snow-300 rounded-lg outline-none focus:border-sapphire-sky-500 focus:ring-2 focus:ring-sapphire-sky-200 text-sm"
+                                   >
+                                        <option>همه</option>
+                                        <option>فعال</option>
+                                        <option>غیرفعال</option>
+                                   </select>
+                                   <button className="px-4 py-2 bg-sapphire-sky-600 text-white rounded-lg hover:bg-sapphire-sky-700 transition-colors text-sm flex items-center gap-2">
+                                        <span>+</span>
+                                        <span>افزودن کاربر</span>
+                                   </button>
+                              </div>
+                         </div>
+                    </div>
+                    <div className="overflow-x-auto">
+                         <table className="w-full">
+                              <thead className="bg-bright-snow-50">
+                                   <tr>
+                                        <th className="px-6 py-3 text-right text-xs font-medium text-ink-black-600">
+                                             کاربر
+                                        </th>
+                                        <th className="px-6 py-3 text-right text-xs font-medium text-ink-black-600">
+                                             ایمیل
+                                        </th>
+                                        <th className="px-6 py-3 text-right text-xs font-medium text-ink-black-600">
+                                             نقش
+                                        </th>
+                                        <th className="px-6 py-3 text-right text-xs font-medium text-ink-black-600">
+                                             تاریخ عضویت
+                                        </th>
+                                        <th className="px-6 py-3 text-right text-xs font-medium text-ink-black-600">
+                                             وضعیت
+                                        </th>
+                                        <th className="px-6 py-3 text-right text-xs font-medium text-ink-black-600">
+                                             عملیات
+                                        </th>
+                                   </tr>
+                              </thead>
+                              <tbody className="divide-y divide-bright-snow-200">
+                                   {filteredUsers.map((user) => (
+                                        <tr
+                                             key={user.id}
+                                             className="hover:bg-bright-snow-50 transition-colors"
+                                        >
+                                             <td className="px-6 py-4">
+                                                  <div className="flex items-center gap-3">
+                                                       <div className="w-10 h-10 rounded-full bg-linear-to-br from-sapphire-sky-500 to-sapphire-sky-700 flex items-center justify-center text-white font-semibold text-sm">
+                                                            {user.avatar}
+                                                       </div>
+                                                       <div>
+                                                            <p className="text-sm font-medium text-ink-black-900">
+                                                                 {user.name}
+                                                            </p>
+                                                            <p className="text-xs text-ink-black-500">
+                                                                 {user.orders} سفارش
+                                                            </p>
+                                                       </div>
+                                                  </div>
+                                             </td>
+                                             <td className="px-6 py-4 text-sm text-ink-black-600">
+                                                  {user.email}
+                                             </td>
+                                             <td className="px-6 py-4">
+                                                  <span className="px-3 py-1 rounded-lg bg-bright-snow-100 text-ink-black-700 text-xs font-medium">
+                                                       {user.role}
+                                                  </span>
+                                             </td>
+                                             <td className="px-6 py-4 text-sm text-ink-black-600">
+                                                  {user.joinDate}
+                                             </td>
+                                             <td className="px-6 py-4">
+                                                  <span
+                                                       className={`px-3 py-1 text-xs rounded-full font-medium ${
+                                                            user.status === "فعال"
+                                                                 ? "bg-green-50 text-green-700"
+                                                                 : "bg-red-50 text-red-700"
+                                                       }`}
+                                                  >
+                                                       {user.status}
+                                                  </span>
+                                             </td>
+                                             <td className="px-6 py-4">
+                                                  <div className="flex items-center gap-2">
+                                                       <button className="p-2 hover:bg-bright-snow-100 rounded-lg transition-colors">
+                                                            <svg
+                                                                 className="w-4 h-4 text-sapphire-sky-600"
+                                                                 fill="none"
+                                                                 stroke="currentColor"
+                                                                 viewBox="0 0 24 24"
+                                                            >
+                                                                 <path
+                                                                      strokeLinecap="round"
+                                                                      strokeLinejoin="round"
+                                                                      strokeWidth={2}
+                                                                      d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+                                                                 />
+                                                            </svg>
+                                                       </button>
+                                                       <button className="p-2 hover:bg-red-50 rounded-lg transition-colors">
+                                                            <svg
+                                                                 className="w-4 h-4 text-red-600"
+                                                                 fill="none"
+                                                                 stroke="currentColor"
+                                                                 viewBox="0 0 24 24"
+                                                            >
+                                                                 <path
+                                                                      strokeLinecap="round"
+                                                                      strokeLinejoin="round"
+                                                                      strokeWidth={2}
+                                                                      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                                                                 />
+                                                            </svg>
+                                                       </button>
+                                                  </div>
+                                             </td>
+                                        </tr>
+                                   ))}
+                              </tbody>
+                         </table>
+                    </div>
+                    {/* Pagination */}
+                    <div className="px-6 py-4 border-t border-bright-snow-200 flex items-center justify-between">
+                         <p className="text-sm text-ink-black-600">
+                              نمایش {filteredUsers.length} از {users.length} کاربر
+                         </p>
+                         <div className="flex items-center gap-2">
+                              <button
+                                   className="px-3 py-2 border border-bright-snow-300 rounded-lg hover:bg-bright-snow-50 disabled:opacity-50 text-sm"
+                                   disabled
+                              >
+                                   قبلی
+                              </button>
+                              <button className="px-3 py-2 bg-sapphire-sky-600 text-white rounded-lg text-sm">
+                                   1
+                              </button>
+                              <button className="px-3 py-2 border border-bright-snow-300 rounded-lg hover:bg-bright-snow-50 text-sm">
+                                   2
+                              </button>
+                              <button className="px-3 py-2 border border-bright-snow-300 rounded-lg hover:bg-bright-snow-50 text-sm">
+                                   بعدی
+                              </button>
+                         </div>
+                    </div>
+               </div>
+          </div>
+     );
+};
+
+export default Users;
