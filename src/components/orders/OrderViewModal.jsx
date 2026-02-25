@@ -106,7 +106,8 @@ const OrderViewModal = ({ show, onClose, order }) => {
                                         {order.time}
                                    </p>
                                    <p className="text-ink-black-600">
-                                        <span className="font-medium">شماره سفارش:</span> #{order.id}
+                                        <span className="font-medium">شماره سفارش:</span> #
+                                        {order.id}
                                    </p>
                               </div>
                          </div>
