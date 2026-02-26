@@ -1,3 +1,5 @@
+import CustomDropdown from "../common/CustomDropdown";
+
 const AddUserModal = ({ show, onClose, onSave, user, setUser, isEditing = false }) => {
      if (!show) return null;
 
@@ -98,29 +100,23 @@ const AddUserModal = ({ show, onClose, onSave, user, setUser, isEditing = false 
                               <label className="block text-sm font-medium text-ink-black-700 mb-2">
                                    نقش کاربری
                               </label>
-                              <select
+                              <CustomDropdown
+                                   options={["کاربر", "مدیر"]}
                                    value={user.role}
-                                   onChange={(e) => setUser({ ...user, role: e.target.value })}
-                                   className="w-full px-4 py-2.5 border border-bright-snow-300 rounded-xl focus:border-sapphire-sky-500 focus:ring-2 focus:ring-sapphire-sky-200 outline-none text-sm"
-                              >
-                                   <option value="">انتخاب کنید</option>
-                                   <option value="کاربر">کاربر</option>
-                                   <option value="مدیر">مدیر</option>
-                              </select>
+                                   onChange={(val) => setUser({ ...user, role: val })}
+                                   placeholder="انتخاب نقش"
+                              />
                          </div>
 
                          <div>
                               <label className="block text-sm font-medium text-ink-black-700 mb-2">
                                    وضعیت
                               </label>
-                              <select
+                              <CustomDropdown
+                                   options={["فعال", "غیرفعال"]}
                                    value={user.status}
-                                   onChange={(e) => setUser({ ...user, status: e.target.value })}
-                                   className="w-full px-4 py-2.5 border border-bright-snow-300 rounded-xl focus:border-sapphire-sky-500 focus:ring-2 focus:ring-sapphire-sky-200 outline-none text-sm"
-                              >
-                                   <option value="فعال">فعال</option>
-                                   <option value="غیرفعال">غیرفعال</option>
-                              </select>
+                                   onChange={(val) => setUser({ ...user, status: val })}
+                              />
                          </div>
 
                          <div>

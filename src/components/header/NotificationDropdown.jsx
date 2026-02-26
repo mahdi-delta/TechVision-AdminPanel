@@ -1,7 +1,15 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
+import useClickOutside from "../../hooks/useClickOutside";
 
 const NotificationDropdown = () => {
      const [showNotifications, setShowNotifications] = useState(false);
+     const dropdownRef = useRef(null);
+
+     useClickOutside(dropdownRef, () => {
+          if (showNotifications) {
+               setShowNotifications(false);
+          }
+     });
 
      const notifications = [
           { id: 1, text: "سفارش جدید ثبت شد", time: "۵ دقیقه پیش", unread: true },
@@ -10,7 +18,7 @@ const NotificationDropdown = () => {
      ];
 
      return (
-          <div className="relative">
+          <div className="relative" ref={dropdownRef}>
                <button
                     onClick={() => setShowNotifications(!showNotifications)}
                     className="relative p-2 rounded-lg hover:bg-bright-snow-100 transition-colors group"

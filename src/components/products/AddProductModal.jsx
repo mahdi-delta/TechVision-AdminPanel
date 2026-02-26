@@ -1,3 +1,5 @@
+import CustomDropdown from "../common/CustomDropdown";
+
 const AddProductModal = ({ show, onClose, onSave, product, setProduct }) => {
      if (!show) return null;
 
@@ -54,17 +56,12 @@ const AddProductModal = ({ show, onClose, onSave, product, setProduct }) => {
                               <label className="block text-sm font-medium text-ink-black-700 mb-2">
                                    دسته‌بندی
                               </label>
-                              <select
+                              <CustomDropdown
+                                   options={["لپ‌تاپ", "لوازم جانبی", "مانیتور"]}
                                    value={product.category}
-                                   onChange={(e) =>
-                                        setProduct({ ...product, category: e.target.value })
-                                   }
-                                   className="w-full px-4 py-2.5 border border-bright-snow-300 rounded-xl focus:border-sapphire-sky-500 focus:ring-2 focus:ring-sapphire-sky-200 outline-none text-sm"
-                              >
-                                   <option>لپ‌تاپ</option>
-                                   <option>لوازم جانبی</option>
-                                   <option>مانیتور</option>
-                              </select>
+                                   onChange={(val) => setProduct({ ...product, category: val })}
+                                   placeholder="انتخاب دسته‌بندی"
+                              />
                          </div>
 
                          <div className="grid grid-cols-2 gap-4">

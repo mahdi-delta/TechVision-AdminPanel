@@ -1,9 +1,13 @@
 import { statsData, salesChartData, categoryData, recentOrders } from "../../data/dashboardData";
+import { useState } from "react";
+import CustomDropdown from "../../components/common/CustomDropdown";
 
 const Dashboard = () => {
      const stats = statsData;
      const salesData = salesChartData;
      const categories = categoryData;
+     const [chartPeriod, setChartPeriod] = useState("۶ ماه گذشته");
+     const [categoryPeriod, setCategoryPeriod] = useState("۶ ماه گذشته");
 
      const getIcon = (title) => {
           switch (title) {
@@ -128,11 +132,12 @@ const Dashboard = () => {
                               <h3 className="text-lg font-semibold text-ink-black-900">
                                    نمودار درآمد و فروش
                               </h3>
-                              <select className="text-sm border border-bright-snow-300 rounded-lg px-3 py-1.5 outline-none focus:border-sapphire-sky-500">
-                                   <option>۶ ماه گذشته</option>
-                                   <option>۱ سال گذشته</option>
-                                   <option>همه</option>
-                              </select>
+                              <CustomDropdown
+                                   options={["۶ ماه گذشته", "۱ سال گذشته", "همه"]}
+                                   value={chartPeriod}
+                                   onChange={setChartPeriod}
+                                   className="w-40"
+                              />
                          </div>
                          <div className="h-64 flex items-end justify-between gap-3">
                               {salesData.map((data, index) => (
@@ -176,9 +181,12 @@ const Dashboard = () => {
                               <h3 className="text-lg font-semibold text-ink-black-900">
                                    دسته‌بندی فروش
                               </h3>
-                              <select className="text-sm border border-bright-snow-300 rounded-lg px-3 py-1.5 outline-none focus:border-sapphire-sky-500">
-                                   <option>۶ ماه گذشته</option>
-                              </select>
+                              <CustomDropdown
+                                   options={["۶ ماه گذشته"]}
+                                   value={categoryPeriod}
+                                   onChange={setCategoryPeriod}
+                                   className="w-40"
+                              />
                          </div>
                          <div className="flex items-center justify-center mb-6">
                               <div className="relative w-48 h-48">

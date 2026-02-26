@@ -1,9 +1,9 @@
 import { ordersData, getStatusColor } from "../../data/ordersData";
 import { useState } from "react";
-import StatsCard from "../../components/common/StatsCard";
 import SearchInput from "../../components/common/SearchInput";
 import OrderViewModal from "../../components/orders/OrderViewModal";
 import OrderEditModal from "../../components/orders/OrderEditModal";
+import CustomDropdown from "../../components/common/CustomDropdown";
 
 const Orders = () => {
      const [orders, setOrders] = useState(ordersData);
@@ -54,36 +54,133 @@ const Orders = () => {
           setSelectedOrder(null);
      };
 
+     const getIcon = (title) => {
+          switch (title) {
+               case "کل سفارشات":
+                    return (
+                         <svg
+                              className="w-7 h-7 text-sapphire-sky-600"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                         >
+                              <path
+                                   strokeLinecap="round"
+                                   strokeLinejoin="round"
+                                   strokeWidth={2}
+                                   d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+                              />
+                         </svg>
+                    );
+               case "در انتظار":
+                    return (
+                         <svg
+                              className="w-7 h-7 text-yellow-600"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                         >
+                              <path
+                                   strokeLinecap="round"
+                                   strokeLinejoin="round"
+                                   strokeWidth={2}
+                                   d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                              />
+                         </svg>
+                    );
+               case "تکمیل شده":
+                    return (
+                         <svg
+                              className="w-7 h-7 text-green-600"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                         >
+                              <path
+                                   strokeLinecap="round"
+                                   strokeLinejoin="round"
+                                   strokeWidth={2}
+                                   d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                              />
+                         </svg>
+                    );
+               case "درآمد کل":
+                    return (
+                         <svg
+                              className="w-7 h-7 text-purple-600"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                         >
+                              <path
+                                   strokeLinecap="round"
+                                   strokeLinejoin="round"
+                                   strokeWidth={2}
+                                   d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                              />
+                         </svg>
+                    );
+               default:
+                    return null;
+          }
+     };
+
      return (
           <div className="space-y-6">
                {/* Stats Cards */}
-               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <StatsCard
-                         title="کل سفارشات"
-                         value={totalOrders}
-                         icon="📦"
-                         iconBg="bg-sapphire-sky-100"
-                    />
-                    <StatsCard
-                         title="در انتظار"
-                         value={pendingOrders}
-                         icon="⏳"
-                         iconBg="bg-yellow-100"
-                         valueColor="text-yellow-600"
-                    />
-                    <StatsCard
-                         title="تکمیل شده"
-                         value={completedOrders}
-                         icon="✅"
-                         iconBg="bg-green-100"
-                         valueColor="text-green-600"
-                    />
-                    <StatsCard
-                         title="درآمد کل"
-                         value={totalRevenue}
-                         icon="💰"
-                         iconBg="bg-purple-100"
-                    />
+               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-bright-snow-100">
+                         <div className="flex items-start justify-between">
+                              <div className="flex-1">
+                                   <p className="text-sm text-ink-black-600 mb-2">کل سفارشات</p>
+                                   <h3 className="text-2xl font-bold text-ink-black-900">
+                                        {totalOrders}
+                                   </h3>
+                              </div>
+                              <div className="bg-blue-50 p-3 rounded-xl">
+                                   {getIcon("کل سفارشات")}
+                              </div>
+                         </div>
+                    </div>
+                    <div className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-bright-snow-100">
+                         <div className="flex items-start justify-between">
+                              <div className="flex-1">
+                                   <p className="text-sm text-ink-black-600 mb-2">در انتظار</p>
+                                   <h3 className="text-2xl font-bold text-yellow-600">
+                                        {pendingOrders}
+                                   </h3>
+                              </div>
+                              <div className="bg-yellow-50 p-3 rounded-xl">
+                                   {getIcon("در انتظار")}
+                              </div>
+                         </div>
+                    </div>
+                    <div className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-bright-snow-100">
+                         <div className="flex items-start justify-between">
+                              <div className="flex-1">
+                                   <p className="text-sm text-ink-black-600 mb-2">تکمیل شده</p>
+                                   <h3 className="text-2xl font-bold text-green-600">
+                                        {completedOrders}
+                                   </h3>
+                              </div>
+                              <div className="bg-green-50 p-3 rounded-xl">
+                                   {getIcon("تکمیل شده")}
+                              </div>
+                         </div>
+                    </div>
+                    <div className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-bright-snow-100">
+                         <div className="flex items-start justify-between">
+                              <div className="flex-1">
+                                   <p className="text-sm text-ink-black-600 mb-2">درآمد کل</p>
+                                   <h3 className="text-2xl font-bold text-ink-black-900">
+                                        {totalRevenue}
+                                   </h3>
+                              </div>
+                              <div className="bg-purple-50 p-3 rounded-xl">
+                                   {getIcon("درآمد کل")}
+                              </div>
+                         </div>
+                    </div>
                </div>
 
                {/* Orders Table */}
@@ -100,17 +197,18 @@ const Orders = () => {
                                         placeholder="جستجو در سفارشات..."
                                         className="flex-1 lg:w-64"
                                    />
-                                   <select
+                                   <CustomDropdown
+                                        options={[
+                                             "همه وضعیت‌ها",
+                                             "تکمیل شده",
+                                             "در حال پردازش",
+                                             "در انتظار تایید",
+                                             "لغو شده",
+                                        ]}
                                         value={statusFilter}
-                                        onChange={(e) => setStatusFilter(e.target.value)}
-                                        className="px-4 py-2 border border-bright-snow-300 rounded-xl focus:border-sapphire-sky-500 focus:ring-2 focus:ring-sapphire-sky-200 outline-none text-sm"
-                                   >
-                                        <option>همه وضعیت‌ها</option>
-                                        <option>تکمیل شده</option>
-                                        <option>در حال پردازش</option>
-                                        <option>در انتظار تایید</option>
-                                        <option>لغو شده</option>
-                                   </select>
+                                        onChange={setStatusFilter}
+                                        className="min-w-48"
+                                   />
                               </div>
                          </div>
                     </div>

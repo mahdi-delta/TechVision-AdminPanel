@@ -1,10 +1,18 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
+import useClickOutside from "../../hooks/useClickOutside";
 
 const ProfileDropdown = () => {
      const [showProfile, setShowProfile] = useState(false);
+     const dropdownRef = useRef(null);
+
+     useClickOutside(dropdownRef, () => {
+          if (showProfile) {
+               setShowProfile(false);
+          }
+     });
 
      return (
-          <div className="relative">
+          <div className="relative" ref={dropdownRef}>
                <button
                     onClick={() => setShowProfile(!showProfile)}
                     className="flex items-center gap-3 pl-4 border-l border-bright-snow-300 hover:opacity-80 transition-opacity"

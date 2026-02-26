@@ -1,4 +1,5 @@
 import { useState } from "react";
+import CustomDropdown from "../../components/common/CustomDropdown";
 
 const Settings = () => {
      const [formData, setFormData] = useState({
@@ -8,6 +9,8 @@ const Settings = () => {
           siteName: "TechVision",
           siteDescription: "پنل مدیریتی فروشگاه آنلاین محصولات تکنولوژی",
      });
+     const [language, setLanguage] = useState("فارسی");
+     const [timezone, setTimezone] = useState("تهران (UTC+3:30)");
 
      const handleSave = () => {
           alert("تنظیمات با موفقیت ذخیره شد!");
@@ -133,19 +136,21 @@ const Settings = () => {
                                    <label className="block text-sm font-medium text-ink-black-700 mb-2">
                                         زبان پیش‌فرض
                                    </label>
-                                   <select className="w-full px-4 py-2.5 border border-bright-snow-300 rounded-xl focus:border-sapphire-sky-500 outline-none text-sm">
-                                        <option>فارسی</option>
-                                        <option>English</option>
-                                   </select>
+                                   <CustomDropdown
+                                        options={["فارسی", "English"]}
+                                        value={language}
+                                        onChange={setLanguage}
+                                   />
                               </div>
                               <div>
                                    <label className="block text-sm font-medium text-ink-black-700 mb-2">
                                         منطقه زمانی
                                    </label>
-                                   <select className="w-full px-4 py-2.5 border border-bright-snow-300 rounded-xl focus:border-sapphire-sky-500 outline-none text-sm">
-                                        <option>تهران (UTC+3:30)</option>
-                                        <option>دبی (UTC+4:00)</option>
-                                   </select>
+                                   <CustomDropdown
+                                        options={["تهران (UTC+3:30)", "دبی (UTC+4:00)"]}
+                                        value={timezone}
+                                        onChange={setTimezone}
+                                   />
                               </div>
                          </div>
                     </div>

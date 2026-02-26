@@ -3,6 +3,7 @@ import { useState } from "react";
 import StatsCard from "../../components/common/StatsCard";
 import SearchInput from "../../components/common/SearchInput";
 import AddProductModal from "../../components/products/AddProductModal";
+import CustomDropdown from "../../components/common/CustomDropdown";
 
 const Products = () => {
      const [products, setProducts] = useState(productsData);
@@ -81,16 +82,17 @@ const Products = () => {
                                         value={searchQuery}
                                         onChange={(e) => setSearchQuery(e.target.value)}
                                    />
-                                   <select
+                                   <CustomDropdown
+                                        options={[
+                                             "همه دسته‌ها",
+                                             "لپ‌تاپ",
+                                             "لوازم جانبی",
+                                             "مانیتور",
+                                        ]}
                                         value={categoryFilter}
-                                        onChange={(e) => setCategoryFilter(e.target.value)}
-                                        className="px-4 py-2 border border-bright-snow-300 rounded-lg outline-none focus:border-sapphire-sky-500 focus:ring-2 focus:ring-sapphire-sky-200 text-sm"
-                                   >
-                                        <option>همه دسته‌ها</option>
-                                        <option>لپ‌تاپ</option>
-                                        <option>لوازم جانبی</option>
-                                        <option>مانیتور</option>
-                                   </select>
+                                        onChange={setCategoryFilter}
+                                        className="min-w-44"
+                                   />
                                    <button
                                         onClick={() => setShowAddModal(true)}
                                         className="px-4 py-2 bg-sapphire-sky-600 text-white rounded-lg hover:bg-sapphire-sky-700 transition-colors text-sm flex items-center gap-2"

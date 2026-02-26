@@ -4,6 +4,7 @@ import StatsCard from "../../components/common/StatsCard";
 import SearchInput from "../../components/common/SearchInput";
 import AddUserModal from "../../components/users/AddUserModal";
 import DeleteUserModal from "../../components/users/DeleteUserModal";
+import CustomDropdown from "../../components/common/CustomDropdown";
 
 const Users = () => {
      const [users, setUsers] = useState(usersTableData);
@@ -160,15 +161,12 @@ const Users = () => {
                                         value={searchQuery}
                                         onChange={(e) => setSearchQuery(e.target.value)}
                                    />
-                                   <select
+                                   <CustomDropdown
+                                        options={["همه", "فعال", "غیرفعال"]}
                                         value={statusFilter}
-                                        onChange={(e) => setStatusFilter(e.target.value)}
-                                        className="px-4 py-2 border border-bright-snow-300 rounded-lg outline-none focus:border-sapphire-sky-500 focus:ring-2 focus:ring-sapphire-sky-200 text-sm"
-                                   >
-                                        <option>همه</option>
-                                        <option>فعال</option>
-                                        <option>غیرفعال</option>
-                                   </select>
+                                        onChange={setStatusFilter}
+                                        className="min-w-32"
+                                   />
                                    <button
                                         onClick={() => setShowModal(true)}
                                         className="px-4 py-2 bg-sapphire-sky-600 text-white rounded-lg hover:bg-sapphire-sky-700 transition-colors text-sm flex items-center gap-2"
