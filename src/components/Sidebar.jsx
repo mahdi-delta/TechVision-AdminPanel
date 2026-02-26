@@ -14,7 +14,7 @@ const Sidebar = () => {
           <section
                className={
                     "h-full relative transition-all duration-300 " +
-                    (SiderbarStatus === "closed" ? "w-0 p-0 overflow-hidden" : "min-w-65 p-2")
+                    (SiderbarStatus === "closed" ? "w-0 p-0" : "min-w-65 p-2")
                }
           >
                {SiderbarStatus === "open" && (
