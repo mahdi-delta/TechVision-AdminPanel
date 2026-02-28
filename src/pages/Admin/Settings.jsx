@@ -1,14 +1,9 @@
 import { useState } from "react";
 import CustomDropdown from "../../components/common/CustomDropdown";
+import { currentUser } from "../../data/userData";
 
 const Settings = () => {
-     const [formData, setFormData] = useState({
-          name: "مهدی رضایی",
-          email: "mahdi@techvision.com",
-          phone: "09123456789",
-          siteName: "TechVision",
-          siteDescription: "پنل مدیریتی فروشگاه آنلاین محصولات تکنولوژی",
-     });
+     const [formData, setFormData] = useState(currentUser);
      const [language, setLanguage] = useState("فارسی");
      const [timezone, setTimezone] = useState("تهران (UTC+3:30)");
 

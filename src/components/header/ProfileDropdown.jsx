@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import useClickOutside from "../../hooks/useClickOutside";
+import { currentUser } from "../../data/userData";
 
 const ProfileDropdown = () => {
      const [showProfile, setShowProfile] = useState(false);
@@ -18,11 +19,13 @@ const ProfileDropdown = () => {
                     className="flex items-center gap-3 pl-4 border-l border-bright-snow-300 hover:opacity-80 transition-opacity"
                >
                     <div className="w-10 h-10 rounded-full bg-linear-to-br from-sapphire-sky-500 to-sapphire-sky-700 flex items-center justify-center text-white font-bold cursor-pointer hover:scale-110 transition-transform shadow-md">
-                         م.د
+                         {currentUser.initials}
                     </div>
                     <div className="text-right hidden sm:block">
-                         <p className="text-sm font-semibold text-ink-black-900">مهدی دلتا</p>
-                         <p className="text-xs text-ink-black-600">مدیر سیستم</p>
+                         <p className="text-sm font-semibold text-ink-black-900">
+                              {currentUser.name}
+                         </p>
+                         <p className="text-xs text-ink-black-600">{currentUser.role}</p>
                     </div>
                </button>
 
@@ -31,14 +34,14 @@ const ProfileDropdown = () => {
                          <div className="p-4 border-b border-bright-snow-200 bg-linear-to-r from-sapphire-sky-50 to-purple-50">
                               <div className="flex items-center gap-3">
                                    <div className="w-12 h-12 rounded-full bg-linear-to-br from-sapphire-sky-500 to-sapphire-sky-700 flex items-center justify-center text-white font-bold shadow-md">
-                                        م.د
+                                        {currentUser.initials}
                                    </div>
                                    <div>
                                         <p className="font-semibold text-ink-black-900">
-                                             مهدی دلتا
+                                             {currentUser.name}
                                         </p>
                                         <p className="text-xs text-ink-black-500">
-                                             mahdi@techvision.com
+                                             {currentUser.email}
                                         </p>
                                    </div>
                               </div>
