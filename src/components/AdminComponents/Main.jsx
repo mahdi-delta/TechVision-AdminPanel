@@ -23,14 +23,14 @@ const Main = () => {
                default:
                     return (
                          <div className="bg-white rounded-lg shadow p-6">
-                              <p className="text-ink-black-600">صفحه مورد نظر یافت نشد</p>
+                              <p className="text-tech-navy-melo">صفحه مورد نظر یافت نشد</p>
                          </div>
                     );
           }
      };
 
      return (
-          <div className="p-6 flex-1 overflow-auto bg-linear-to-br from-bright-snow-50 to-bright-snow-100">
+          <div className="p-3 md:p-6 flex-1 overflow-auto bg-linear-to-br from-tech-bg to-tech-bg">
                <div className="max-w-7xl mx-auto">{renderPageContent()}</div>
           </div>
      );

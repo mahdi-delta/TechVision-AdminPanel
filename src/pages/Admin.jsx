@@ -1,17 +1,34 @@
+import { useState } from "react";
 import Header from "../components/AdminComponents/header";
 import Main from "../components/AdminComponents/Main";
 import Sidebar from "../components/AdminComponents/Sidebar";
 import { PageProvider } from "../context/PageContext";
 
 const Admin = () => {
+     const [sidebarOpen, setSidebarOpen] = useState(true);
+
      return (
           <PageProvider>
-               <section className="w-full h-screen flex overflow-hidden bg-white">
-                    <div className="max-w-72 h-full bg-linear-to-b from-ink-black-900 to-ink-black-800 shadow-2xl">
-                         <Sidebar />
+               <section className="w-full h-screen flex overflow-hidden bg-transparent">
+                    <div className="hidden md:block h-full shadow-2xl p-1 transition-all duration-300">
+                         <Sidebar onToggle={() => setSidebarOpen(!sidebarOpen)} />
                     </div>
-                    <div className="w-full h-full flex flex-col bg-linear-to-br from-bright-snow-50 to-bright-snow-100">
-                         <Header />
+
+                    {sidebarOpen && (
+                         <div
+                              className="fixed inset-0 bg-black/50 z-40 md:hidden"
+                              onClick={() => setSidebarOpen(false)}
+                         />
+                    )}
+
+                    <div
+                         className={`fixed md:hidden left-0 top-0 h-screen w-72 bg-transparent shadow-2xl p-1 z-50 transition-transform duration-300 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}`}
+                    >
+                         <Sidebar onToggle={() => setSidebarOpen(false)} />
+                    </div>
+
+                    <div className="flex-1 h-full flex flex-col bg-linear-to-br from-tech-bg to-tech-bg m-0 md:m-2 border-0 md:border-2 border-tech-navy-melo/30 rounded-none md:rounded-xl overflow-hidden">
+                         <Header onSidebarToggle={() => setSidebarOpen(!sidebarOpen)} />
                          <Main />
                     </div>
                </section>

@@ -1,80 +1,79 @@
 @import "tailwindcss";
 
 @theme {
-  --color-tech-bg: #fafafa;
-  --color-tech-surface: #18181b;
-  --color-tech-accent: #3687c9;
-  --color-tech-test: #2e6eaa;
-  --color-tech-text: #09090b;
-  --color-tech-muted: #a1a1aa;
-  --color-tech-dark: #292a2b;
-  --color-tech-navy-light: #516194;
-  --color-tech-navy-melo: #3f4b73;
-  --color-tech-navy: #0f172a;
+     --color-tech-bg: #fafafa;
+     --color-tech-surface: #18181b;
+     --color-tech-accent: #3687c9;
+     --color-tech-test: #2e6eaa;
+     --color-tech-text: #09090b;
+     --color-tech-muted: #a1a1aa;
+     --color-tech-dark: #292a2b;
+     --color-tech-navy-light: #516194;
+     --color-tech-navy-melo: #3f4b73;
+     --color-tech-navy: #0f172a;
 }
 
 * {
-    font-family: Vazirmatn, sans-serif;
+     font-family: "Vazirmatn", system-ui, sans-serif;
 }
 
 body {
-    font-family: Vazirmatn, sans-serif;
-    
+     font-family: Vazirmatn, sans-serif;
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+     from {
+          opacity: 0;
+          transform: translateY(-10px);
+     }
+     to {
+          opacity: 1;
+          transform: translateY(0);
+     }
 }
 
 .animate-fadeIn {
-    animation: fadeIn 0.2s ease-out;
+     animation: fadeIn 0.2s ease-out;
 }
 
 * {
-    scrollbar-width: thin;
-    scrollbar-color: #3687c9 #fafafa;
+     scrollbar-width: thin;
+     scrollbar-color: #3687c9 #fafafa;
 }
 
 *::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+     width: 8px;
+     height: 8px;
 }
 
 *::-webkit-scrollbar-track {
-    background: #fafafa;
-    border-radius: 10px;
+     background: #fafafa;
+     border-radius: 10px;
 }
 
 *::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, #3687c9 0%, #2e6eaa 100%);
-    border-radius: 10px;
-    transition: all 0.3s ease;
+     background: linear-gradient(180deg, #3687c9 0%, #2e6eaa 100%);
+     border-radius: 10px;
+     transition: all 0.3s ease;
 }
 
 *::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(180deg, #2e6eaa 0%, #0f172a 100%);
-    box-shadow: 0 0 6px rgba(54, 135, 201, 0.3);
+     background: linear-gradient(180deg, #2e6eaa 0%, #0f172a 100%);
+     box-shadow: 0 0 6px rgba(54, 135, 201, 0.3);
 }
 
 *::-webkit-scrollbar-thumb:active {
-    background: #0f172a;
+     background: #0f172a;
 }
 
 .dark-scrollbar::-webkit-scrollbar-track {
-    background: #18181b;
+     background: #18181b;
 }
 
 .dark-scrollbar::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, #3687c9 0%, #2e6eaa 100%);
+     background: linear-gradient(180deg, #3687c9 0%, #2e6eaa 100%);
 }
 
 .dark-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(180deg, #2e6eaa 0%, #0f172a 100%);
+     background: linear-gradient(180deg, #2e6eaa 0%, #0f172a 100%);
 }

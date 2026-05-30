@@ -2,24 +2,33 @@ import { usePage } from "../../context/PageContext";
 import SearchInput from "./common/SearchInput";
 import NotificationDropdown from "./header/NotificationDropdown";
 import ProfileDropdown from "./header/ProfileDropdown";
+import { Menu } from "lucide-react";
 
-const Header = () => {
+const Header = ({ onSidebarToggle }) => {
      const { activePage } = usePage();
 
      return (
-          <div className="bg-white shadow-sm border-b border-bright-snow-200">
-               <div className="px-8 py-5">
-                    <div className="flex items-center justify-between">
-                         <div>
-                              <h1 className="text-3xl font-bold text-ink-black-900 mb-1">
-                                   {activePage}
-                              </h1>
-                              <p className="text-sm text-ink-black-500">
-                                   خوش آمدید به پنل مدیریتی تک‌ویژن
-                              </p>
+          <div className="bg-linear-to-r from-tech-bg via-white to-tech-bg shadow-md border-b border-tech-navy-light/20 rounded-none md:rounded-2xl backdrop-blur-sm">
+               <div className="px-3 md:px-6 py-2 md:py-3">
+                    <div className="flex items-center justify-between gap-4">
+                         <div className="flex items-center gap-2 md:gap-4 min-w-0">
+                              <button
+                                   onClick={onSidebarToggle}
+                                   className="md:hidden p-2 hover:bg-tech-bg rounded-lg transition-colors flex-shrink-0"
+                              >
+                                   <Menu className="w-6 h-6 text-tech-navy" />
+                              </button>
+                              <div className="space-y-2 min-w-0">
+                                   <div className="flex items-center gap-3 min-w-0">
+                                        <div className="h-2 w-2 rounded-full bg-linear-to-r from-tech-accent to-tech-test flex-shrink-0"></div>
+                                        <h1 className="text-2xl md:text-3xl font-bold bg-linear-to-r from-tech-text to-tech-navy-light bg-clip-text text-transparent truncate">
+                                             {activePage}
+                                        </h1>
+                                   </div>
+                              </div>
                          </div>
 
-                         <div className="flex items-center gap-6">
+                         <div className="flex items-center gap-3 md:gap-6">
                               <div className="hidden md:block w-72">
                                    <SearchInput value="" onChange={() => {}} />
                               </div>

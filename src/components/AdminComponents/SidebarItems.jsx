@@ -9,14 +9,14 @@ const SidebarItems = ({ item, isSettings = false }) => {
           <div className="w-full mb-2">
                <button
                     onClick={() => setActivePage(item.title)}
-                    className={`w-full flex items-center gap-3 p-3 rounded-lg transition-all duration-300 ease-in-out text-white group hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] border ${
+                    className={`w-full flex items-center gap-3 p-3 rounded-md transition-all duration-300 ease-in-out text-white group hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] border ${
                          isActive
                               ? isSettings
-                                   ? "bg-linear-to-r from-sapphire-sky-700 to-sapphire-sky-600 border-sapphire-sky-500 shadow-xl"
-                                   : "bg-ink-black-800 border-sapphire-sky-600 shadow-lg"
+                                   ? "bg-linear-to-r from-tech-test to-tech-test border-tech-accent shadow-xl"
+                                   : "bg-tech-navy border-tech-test shadow-lg"
                               : isSettings
-                                ? "bg-transparent border-sapphire-sky-800/30 hover:bg-linear-to-r hover:from-sapphire-sky-700 hover:to-sapphire-sky-600 hover:border-sapphire-sky-500"
-                                : "bg-transparent border-transparent hover:bg-ink-black-800 hover:border-sapphire-sky-800"
+                                ? "bg-tech-navy-melo border-tech-navy-melo/30 hover:bg-linear-to-r hover:from-tech-test hover:to-tech-test hover:border-tech-accent"
+                                : "bg-transparent border-transparent hover:bg-tech-navy hover:border-tech-navy-melo"
                     }`}
                >
                     <span
@@ -24,8 +24,8 @@ const SidebarItems = ({ item, isSettings = false }) => {
                               isActive
                                    ? "text-white scale-110"
                                    : isSettings
-                                     ? "text-sapphire-sky-300 group-hover:text-white group-hover:scale-110 group-hover:rotate-12"
-                                     : "text-sapphire-sky-400 group-hover:text-sapphire-sky-300 group-hover:scale-110 group-hover:rotate-3"
+                                     ? "text-tech-navy-light group-hover:text-white group-hover:scale-110 group-hover:rotate-12"
+                                     : "text-tech-navy-light group-hover:text-tech-navy-light group-hover:scale-110 group-hover:rotate-3"
                          }`}
                     >
                          <Icon className="w-full h-full fill-white" />
@@ -35,8 +35,8 @@ const SidebarItems = ({ item, isSettings = false }) => {
                               isActive
                                    ? "text-white"
                                    : isSettings
-                                     ? "text-sapphire-sky-200 group-hover:text-white"
-                                     : "group-hover:text-sapphire-sky-100"
+                                     ? "text-tech-muted group-hover:text-white"
+                                     : "group-hover:text-tech-bg"
                          }`}
                     >
                          {item.title}

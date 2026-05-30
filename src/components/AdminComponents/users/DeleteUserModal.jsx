@@ -1,3 +1,5 @@
+import { AlertCircle } from "lucide-react";
+
 const DeleteUserModal = ({ show, onClose, onConfirm, userName }) => {
      if (!show) return null;
 
@@ -7,28 +9,16 @@ const DeleteUserModal = ({ show, onClose, onConfirm, userName }) => {
                     <div className="flex flex-col items-center text-center">
                          {/* Icon */}
                          <div className="w-16 h-16 rounded-full bg-red-100 flex items-center justify-center mb-4">
-                              <svg
-                                   className="w-8 h-8 text-red-600"
-                                   fill="none"
-                                   stroke="currentColor"
-                                   viewBox="0 0 24 24"
-                              >
-                                   <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
-                                   />
-                              </svg>
+                              <AlertCircle className="w-8 h-8 text-red-600" />
                          </div>
 
                          {/* Title */}
-                         <h3 className="text-xl font-bold text-ink-black-900 mb-2">حذف کاربر</h3>
+                         <h3 className="text-xl font-bold text-tech-text mb-2">حذف کاربر</h3>
 
                          {/* Message */}
-                         <p className="text-ink-black-600 mb-6">
+                         <p className="text-tech-navy-melo mb-6">
                               آیا از حذف کاربر{" "}
-                              <span className="font-semibold text-ink-black-900">{userName}</span>{" "}
+                              <span className="font-semibold text-tech-text">{userName}</span>{" "}
                               اطمینان دارید؟ این عملیات قابل بازگشت نیست.
                          </p>
 
@@ -36,7 +26,7 @@ const DeleteUserModal = ({ show, onClose, onConfirm, userName }) => {
                          <div className="flex gap-3 w-full">
                               <button
                                    onClick={onClose}
-                                   className="flex-1 px-4 py-2.5 border border-bright-snow-300 text-ink-black-700 rounded-xl hover:bg-bright-snow-50 transition-colors font-medium text-sm"
+                                   className="flex-1 px-4 py-2.5 border border-tech-navy-light text-tech-navy rounded-xl hover:bg-tech-bg transition-colors font-medium text-sm"
                               >
                                    انصراف
                               </button>

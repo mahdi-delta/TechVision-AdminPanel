@@ -1,5 +1,6 @@
 import { usersTableData } from "../../data/usersData";
 import { useState } from "react";
+import { Plus, Edit2, Trash2 } from "lucide-react";
 import StatsCard from "../../components/AdminComponents/common/StatsCard";
 import SearchInput from "../../components/AdminComponents/common/SearchInput";
 import AddUserModal from "../../components/AdminComponents/users/AddUserModal";
@@ -132,9 +133,9 @@ const Users = () => {
      };
 
      return (
-          <div className="space-y-6">
-               {/* Stats Cards */}
-               <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div className="space-y-3 md:space-y-6">
+               {/* Stats */}
+               <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 px-3 md:px-0">
                     <StatsCard title="کل کاربران" value={users.length} />
                     <StatsCard
                          title="کاربران فعال"
@@ -144,18 +145,16 @@ const Users = () => {
                     <StatsCard
                          title="مدیران"
                          value={users.filter((u) => u.role === "مدیر").length}
-                         valueColor="text-sapphire-sky-600"
+                         valueColor="text-tech-test"
                     />
                     <StatsCard title="کاربر جدید امروز" value={2} valueColor="text-purple-600" />
                </div>
 
                {/* Main Table */}
-               <div className="bg-white rounded-2xl shadow-sm border border-bright-snow-100">
-                    <div className="p-6 border-b border-bright-snow-200">
-                         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                              <h2 className="text-xl font-semibold text-ink-black-900">
-                                   لیست کاربران
-                              </h2>
+               <div className="bg-white rounded-2xl shadow-sm border border-tech-bg">
+                    <div className="p-3 md:p-6 border-b border-tech-muted">
+                         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-4">
+                              <h2 className="text-xl font-semibold text-tech-text">لیست کاربران</h2>
                               <div className="flex items-center gap-3">
                                    <SearchInput
                                         value={searchQuery}
@@ -169,9 +168,9 @@ const Users = () => {
                                    />
                                    <button
                                         onClick={() => setShowModal(true)}
-                                        className="px-4 py-2 bg-sapphire-sky-600 text-white rounded-lg hover:bg-sapphire-sky-700 transition-colors text-sm flex items-center gap-2"
+                                        className="px-4 py-2 bg-tech-test text-white rounded-lg hover:bg-tech-test transition-colors text-sm flex items-center gap-2"
                                    >
-                                        <span>+</span>
+                                        <Plus className="w-5 h-5" />
                                         <span>افزودن کاربر</span>
                                    </button>
                               </div>
@@ -179,69 +178,69 @@ const Users = () => {
                     </div>
                     <div className="overflow-x-auto">
                          <table className="w-full">
-                              <thead className="bg-bright-snow-50">
+                              <thead className="bg-tech-bg hidden md:table-header-group">
                                    <tr>
-                                        <th className="px-6 py-3 text-right text-xs font-medium text-ink-black-600">
+                                        <th className="px-3 md:px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
                                              کاربر
                                         </th>
-                                        <th className="px-6 py-3 text-right text-xs font-medium text-ink-black-600">
+                                        <th className="px-3 md:px-6 py-3 text-right text-xs font-medium text-tech-navy-melo hidden lg:table-cell">
                                              ایمیل
                                         </th>
-                                        <th className="px-6 py-3 text-right text-xs font-medium text-ink-black-600">
+                                        <th className="px-3 md:px-6 py-3 text-right text-xs font-medium text-tech-navy-melo hidden lg:table-cell">
                                              نقش
                                         </th>
-                                        <th className="px-6 py-3 text-right text-xs font-medium text-ink-black-600">
+                                        <th className="px-3 md:px-6 py-3 text-right text-xs font-medium text-tech-navy-melo hidden lg:table-cell">
                                              تاریخ عضویت
                                         </th>
-                                        <th className="px-6 py-3 text-right text-xs font-medium text-ink-black-600">
+                                        <th className="px-3 md:px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
                                              وضعیت
                                         </th>
-                                        <th className="px-6 py-3 text-right text-xs font-medium text-ink-black-600">
+                                        <th className="px-3 md:px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
                                              عملیات
                                         </th>
                                    </tr>
                               </thead>
-                              <tbody className="divide-y divide-bright-snow-200">
+                              <tbody className="divide-y divide-tech-muted">
                                    {filteredUsers.map((user) => (
                                         <tr
                                              key={user.id}
-                                             className="hover:bg-bright-snow-50 transition-colors"
+                                             className="hover:bg-tech-bg transition-colors block md:table-row border-b md:border-b pb-4 md:pb-0 mb-4 md:mb-0"
                                         >
-                                             <td className="px-6 py-4">
+                                             <td className="px-3 md:px-6 py-2 md:py-4 block md:table-cell before:content-attr(data-label) before:block before:font-semibold before:text-tech-navy md:before:hidden md:text-right">
                                                   <div className="flex items-center gap-3">
                                                        {user.avatarImage ? (
                                                             <img
                                                                  src={user.avatarImage}
                                                                  alt={user.name}
-                                                                 className="w-10 h-10 rounded-full object-cover border-2 border-sapphire-sky-300"
+                                                                 className="w-10 h-10 rounded-full object-cover border-2 border-tech-navy-light"
                                                             />
                                                        ) : (
-                                                            <div className="w-10 h-10 rounded-full bg-linear-to-br from-sapphire-sky-500 to-sapphire-sky-700 flex items-center justify-center text-white font-semibold text-sm">
+                                                            <div className="w-10 h-10 rounded-full bg-linear-to-br from-tech-accent to-tech-test flex items-center justify-center text-white font-semibold text-sm">
                                                                  {user.avatar}
                                                             </div>
                                                        )}
                                                        <div>
-                                                            <p className="text-sm font-medium text-ink-black-900">
+                                                            <p className="text-sm font-medium text-tech-text">
                                                                  {user.name}
                                                             </p>
-                                                            <p className="text-xs text-ink-black-500">
+                                                            <p className="text-xs text-tech-test">
                                                                  {user.orders} سفارش
                                                             </p>
                                                        </div>
                                                   </div>
                                              </td>
-                                             <td className="px-6 py-4 text-sm text-ink-black-600">
+                                             <td className="px-3 md:px-6 py-2 md:py-4 text-sm text-tech-navy-melo hidden lg:table-cell">
                                                   {user.email}
                                              </td>
-                                             <td className="px-6 py-4">
-                                                  <span className="px-3 py-1 rounded-lg bg-bright-snow-100 text-ink-black-700 text-xs font-medium">
+                                             <td className="px-3 md:px-6 py-2 md:py-4 hidden lg:table-cell">
+                                                  <span className="px-3 py-1 rounded-lg bg-tech-bg text-tech-navy text-xs font-medium">
                                                        {user.role}
                                                   </span>
                                              </td>
-                                             <td className="px-6 py-4 text-sm text-ink-black-600">
+                                             <td className="px-3 md:px-6 py-2 md:py-4 text-sm text-tech-navy-melo hidden lg:table-cell">
                                                   {user.joinDate}
                                              </td>
-                                             <td className="px-6 py-4">
+                                             <td className="px-3 md:px-6 py-2 md:py-4">
                                                   <span
                                                        className={`px-3 py-1 text-xs rounded-full font-medium ${
                                                             user.status === "فعال"
@@ -252,45 +251,21 @@ const Users = () => {
                                                        {user.status}
                                                   </span>
                                              </td>
-                                             <td className="px-6 py-4">
+                                             <td className="px-3 md:px-6 py-2 md:py-4">
                                                   <div className="flex items-center gap-2">
                                                        <button
                                                             onClick={() => handleEditUser(user)}
-                                                            className="p-2 hover:bg-bright-snow-100 rounded-lg transition-colors"
+                                                            className="p-2 hover:bg-tech-bg rounded-lg transition-colors"
                                                             title="ویرایش کاربر"
                                                        >
-                                                            <svg
-                                                                 className="w-4 h-4 text-sapphire-sky-600"
-                                                                 fill="none"
-                                                                 stroke="currentColor"
-                                                                 viewBox="0 0 24 24"
-                                                            >
-                                                                 <path
-                                                                      strokeLinecap="round"
-                                                                      strokeLinejoin="round"
-                                                                      strokeWidth={2}
-                                                                      d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
-                                                                 />
-                                                            </svg>
+                                                            <Edit2 className="w-4 h-4 text-tech-test" />
                                                        </button>
                                                        <button
                                                             onClick={() => handleDeleteClick(user)}
                                                             className="p-2 hover:bg-red-50 rounded-lg transition-colors"
                                                             title="حذف کاربر"
                                                        >
-                                                            <svg
-                                                                 className="w-4 h-4 text-red-600"
-                                                                 fill="none"
-                                                                 stroke="currentColor"
-                                                                 viewBox="0 0 24 24"
-                                                            >
-                                                                 <path
-                                                                      strokeLinecap="round"
-                                                                      strokeLinejoin="round"
-                                                                      strokeWidth={2}
-                                                                      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-                                                                 />
-                                                            </svg>
+                                                            <Trash2 className="w-4 h-4 text-red-600" />
                                                        </button>
                                                   </div>
                                              </td>
@@ -300,24 +275,24 @@ const Users = () => {
                          </table>
                     </div>
                     {/* Pagination */}
-                    <div className="px-6 py-4 border-t border-bright-snow-200 flex items-center justify-between">
-                         <p className="text-sm text-ink-black-600">
+                    <div className="px-3 md:px-6 py-3 md:py-4 border-t border-tech-muted flex flex-col md:flex-row md:items-center md:justify-between gap-3 md:gap-0">
+                         <p className="text-sm text-tech-navy-melo">
                               نمایش {filteredUsers.length} از {users.length} کاربر
                          </p>
-                         <div className="flex items-center gap-2">
+                         <div className="flex items-center gap-2 flex-wrap">
                               <button
-                                   className="px-3 py-2 border border-bright-snow-300 rounded-lg hover:bg-bright-snow-50 disabled:opacity-50 text-sm"
+                                   className="px-2 md:px-3 py-2 border border-tech-navy-light rounded-lg hover:bg-tech-bg disabled:opacity-50 text-xs md:text-sm"
                                    disabled
                               >
                                    قبلی
                               </button>
-                              <button className="px-3 py-2 bg-sapphire-sky-600 text-white rounded-lg text-sm">
+                              <button className="px-2 md:px-3 py-2 bg-tech-test text-white rounded-lg text-xs md:text-sm">
                                    1
                               </button>
-                              <button className="px-3 py-2 border border-bright-snow-300 rounded-lg hover:bg-bright-snow-50 text-sm">
+                              <button className="px-2 md:px-3 py-2 border border-tech-navy-light rounded-lg hover:bg-tech-bg text-xs md:text-sm">
                                    2
                               </button>
-                              <button className="px-3 py-2 border border-bright-snow-300 rounded-lg hover:bg-bright-snow-50 text-sm">
+                              <button className="px-2 md:px-3 py-2 border border-tech-navy-light rounded-lg hover:bg-tech-bg text-xs md:text-sm">
                                    بعدی
                               </button>
                          </div>

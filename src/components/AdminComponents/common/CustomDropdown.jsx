@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import { ChevronDown, Check } from "lucide-react";
 import useClickOutside from "../../../hooks/useClickOutside";
 
 const CustomDropdown = ({
@@ -26,40 +27,33 @@ const CustomDropdown = ({
           <div className={`relative ${className}`} ref={dropdownRef}>
                <button
                     onClick={() => setIsOpen(!isOpen)}
-                    className="w-full px-4 py-2.5 bg-white border border-bright-snow-300 rounded-xl text-sm text-right flex items-center justify-between hover:border-sapphire-sky-400 hover:shadow-md focus:border-sapphire-sky-500 focus:ring-2 focus:ring-sapphire-sky-200 transition-all duration-200 outline-none"
+                    className="w-full px-4 py-3 bg-white border border-tech-muted rounded-xl text-sm text-right flex items-center justify-between hover:border-tech-navy-light hover:shadow-lg focus:border-tech-accent focus:ring-2 focus:ring-tech-accent/20 transition-all duration-200 outline-none group"
                >
-                    <span className="text-ink-black-700 font-medium">{value || placeholder}</span>
-                    <svg
-                         className={`w-4 h-4 text-ink-black-500 transition-transform duration-200 ${
-                              isOpen ? "rotate-180" : ""
-                         }`}
-                         fill="none"
-                         stroke="currentColor"
-                         viewBox="0 0 24 24"
-                    >
-                         <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M19 9l-7 7-7-7"
-                         />
-                    </svg>
+                    <span className="text-tech-text font-semibold">{value || placeholder}</span>
+                    <ChevronDown
+                         className={`w-5 h-5 text-tech-navy-melo group-hover:text-tech-accent transition-all duration-300 ${isOpen ? "rotate-180" : ""}`}
+                    />
                </button>
 
                {isOpen && (
-                    <div className="absolute z-50 w-full mt-2 bg-white rounded-xl shadow-lg border border-bright-snow-200 overflow-hidden animate-fadeIn">
-                         <div className="max-h-60 overflow-y-auto py-1">
+                    <div className="absolute z-999 w-full mt-2 bg-white rounded-xl shadow-2xl border border-tech-muted/30 overflow-hidden animate-fadeIn backdrop-blur-sm">
+                         <div className="max-h-60 overflow-y-auto">
                               {options.map((option, index) => (
                                    <button
                                         key={index}
                                         onClick={() => handleSelect(option)}
-                                        className={`w-full px-4 py-2.5 text-right text-sm transition-colors ${
+                                        className={`w-full px-4 py-3 text-right text-sm transition-all duration-150 flex items-center justify-between group ${
                                              value === option
-                                                  ? "bg-sapphire-sky-600 text-white font-medium"
-                                                  : "text-ink-black-700 hover:bg-sapphire-sky-50"
+                                                  ? "bg-linear-to-r from-tech-accent/10 to-tech-test/10 border-r-4 border-tech-accent text-tech-accent font-semibold"
+                                                  : "text-tech-text hover:bg-tech-bg/50"
                                         }`}
                                    >
-                                        {option}
+                                        <div className="flex items-center gap-2">
+                                             {value === option && (
+                                                  <Check className="w-4 h-4 text-tech-accent" />
+                                             )}
+                                        </div>
+                                        <span>{option}</span>
                                    </button>
                               ))}
                          </div>
