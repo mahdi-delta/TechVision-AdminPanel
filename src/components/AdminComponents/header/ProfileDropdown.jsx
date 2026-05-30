@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
-import useClickOutside from "../../hooks/useClickOutside";
-import { currentUser } from "../../data/userData";
+import useClickOutside from "../../../hooks/useClickOutside";
+import { currentUser } from "../../../data/userData";
 
 const ProfileDropdown = () => {
      const [showProfile, setShowProfile] = useState(false);

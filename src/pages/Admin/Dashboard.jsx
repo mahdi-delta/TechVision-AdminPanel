@@ -1,6 +1,6 @@
 import { statsData, salesChartData, categoryData, recentOrders } from "../../data/dashboardData";
 import { useState } from "react";
-import CustomDropdown from "../../components/common/CustomDropdown";
+import CustomDropdown from "../../components/AdminComponents/common/CustomDropdown";
 
 const Dashboard = () => {
      const stats = statsData;

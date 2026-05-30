@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { getStatusColor } from "../../data/ordersData";
+import { getStatusColor } from "../../../data/ordersData";
 
 const OrderEditModal = ({ show, onClose, order, onSave }) => {
      const [status, setStatus] = useState(order?.status || "");

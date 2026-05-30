@@ -1,9 +1,9 @@
-import { usePage } from "../context/PageContext";
-import Dashboard from "../pages/Admin/Dashboard";
-import Products from "../pages/Admin/Products";
-import Users from "../pages/Admin/Users";
-import Orders from "../pages/Admin/Orders";
-import Settings from "../pages/Admin/Settings";
+import { usePage } from "../../context/PageContext";
+import Dashboard from "../../pages/Admin/Dashboard";
+import Products from "../../pages/Admin/Products";
+import Users from "../../pages/Admin/Users";
+import Orders from "../../pages/Admin/Orders";
+import Settings from "../../pages/Admin/Settings";
 
 const Main = () => {
      const { activePage } = usePage();

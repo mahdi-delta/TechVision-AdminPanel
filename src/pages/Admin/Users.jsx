@@ -1,10 +1,10 @@
 import { usersTableData } from "../../data/usersData";
 import { useState } from "react";
-import StatsCard from "../../components/common/StatsCard";
-import SearchInput from "../../components/common/SearchInput";
-import AddUserModal from "../../components/users/AddUserModal";
-import DeleteUserModal from "../../components/users/DeleteUserModal";
-import CustomDropdown from "../../components/common/CustomDropdown";
+import StatsCard from "../../components/AdminComponents/common/StatsCard";
+import SearchInput from "../../components/AdminComponents/common/SearchInput";
+import AddUserModal from "../../components/AdminComponents/users/AddUserModal";
+import DeleteUserModal from "../../components/AdminComponents/users/DeleteUserModal";
+import CustomDropdown from "../../components/AdminComponents/common/CustomDropdown";
 
 const Users = () => {
      const [users, setUsers] = useState(usersTableData);

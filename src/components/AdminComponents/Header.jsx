@@ -1,4 +1,4 @@
-import { usePage } from "../context/PageContext";
+import { usePage } from "../../context/PageContext";
 import SearchInput from "./common/SearchInput";
 import NotificationDropdown from "./header/NotificationDropdown";
 import ProfileDropdown from "./header/ProfileDropdown";

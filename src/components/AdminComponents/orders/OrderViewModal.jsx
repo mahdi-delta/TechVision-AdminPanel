@@ -1,4 +1,4 @@
-import { getStatusColor } from "../../data/ordersData";
+import { getStatusColor } from "../../../data/ordersData";
 
 const OrderViewModal = ({ show, onClose, order }) => {
      if (!show || !order) return null;

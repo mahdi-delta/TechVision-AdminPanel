@@ -1,4 +1,4 @@
-import { usePage } from "../context/PageContext";
+import { usePage } from "../../context/PageContext";
 
 const SidebarItems = ({ item, isSettings = false }) => {
      const Icon = item.icon;

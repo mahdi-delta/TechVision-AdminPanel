@@ -1,5 +1,5 @@
 import { useState } from "react";
-import CustomDropdown from "../../components/common/CustomDropdown";
+import CustomDropdown from "../../components/AdminComponents/common/CustomDropdown";
 import { currentUser } from "../../data/userData";
 
 const Settings = () => {

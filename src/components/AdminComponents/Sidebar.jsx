@@ -1,8 +1,8 @@
 import { useState } from "react";
-import Arrow from "../assets/icons/Arrow";
+import Arrow from "../../assets/icons/Arrow";
 import SidebarItems from "./SidebarItems";
-import { mainMenuItems, settingsItem } from "../constants";
-import logo from "../assets/icons/logo/logo.png";
+import { mainMenuItems, settingsItem } from "../../constants";
+import logo from "../../assets/icons/logo/Logo.png";
 
 const Sidebar = () => {
      const [SiderbarStatus, setSiderbarStatus] = useState("open");

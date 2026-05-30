@@ -1,9 +1,9 @@
 import { ordersData, getStatusColor } from "../../data/ordersData";
 import { useState } from "react";
-import SearchInput from "../../components/common/SearchInput";
-import OrderViewModal from "../../components/orders/OrderViewModal";
-import OrderEditModal from "../../components/orders/OrderEditModal";
-import CustomDropdown from "../../components/common/CustomDropdown";
+import SearchInput from "../../components/AdminComponents/common/SearchInput";
+import OrderViewModal from "../../components/AdminComponents/orders/OrderViewModal";
+import OrderEditModal from "../../components/AdminComponents/orders/OrderEditModal";
+import CustomDropdown from "../../components/AdminComponents/common/CustomDropdown";
 
 const Orders = () => {
      const [orders, setOrders] = useState(ordersData);

@@ -1,6 +1,6 @@
-import Header from "../components/Header";
-import Main from "../components/Main";
-import Sidebar from "../components/Sidebar";
+import Header from "../components/AdminComponents/header";
+import Main from "../components/AdminComponents/Main";
+import Sidebar from "../components/AdminComponents/Sidebar";
 import { PageProvider } from "../context/PageContext";
 
 const Admin = () => {

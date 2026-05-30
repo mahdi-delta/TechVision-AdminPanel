@@ -1,9 +1,9 @@
 import { productsData } from "../../data/productsData";
 import { useState } from "react";
-import StatsCard from "../../components/common/StatsCard";
-import SearchInput from "../../components/common/SearchInput";
-import AddProductModal from "../../components/products/AddProductModal";
-import CustomDropdown from "../../components/common/CustomDropdown";
+import StatsCard from "../../components/AdminComponents/common/StatsCard";
+import SearchInput from "../../components/AdminComponents/common/SearchInput";
+import AddProductModal from "../../components/AdminComponents/products/AddProductModal";
+import CustomDropdown from "../../components/AdminComponents/common/CustomDropdown";
 
 const Products = () => {
      const [products, setProducts] = useState(productsData);
