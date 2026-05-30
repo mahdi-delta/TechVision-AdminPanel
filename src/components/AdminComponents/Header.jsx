@@ -7,14 +7,17 @@ const Header = () => {
      const { activePage } = usePage();
 
      return (
-          <div className="bg-white shadow-sm border-b border-tech-muted">
-               <div className="px-8 py-5">
+          <div className="bg-gradient-to-r from-tech-bg via-white to-tech-bg shadow-md border-b border-tech-navy-light/20 rounded-2xl backdrop-blur-sm">
+               <div className="px-8 py-6">
                     <div className="flex items-center justify-between">
-                         <div>
-                              <h1 className="text-3xl font-bold text-tech-text mb-1">
-                                   {activePage}
-                              </h1>
-                              <p className="text-sm text-tech-test">
+                         <div className="space-y-2">
+                              <div className="flex items-center gap-3">
+                                   <div className="h-2 w-2 rounded-full bg-gradient-to-r from-tech-accent to-tech-test"></div>
+                                   <h1 className="text-4xl font-bold bg-gradient-to-r from-tech-text to-tech-navy-light bg-clip-text text-transparent">
+                                        {activePage}
+                                   </h1>
+                              </div>
+                              <p className="text-sm text-tech-muted tracking-wide font-medium">
                                    خوش آمدید به پنل مدیریتی تک‌ویژن
                               </p>
                          </div>
