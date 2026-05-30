@@ -54,9 +54,9 @@ const Products = () => {
      };
 
      return (
-          <div className="space-y-6">
+          <div className="space-y-4 md:space-y-6">
                {/* Stats */}
-               <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+               <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
                     <StatsCard title="کل محصولات" value={products.length} />
                     <StatsCard title="موجودی کل" value={totalStock} valueColor="text-tech-test" />
                     <StatsCard title="موجودی کم" value={lowStock} valueColor="text-orange-600" />
@@ -69,55 +69,61 @@ const Products = () => {
 
                {/* Main Table */}
                <div className="bg-white rounded-2xl shadow-sm border border-tech-bg">
-                    <div className="p-6 border-b border-tech-muted">
-                         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                              <h2 className="text-xl font-semibold text-tech-text">لیست محصولات</h2>
-                              <div className="flex items-center gap-3">
-                                   <SearchInput
-                                        value={searchQuery}
-                                        onChange={(e) => setSearchQuery(e.target.value)}
-                                   />
-                                   <CustomDropdown
-                                        options={[
-                                             "همه دسته‌ها",
-                                             "لپ‌تاپ",
-                                             "لوازم جانبی",
-                                             "مانیتور",
-                                        ]}
-                                        value={categoryFilter}
-                                        onChange={setCategoryFilter}
-                                        className="min-w-44"
-                                   />
+                    <div className="p-3 md:p-6 border-b border-tech-muted">
+                         <div className="flex flex-col gap-3 md:gap-4">
+                              <h2 className="text-lg md:text-xl font-semibold text-tech-text">
+                                   لیست محصولات
+                              </h2>
+                              <div className="flex flex-col md:flex-row items-stretch md:items-center gap-2 md:gap-3">
+                                   <div className="flex-1 md:flex-none md:w-72">
+                                        <SearchInput
+                                             value={searchQuery}
+                                             onChange={(e) => setSearchQuery(e.target.value)}
+                                        />
+                                   </div>
+                                   <div className="flex-1 md:flex-none md:min-w-44">
+                                        <CustomDropdown
+                                             options={[
+                                                  "همه دسته‌ها",
+                                                  "لپ‌تاپ",
+                                                  "لوازم جانبی",
+                                                  "مانیتور",
+                                             ]}
+                                             value={categoryFilter}
+                                             onChange={setCategoryFilter}
+                                             className="w-full md:min-w-44"
+                                        />
+                                   </div>
                                    <button
                                         onClick={() => setShowAddModal(true)}
-                                        className="px-4 py-2 bg-tech-test text-white rounded-lg hover:bg-tech-test transition-colors text-sm flex items-center gap-2"
+                                        className="px-3 md:px-4 py-2 bg-tech-test text-white rounded-lg hover:bg-tech-test transition-colors text-sm flex items-center justify-center md:justify-start gap-2 flex-shrink-0"
                                    >
                                         <Plus className="w-5 h-5" />
-                                        <span>افزودن محصول</span>
+                                        <span className="hidden md:inline">افزودن محصول</span>
                                    </button>
                               </div>
                          </div>
                     </div>
                     <div className="overflow-x-auto">
                          <table className="w-full">
-                              <thead className="bg-tech-bg">
+                              <thead className="bg-tech-bg hidden md:table-header-group">
                                    <tr>
-                                        <th className="px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
+                                        <th className="px-3 md:px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
                                              محصول
                                         </th>
-                                        <th className="px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
+                                        <th className="px-3 md:px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
                                              دسته‌بندی
                                         </th>
-                                        <th className="px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
+                                        <th className="px-3 md:px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
                                              قیمت (تومان)
                                         </th>
-                                        <th className="px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
+                                        <th className="px-3 md:px-6 py-3 text-right text-xs font-medium text-tech-navy-melo hidden lg:table-cell">
                                              موجودی
                                         </th>
-                                        <th className="px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
+                                        <th className="px-3 md:px-6 py-3 text-right text-xs font-medium text-tech-navy-melo hidden lg:table-cell">
                                              فروش
                                         </th>
-                                        <th className="px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
+                                        <th className="px-3 md:px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
                                              عملیات
                                         </th>
                                    </tr>
@@ -126,34 +132,34 @@ const Products = () => {
                                    {filteredProducts.map((product) => (
                                         <tr
                                              key={product.id}
-                                             className="hover:bg-tech-bg transition-colors"
+                                             className="hover:bg-tech-bg transition-colors block md:table-row border-b md:border-b border-tech-muted mb-3 md:mb-0 p-3 md:p-0 rounded-lg md:rounded-none md:border-0"
                                         >
-                                             <td className="px-6 py-4">
+                                             <td className="px-0 md:px-6 py-2 md:py-4 block md:table-cell text-right md:text-right before:content-attr(data-label) before:font-bold before:float-left md:before:content-none">
                                                   <div className="flex items-center gap-3">
-                                                       <div className="w-12 h-12 rounded-xl bg-tech-bg flex items-center justify-center text-2xl">
+                                                       <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-tech-bg flex items-center justify-center text-lg md:text-2xl flex-shrink-0">
                                                             {product.image}
                                                        </div>
-                                                       <div>
-                                                            <p className="text-sm font-medium text-tech-text">
+                                                       <div className="min-w-0">
+                                                            <p className="text-xs md:text-sm font-medium text-tech-text truncate">
                                                                  {product.name}
                                                             </p>
                                                             <p className="text-xs text-tech-test">
-                                                                 کد: #{product.id}
+                                                                 #{product.id}
                                                             </p>
                                                        </div>
                                                   </div>
                                              </td>
-                                             <td className="px-6 py-4">
-                                                  <span className="px-3 py-1 rounded-lg bg-tech-bg text-tech-navy text-xs font-medium">
+                                             <td className="px-0 md:px-6 py-2 md:py-4 block md:table-cell text-right text-xs md:text-sm">
+                                                  <span className="px-2 md:px-3 py-1 rounded-lg bg-tech-bg text-tech-navy text-xs font-medium inline-block">
                                                        {product.category}
                                                   </span>
                                              </td>
-                                             <td className="px-6 py-4 text-sm font-medium text-tech-text">
+                                             <td className="px-0 md:px-6 py-2 md:py-4 block md:table-cell text-right text-xs md:text-sm font-medium text-tech-text">
                                                   {product.price}
                                              </td>
-                                             <td className="px-6 py-4">
+                                             <td className="px-0 md:px-6 py-2 md:py-4 hidden lg:table-cell">
                                                   <span
-                                                       className={`px-3 py-1 text-xs rounded-full font-medium ${
+                                                       className={`px-2 md:px-3 py-1 text-xs rounded-full font-medium inline-block ${
                                                             product.stock > 20
                                                                  ? "bg-green-50 text-green-700"
                                                                  : product.stock > 10
@@ -164,10 +170,10 @@ const Products = () => {
                                                        {product.stock} عدد
                                                   </span>
                                              </td>
-                                             <td className="px-6 py-4 text-sm text-tech-navy-melo">
-                                                  {product.sales} فروش
+                                             <td className="px-0 md:px-6 py-2 md:py-4 hidden lg:table-cell text-xs md:text-sm text-tech-navy-melo">
+                                                  {product.sales}
                                              </td>
-                                             <td className="px-6 py-4">
+                                             <td className="px-0 md:px-6 py-2 md:py-4 block md:table-cell">
                                                   <div className="flex items-center gap-2">
                                                        <button className="p-2 hover:bg-tech-bg rounded-lg transition-colors">
                                                             <Edit2 className="w-4 h-4 text-tech-test" />

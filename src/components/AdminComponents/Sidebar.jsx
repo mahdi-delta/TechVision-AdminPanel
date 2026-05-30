@@ -2,7 +2,6 @@ import { useState } from "react";
 import Arrow from "../../assets/icons/Arrow";
 import SidebarItems from "./SidebarItems";
 import { mainMenuItems, settingsItem } from "../../constants";
-import logo from "../../assets/icons/logo/Logo";
 import Logo from "../../assets/icons/logo/Logo";
 import { X } from "lucide-react";
 
@@ -33,7 +32,6 @@ const Sidebar = ({ onToggle }) => {
                                         تک ویژن
                                    </span>
                               </div>
-                              {/* Close button for mobile */}
                               <button
                                    onClick={handleClose}
                                    className="md:hidden p-2 hover:bg-tech-navy-melo rounded-lg transition-colors text-white"
