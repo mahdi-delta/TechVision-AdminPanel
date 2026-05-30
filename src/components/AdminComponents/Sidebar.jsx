@@ -2,7 +2,8 @@ import { useState } from "react";
 import Arrow from "../../assets/icons/Arrow";
 import SidebarItems from "./SidebarItems";
 import { mainMenuItems, settingsItem } from "../../constants";
-import logo from "../../assets/icons/logo/Logo.png";
+import logo from "../../assets/icons/logo/Logo";
+import Logo from "../../assets/icons/logo/Logo";
 
 const Sidebar = () => {
      const [SiderbarStatus, setSiderbarStatus] = useState("open");
@@ -19,13 +20,11 @@ const Sidebar = () => {
           >
                {SiderbarStatus === "open" && (
                     <main className="w-full h-full flex flex-col">
-                         <div className="mb-6 pt-3 w-full flex justify-center">
-                              <img
-                                   src={logo}
-                                   alt="TechVision Logo"
-                                   width={160}
-                                   className="drop-shadow-lg"
-                              />
+                         <div className="mb-6 pt-3 w-full flex justify-center items-center">
+                              <Logo className="w-7 h-7 fill-white" />
+                              <span className="h-7 pr-2 hidden sm:inline text-white bg-clip-text text-2xl">
+                                   تک ویژن
+                              </span>
                          </div>
 
                          <div className="flex-1 overflow-y-auto px-1 space-y-2">
