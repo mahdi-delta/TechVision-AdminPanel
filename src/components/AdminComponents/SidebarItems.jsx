@@ -1,6 +1,6 @@
 import { usePage } from "../../context/PageContext";
 
-const SidebarItems = ({ item, isSettings = false }) => {
+const SidebarItems = ({ item}) => {
      const Icon = item.icon;
      const { activePage, setActivePage } = usePage();
      const isActive = activePage === item.title;
@@ -16,7 +16,7 @@ const SidebarItems = ({ item, isSettings = false }) => {
                     }`}
                >
                     <span className="w-5 h-5 shrink-0 flex items-center justify-center">
-                         <Icon className={`w-full h-full ${isActive ? "fill-gray-900" : "fill-gray-500 group-hover:fill-gray-700"}`} />
+                         <Icon className={`w-full h-full ${isActive ? "fill-gray-400" : "fill-white group-hover:fill-gray-700"}`} />
                     </span>
                     <span className="text-right flex-1 text-sm">
                          {item.title}
