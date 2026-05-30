@@ -7,10 +7,10 @@ const Admin = () => {
      return (
           <PageProvider>
                <section className="w-full h-screen flex overflow-hidden bg-white">
-                    <div className="max-w-72 h-full bg-linear-to-b from-tech-text to-tech-navy shadow-2xl">
+                    <div className="max-w-72 h-full shadow-2xl p-1">
                          <Sidebar />
                     </div>
-                    <div className="w-full h-full flex flex-col bg-linear-to-br from-tech-bg to-tech-bg">
+                    <div className="w-full h-full flex flex-col bg-linear-to-br from-tech-bg to-tech-bg m-1 border-2 mr-2 border-tech-navy-melo/30 rounded-xl">
                          <Header />
                          <Main />
                     </div>

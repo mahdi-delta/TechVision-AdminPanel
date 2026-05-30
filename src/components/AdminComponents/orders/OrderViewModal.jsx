@@ -1,4 +1,5 @@
 import { getStatusColor } from "../../../data/ordersData";
+import { X } from "lucide-react";
 
 const OrderViewModal = ({ show, onClose, order }) => {
      if (!show || !order) return null;
@@ -20,19 +21,7 @@ const OrderViewModal = ({ show, onClose, order }) => {
                               onClick={onClose}
                               className="text-tech-navy-light hover:text-tech-navy-melo transition-colors"
                          >
-                              <svg
-                                   className="w-6 h-6"
-                                   fill="none"
-                                   stroke="currentColor"
-                                   viewBox="0 0 24 24"
-                              >
-                                   <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        d="M6 18L18 6M6 6l12 12"
-                                   />
-                              </svg>
+                              <X className="w-6 h-6" />
                          </button>
                     </div>
 

@@ -1,5 +1,6 @@
 import { ordersData, getStatusColor } from "../../data/ordersData";
 import { useState } from "react";
+import { ShoppingBag, Clock, CheckCircle, DollarSign, Edit2, Trash2, Eye } from "lucide-react";
 import SearchInput from "../../components/AdminComponents/common/SearchInput";
 import OrderViewModal from "../../components/AdminComponents/orders/OrderViewModal";
 import OrderEditModal from "../../components/AdminComponents/orders/OrderEditModal";
@@ -57,67 +58,13 @@ const Orders = () => {
      const getIcon = (title) => {
           switch (title) {
                case "کل سفارشات":
-                    return (
-                         <svg
-                              className="w-7 h-7 text-tech-test"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                         >
-                              <path
-                                   strokeLinecap="round"
-                                   strokeLinejoin="round"
-                                   strokeWidth={2}
-                                   d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
-                              />
-                         </svg>
-                    );
+                    return <ShoppingBag className="w-7 h-7 text-tech-test" />;
                case "در انتظار":
-                    return (
-                         <svg
-                              className="w-7 h-7 text-yellow-600"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                         >
-                              <path
-                                   strokeLinecap="round"
-                                   strokeLinejoin="round"
-                                   strokeWidth={2}
-                                   d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                              />
-                         </svg>
-                    );
+                    return <Clock className="w-7 h-7 text-yellow-600" />;
                case "تکمیل شده":
-                    return (
-                         <svg
-                              className="w-7 h-7 text-green-600"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                         >
-                              <path
-                                   strokeLinecap="round"
-                                   strokeLinejoin="round"
-                                   strokeWidth={2}
-                                   d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                              />
-                         </svg>
-                    );
+                    return <CheckCircle className="w-7 h-7 text-green-600" />;
                case "درآمد کل":
-                    return (
-                         <svg
-                              className="w-7 h-7 text-purple-600"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                         >
-                              <path
-                                   strokeLinecap="round"
-                                   strokeLinejoin="round"
-                                   strokeWidth={2}
-                                   d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                              />
+                    return <DollarSign className="w-7 h-7 text-purple-600" />;
                          </svg>
                     );
                default:
@@ -300,37 +247,14 @@ const Orders = () => {
                                                             className="p-2 hover:bg-tech-bg rounded-lg transition-colors"
                                                             title="مشاهده جزئیات"
                                                        >
-                                                            <svg
-                                                                 className="w-4 h-4 text-tech-test"
-                                                                 fill="none"
-                                                                 stroke="currentColor"
-                                                                 viewBox="0 0 24 24"
-                                                            >
-                                                                 <path
-                                                                      strokeLinecap="round"
-                                                                      strokeLinejoin="round"
-                                                                      strokeWidth={2}
-                                                                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                                                                 />
-                                                                 <path
-                                                                      strokeLinecap="round"
-                                                                      strokeLinejoin="round"
-                                                                      strokeWidth={2}
-                                                                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                                                                 />
-                                                            </svg>
+                                                            <Eye className="w-4 h-4 text-tech-test" />
                                                        </button>
                                                        <button
                                                             onClick={() => handleEditOrder(order)}
                                                             className="p-2 hover:bg-tech-bg rounded-lg transition-colors"
                                                             title="تغییر وضعیت"
                                                        >
-                                                            <svg
-                                                                 className="w-4 h-4 text-tech-navy-melo"
-                                                                 fill="none"
-                                                                 stroke="currentColor"
-                                                                 viewBox="0 0 24 24"
-                                                            >
+                                                            <Edit2 className="w-4 h-4 text-tech-navy-melo" />
                                                                  <path
                                                                       strokeLinecap="round"
                                                                       strokeLinejoin="round"

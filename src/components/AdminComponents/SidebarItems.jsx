@@ -9,13 +9,13 @@ const SidebarItems = ({ item, isSettings = false }) => {
           <div className="w-full mb-2">
                <button
                     onClick={() => setActivePage(item.title)}
-                    className={`w-full flex items-center gap-3 p-3 rounded-lg transition-all duration-300 ease-in-out text-white group hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] border ${
+                    className={`w-full flex items-center gap-3 p-3 rounded-md transition-all duration-300 ease-in-out text-white group hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] border ${
                          isActive
                               ? isSettings
                                    ? "bg-linear-to-r from-tech-test to-tech-test border-tech-accent shadow-xl"
                                    : "bg-tech-navy border-tech-test shadow-lg"
                               : isSettings
-                                ? "bg-transparent border-tech-navy-melo/30 hover:bg-linear-to-r hover:from-tech-test hover:to-tech-test hover:border-tech-accent"
+                                ? "bg-tech-navy-melo border-tech-navy-melo/30 hover:bg-linear-to-r hover:from-tech-test hover:to-tech-test hover:border-tech-accent"
                                 : "bg-transparent border-transparent hover:bg-tech-navy hover:border-tech-navy-melo"
                     }`}
                >

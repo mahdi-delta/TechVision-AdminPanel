@@ -13,7 +13,7 @@ const Sidebar = () => {
      return (
           <section
                className={
-                    "h-full relative transition-all duration-300 bg-linear-to-b bg-tech-navy  border-l border-tech-navy rounded-3xl " +
+                    "h-full relative transition-all duration-300 bg-linear-to-b bg-tech-navy  border-l border-tech-navy rounded-xl " +
                     (SiderbarStatus === "closed" ? "w-0 p-0" : "min-w-72 p-4")
                }
           >
@@ -43,12 +43,12 @@ const Sidebar = () => {
 
                <button
                     className={
-                         "absolute flex justify-center items-center -left-5 top-1/3 border-2 border-tech-navy-light bg-tech-bg shadow-xl aspect-square w-10 rounded-full transition-all duration-300 hover:scale-110 hover:bg-tech-navy-light text-white " +
+                         "absolute flex justify-center items-center -left-5 top-1/3 border-3 border-tech-bg bg-tech-navy shadow-xl aspect-square w-10 rounded-full transition-all duration-300 hover:scale-110 hover:bg-tech-navy-light text-tech-bg " +
                          (SiderbarStatus === "closed" ? "transform -translate-x-6 rotate-180" : "")
                     }
                     onClick={handleSidebarStatus}
                >
-                    <Arrow className="w-5 h-5 rotate-90" />
+                    <Arrow className="w-5 h-5 rotate-90  fill-white" />
                </button>
           </section>
      );

@@ -1,4 +1,5 @@
 import CustomDropdown from "../common/CustomDropdown";
+import { X } from "lucide-react";
 
 const AddUserModal = ({ show, onClose, onSave, user, setUser, isEditing = false }) => {
      if (!show) return null;
@@ -53,19 +54,7 @@ const AddUserModal = ({ show, onClose, onSave, user, setUser, isEditing = false 
                               onClick={onClose}
                               className="text-tech-navy-light hover:text-tech-navy-melo"
                          >
-                              <svg
-                                   className="w-6 h-6"
-                                   fill="none"
-                                   stroke="currentColor"
-                                   viewBox="0 0 24 24"
-                              >
-                                   <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        d="M6 18L18 6M6 6l12 12"
-                                   />
-                              </svg>
+                              <X className="w-6 h-6" />
                          </button>
                     </div>
 
