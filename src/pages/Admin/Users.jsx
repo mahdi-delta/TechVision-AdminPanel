@@ -133,9 +133,9 @@ const Users = () => {
      };
 
      return (
-          <div className="space-y-6">
-               {/* Stats Cards */}
-               <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div className="space-y-3 md:space-y-6">
+               {/* Stats */}
+               <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 px-3 md:px-0">
                     <StatsCard title="کل کاربران" value={users.length} />
                     <StatsCard
                          title="کاربران فعال"
@@ -152,8 +152,8 @@ const Users = () => {
 
                {/* Main Table */}
                <div className="bg-white rounded-2xl shadow-sm border border-tech-bg">
-                    <div className="p-6 border-b border-tech-muted">
-                         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                    <div className="p-3 md:p-6 border-b border-tech-muted">
+                         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-4">
                               <h2 className="text-xl font-semibold text-tech-text">لیست کاربران</h2>
                               <div className="flex items-center gap-3">
                                    <SearchInput
@@ -178,24 +178,24 @@ const Users = () => {
                     </div>
                     <div className="overflow-x-auto">
                          <table className="w-full">
-                              <thead className="bg-tech-bg">
+                              <thead className="bg-tech-bg hidden md:table-header-group">
                                    <tr>
-                                        <th className="px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
+                                        <th className="px-3 md:px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
                                              کاربر
                                         </th>
-                                        <th className="px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
+                                        <th className="px-3 md:px-6 py-3 text-right text-xs font-medium text-tech-navy-melo hidden lg:table-cell">
                                              ایمیل
                                         </th>
-                                        <th className="px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
+                                        <th className="px-3 md:px-6 py-3 text-right text-xs font-medium text-tech-navy-melo hidden lg:table-cell">
                                              نقش
                                         </th>
-                                        <th className="px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
+                                        <th className="px-3 md:px-6 py-3 text-right text-xs font-medium text-tech-navy-melo hidden lg:table-cell">
                                              تاریخ عضویت
                                         </th>
-                                        <th className="px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
+                                        <th className="px-3 md:px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
                                              وضعیت
                                         </th>
-                                        <th className="px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
+                                        <th className="px-3 md:px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
                                              عملیات
                                         </th>
                                    </tr>
@@ -204,9 +204,9 @@ const Users = () => {
                                    {filteredUsers.map((user) => (
                                         <tr
                                              key={user.id}
-                                             className="hover:bg-tech-bg transition-colors"
+                                             className="hover:bg-tech-bg transition-colors block md:table-row border-b md:border-b pb-4 md:pb-0 mb-4 md:mb-0"
                                         >
-                                             <td className="px-6 py-4">
+                                             <td className="px-3 md:px-6 py-2 md:py-4 block md:table-cell before:content-attr(data-label) before:block before:font-semibold before:text-tech-navy md:before:hidden md:text-right">
                                                   <div className="flex items-center gap-3">
                                                        {user.avatarImage ? (
                                                             <img
@@ -229,18 +229,18 @@ const Users = () => {
                                                        </div>
                                                   </div>
                                              </td>
-                                             <td className="px-6 py-4 text-sm text-tech-navy-melo">
+                                             <td className="px-3 md:px-6 py-2 md:py-4 text-sm text-tech-navy-melo hidden lg:table-cell">
                                                   {user.email}
                                              </td>
-                                             <td className="px-6 py-4">
+                                             <td className="px-3 md:px-6 py-2 md:py-4 hidden lg:table-cell">
                                                   <span className="px-3 py-1 rounded-lg bg-tech-bg text-tech-navy text-xs font-medium">
                                                        {user.role}
                                                   </span>
                                              </td>
-                                             <td className="px-6 py-4 text-sm text-tech-navy-melo">
+                                             <td className="px-3 md:px-6 py-2 md:py-4 text-sm text-tech-navy-melo hidden lg:table-cell">
                                                   {user.joinDate}
                                              </td>
-                                             <td className="px-6 py-4">
+                                             <td className="px-3 md:px-6 py-2 md:py-4">
                                                   <span
                                                        className={`px-3 py-1 text-xs rounded-full font-medium ${
                                                             user.status === "فعال"
@@ -251,7 +251,7 @@ const Users = () => {
                                                        {user.status}
                                                   </span>
                                              </td>
-                                             <td className="px-6 py-4">
+                                             <td className="px-3 md:px-6 py-2 md:py-4">
                                                   <div className="flex items-center gap-2">
                                                        <button
                                                             onClick={() => handleEditUser(user)}
@@ -275,24 +275,24 @@ const Users = () => {
                          </table>
                     </div>
                     {/* Pagination */}
-                    <div className="px-6 py-4 border-t border-tech-muted flex items-center justify-between">
+                    <div className="px-3 md:px-6 py-3 md:py-4 border-t border-tech-muted flex flex-col md:flex-row md:items-center md:justify-between gap-3 md:gap-0">
                          <p className="text-sm text-tech-navy-melo">
                               نمایش {filteredUsers.length} از {users.length} کاربر
                          </p>
-                         <div className="flex items-center gap-2">
+                         <div className="flex items-center gap-2 flex-wrap">
                               <button
-                                   className="px-3 py-2 border border-tech-navy-light rounded-lg hover:bg-tech-bg disabled:opacity-50 text-sm"
+                                   className="px-2 md:px-3 py-2 border border-tech-navy-light rounded-lg hover:bg-tech-bg disabled:opacity-50 text-xs md:text-sm"
                                    disabled
                               >
                                    قبلی
                               </button>
-                              <button className="px-3 py-2 bg-tech-test text-white rounded-lg text-sm">
+                              <button className="px-2 md:px-3 py-2 bg-tech-test text-white rounded-lg text-xs md:text-sm">
                                    1
                               </button>
-                              <button className="px-3 py-2 border border-tech-navy-light rounded-lg hover:bg-tech-bg text-sm">
+                              <button className="px-2 md:px-3 py-2 border border-tech-navy-light rounded-lg hover:bg-tech-bg text-xs md:text-sm">
                                    2
                               </button>
-                              <button className="px-3 py-2 border border-tech-navy-light rounded-lg hover:bg-tech-bg text-sm">
+                              <button className="px-2 md:px-3 py-2 border border-tech-navy-light rounded-lg hover:bg-tech-bg text-xs md:text-sm">
                                    بعدی
                               </button>
                          </div>

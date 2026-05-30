@@ -71,9 +71,9 @@ const Orders = () => {
      };
 
      return (
-          <div className="space-y-6">
+          <div className="space-y-3 md:space-y-6">
                {/* Stats Cards */}
-               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+               <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-4 px-3 md:px-0">
                     <div className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-tech-bg">
                          <div className="flex items-start justify-between">
                               <div className="flex-1">
@@ -130,8 +130,8 @@ const Orders = () => {
 
                {/* Orders Table */}
                <div className="bg-white rounded-2xl shadow-sm border border-tech-bg">
-                    <div className="p-6 border-b border-tech-muted">
-                         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
+                    <div className="p-3 md:p-6 border-b border-tech-muted">
+                         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-2 md:gap-4">
                               <h2 className="text-xl font-semibold text-tech-text">سفارشات اخیر</h2>
                               <div className="flex gap-3 w-full lg:w-auto">
                                    <SearchInput
@@ -157,30 +157,30 @@ const Orders = () => {
                     </div>
                     <div className="overflow-x-auto">
                          <table className="w-full">
-                              <thead className="bg-tech-bg">
+                              <thead className="bg-tech-bg hidden md:table-header-group">
                                    <tr>
-                                        <th className="px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
+                                        <th className="px-3 md:px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
                                              شماره سفارش
                                         </th>
-                                        <th className="px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
+                                        <th className="px-3 md:px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
                                              مشتری
                                         </th>
-                                        <th className="px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
+                                        <th className="px-3 md:px-6 py-3 text-right text-xs font-medium text-tech-navy-melo hidden lg:table-cell">
                                              محصول
                                         </th>
-                                        <th className="px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
+                                        <th className="px-3 md:px-6 py-3 text-right text-xs font-medium text-tech-navy-melo hidden lg:table-cell">
                                              مبلغ (تومان)
                                         </th>
-                                        <th className="px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
+                                        <th className="px-3 md:px-6 py-3 text-right text-xs font-medium text-tech-navy-melo hidden lg:table-cell">
                                              روش پرداخت
                                         </th>
-                                        <th className="px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
+                                        <th className="px-3 md:px-6 py-3 text-right text-xs font-medium text-tech-navy-melo hidden xl:table-cell">
                                              تاریخ و زمان
                                         </th>
-                                        <th className="px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
+                                        <th className="px-3 md:px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
                                              وضعیت
                                         </th>
-                                        <th className="px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
+                                        <th className="px-3 md:px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
                                              عملیات
                                         </th>
                                    </tr>
@@ -189,14 +189,14 @@ const Orders = () => {
                                    {filteredOrders.map((order) => (
                                         <tr
                                              key={order.id}
-                                             className="hover:bg-tech-bg transition-colors"
+                                             className="hover:bg-tech-bg transition-colors block md:table-row border-b md:border-b pb-4 md:pb-0 mb-4 md:mb-0"
                                         >
-                                             <td className="px-6 py-4">
+                                             <td className="px-3 md:px-6 py-2 md:py-4 block md:table-cell before:content-attr(data-label) before:block before:font-semibold before:text-tech-navy md:before:hidden">
                                                   <span className="text-sm font-medium text-tech-text">
                                                        #{order.id}
                                                   </span>
                                              </td>
-                                             <td className="px-6 py-4">
+                                             <td className="px-3 md:px-6 py-2 md:py-4 block md:table-cell before:content-attr(data-label) before:block before:font-semibold before:text-tech-navy md:before:hidden">
                                                   <div className="flex items-center gap-3">
                                                        <div className="w-10 h-10 rounded-full bg-tech-bg text-tech-test flex items-center justify-center font-medium">
                                                             {order.customerAvatar}
@@ -206,18 +206,18 @@ const Orders = () => {
                                                        </span>
                                                   </div>
                                              </td>
-                                             <td className="px-6 py-4 text-sm text-tech-navy-melo">
+                                             <td className="px-3 md:px-6 py-2 md:py-4 text-sm text-tech-navy-melo hidden lg:table-cell">
                                                   {order.product}
                                              </td>
-                                             <td className="px-6 py-4 text-sm font-medium text-tech-text">
+                                             <td className="px-3 md:px-6 py-2 md:py-4 text-sm font-medium text-tech-text hidden lg:table-cell">
                                                   {order.amount}
                                              </td>
-                                             <td className="px-6 py-4">
+                                             <td className="px-3 md:px-6 py-2 md:py-4 hidden lg:table-cell">
                                                   <span className="px-3 py-1 rounded-lg bg-tech-bg text-tech-navy text-xs font-medium">
                                                        {order.paymentMethod}
                                                   </span>
                                              </td>
-                                             <td className="px-6 py-4">
+                                             <td className="px-3 md:px-6 py-2 md:py-4 hidden xl:table-cell">
                                                   <div className="text-sm">
                                                        <p className="text-tech-text font-medium">
                                                             {order.date}
@@ -227,7 +227,7 @@ const Orders = () => {
                                                        </p>
                                                   </div>
                                              </td>
-                                             <td className="px-6 py-4">
+                                             <td className="px-3 md:px-6 py-2 md:py-4">
                                                   <span
                                                        className={`px-3 py-1 text-xs rounded-full font-medium ${getStatusColor(
                                                             order.status,
@@ -236,7 +236,7 @@ const Orders = () => {
                                                        {order.status}
                                                   </span>
                                              </td>
-                                             <td className="px-6 py-4">
+                                             <td className="px-3 md:px-6 py-2 md:py-4">
                                                   <div className="flex items-center gap-2">
                                                        <button
                                                             onClick={() => handleViewOrder(order)}
@@ -261,16 +261,16 @@ const Orders = () => {
                     </div>
 
                     {/* Pagination */}
-                    <div className="p-4 border-t border-tech-muted flex items-center justify-between">
+                    <div className="p-3 md:p-4 border-t border-tech-muted flex flex-col md:flex-row md:items-center md:justify-between gap-3 md:gap-0">
                          <p className="text-sm text-tech-navy-melo">نمایش 1 تا 8 از 8 سفارش</p>
                          <div className="flex gap-2">
-                              <button className="px-3 py-1 border border-tech-navy-light rounded-lg text-sm text-tech-navy-melo hover:bg-tech-bg transition-colors">
+                              <button className="px-2 md:px-3 py-1 border border-tech-navy-light rounded-lg text-xs md:text-sm text-tech-navy-melo hover:bg-tech-bg transition-colors">
                                    قبلی
                               </button>
-                              <button className="px-3 py-1 bg-tech-test text-white rounded-lg text-sm">
+                              <button className="px-2 md:px-3 py-1 bg-tech-test text-white rounded-lg text-xs md:text-sm">
                                    1
                               </button>
-                              <button className="px-3 py-1 border border-tech-navy-light rounded-lg text-sm text-tech-navy-melo hover:bg-tech-bg transition-colors">
+                              <button className="px-2 md:px-3 py-1 border border-tech-navy-light rounded-lg text-xs md:text-sm text-tech-navy-melo hover:bg-tech-bg transition-colors">
                                    بعدی
                               </button>
                          </div>
