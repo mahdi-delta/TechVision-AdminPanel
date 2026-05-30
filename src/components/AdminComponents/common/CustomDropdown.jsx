@@ -30,11 +30,13 @@ const CustomDropdown = ({
                     className="w-full px-4 py-3 bg-white border border-tech-muted rounded-xl text-sm text-right flex items-center justify-between hover:border-tech-navy-light hover:shadow-lg focus:border-tech-accent focus:ring-2 focus:ring-tech-accent/20 transition-all duration-200 outline-none group"
                >
                     <span className="text-tech-text font-semibold">{value || placeholder}</span>
-                    <ChevronDown className={`w-5 h-5 text-tech-navy-melo group-hover:text-tech-accent transition-all duration-300 ${isOpen ? "rotate-180" : ""}`} />
+                    <ChevronDown
+                         className={`w-5 h-5 text-tech-navy-melo group-hover:text-tech-accent transition-all duration-300 ${isOpen ? "rotate-180" : ""}`}
+                    />
                </button>
 
                {isOpen && (
-                    <div className="absolute z-50 w-full mt-2 bg-white rounded-xl shadow-2xl border border-tech-muted/30 overflow-hidden animate-fadeIn backdrop-blur-sm">
+                    <div className="absolute z-[9998] w-full mt-2 bg-white rounded-xl shadow-2xl border border-tech-muted/30 overflow-hidden animate-fadeIn backdrop-blur-sm">
                          <div className="max-h-60 overflow-y-auto">
                               {options.map((option, index) => (
                                    <button
@@ -47,7 +49,9 @@ const CustomDropdown = ({
                                         }`}
                                    >
                                         <div className="flex items-center gap-2">
-                                             {value === option && <Check className="w-4 h-4 text-tech-accent" />}
+                                             {value === option && (
+                                                  <Check className="w-4 h-4 text-tech-accent" />
+                                             )}
                                         </div>
                                         <span>{option}</span>
                                    </button>

@@ -23,15 +23,13 @@ const ProfileDropdown = () => {
                          {currentUser.initials}
                     </div>
                     <div className="text-right hidden sm:block">
-                         <p className="text-sm font-semibold text-tech-text">
-                              {currentUser.name}
-                         </p>
+                         <p className="text-sm font-semibold text-tech-text">{currentUser.name}</p>
                          <p className="text-xs text-tech-navy-melo">{currentUser.role}</p>
                     </div>
                </button>
 
                {showProfile && (
-                    <div className="absolute left-0 mt-2 w-64 bg-white rounded-2xl shadow-xl border border-tech-muted z-50 overflow-hidden">
+                    <div className="absolute left-0 mt-2 w-64 bg-white rounded-2xl shadow-xl border border-tech-muted z-[9999] overflow-hidden">
                          <div className="p-4 border-b border-tech-muted bg-linear-to-r from-tech-bg to-purple-50">
                               <div className="flex items-center gap-3">
                                    <div className="w-12 h-12 rounded-full bg-linear-to-br from-tech-accent to-tech-test flex items-center justify-center text-white font-bold shadow-md">
