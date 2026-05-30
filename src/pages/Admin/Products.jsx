@@ -58,7 +58,7 @@ const Products = () => {
                {/* Stats */}
                <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
                     <StatsCard title="کل محصولات" value={products.length} />
-                    <StatsCard title="موجودی کل" value={totalStock} valueColor="text-tech-test" />
+                    <StatsCard title="موجودی کل" value={totalStock} valueColor="text-blue-600" />
                     <StatsCard title="موجودی کم" value={lowStock} valueColor="text-orange-600" />
                     <StatsCard
                          title="دسته‌بندی‌ها"
@@ -68,10 +68,10 @@ const Products = () => {
                </div>
 
                {/* Main Table */}
-               <div className="bg-white rounded-2xl shadow-sm border border-tech-bg">
-                    <div className="p-3 md:p-6 border-b border-tech-muted">
+               <div className="bg-white rounded-xl shadow-sm border border-gray-100">
+                    <div className="p-3 md:p-6 border-b border-gray-200">
                          <div className="flex flex-col gap-3 md:gap-4">
-                              <h2 className="text-lg md:text-xl font-semibold text-tech-text">
+                              <h2 className="text-lg md:text-xl font-semibold text-gray-900">
                                    لیست محصولات
                               </h2>
                               <div className="flex flex-col md:flex-row items-stretch md:items-center gap-2 md:gap-3">
@@ -96,7 +96,7 @@ const Products = () => {
                                    </div>
                                    <button
                                         onClick={() => setShowAddModal(true)}
-                                        className="px-3 md:px-4 py-2 bg-tech-test text-white rounded-lg hover:bg-tech-test transition-colors text-sm flex items-center justify-center md:justify-start gap-2 flex-shrink-0"
+                                        className="px-3 md:px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-600 transition-colors text-sm flex items-center justify-center md:justify-start gap-2 flex-shrink-0"
                                    >
                                         <Plus className="w-5 h-5" />
                                         <span className="hidden md:inline">افزودن محصول</span>
@@ -106,55 +106,55 @@ const Products = () => {
                     </div>
                     <div className="overflow-x-auto">
                          <table className="w-full">
-                              <thead className="bg-tech-bg hidden md:table-header-group">
+                              <thead className="bg-gray-50 hidden md:table-header-group">
                                    <tr>
-                                        <th className="px-3 md:px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
+                                        <th className="px-3 md:px-6 py-3 text-right text-xs font-medium text-gray-600">
                                              محصول
                                         </th>
-                                        <th className="px-3 md:px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
+                                        <th className="px-3 md:px-6 py-3 text-right text-xs font-medium text-gray-600">
                                              دسته‌بندی
                                         </th>
-                                        <th className="px-3 md:px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
+                                        <th className="px-3 md:px-6 py-3 text-right text-xs font-medium text-gray-600">
                                              قیمت (تومان)
                                         </th>
-                                        <th className="px-3 md:px-6 py-3 text-right text-xs font-medium text-tech-navy-melo hidden lg:table-cell">
+                                        <th className="px-3 md:px-6 py-3 text-right text-xs font-medium text-gray-600 hidden lg:table-cell">
                                              موجودی
                                         </th>
-                                        <th className="px-3 md:px-6 py-3 text-right text-xs font-medium text-tech-navy-melo hidden lg:table-cell">
+                                        <th className="px-3 md:px-6 py-3 text-right text-xs font-medium text-gray-600 hidden lg:table-cell">
                                              فروش
                                         </th>
-                                        <th className="px-3 md:px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
+                                        <th className="px-3 md:px-6 py-3 text-right text-xs font-medium text-gray-600">
                                              عملیات
                                         </th>
                                    </tr>
                               </thead>
-                              <tbody className="divide-y divide-tech-muted">
+                              <tbody className="divide-y divide-gray-200">
                                    {filteredProducts.map((product) => (
                                         <tr
                                              key={product.id}
-                                             className="hover:bg-tech-bg transition-colors block md:table-row border-b md:border-b border-tech-muted mb-3 md:mb-0 p-3 md:p-0 rounded-lg md:rounded-none md:border-0"
+                                             className="hover:bg-gray-100 transition-colors block md:table-row border-b md:border-b border-gray-200 mb-3 md:mb-0 p-3 md:p-0 rounded-lg md:rounded-none md:border-0"
                                         >
                                              <td className="px-0 md:px-6 py-2 md:py-4 block md:table-cell text-right md:text-right before:content-attr(data-label) before:font-bold before:float-left md:before:content-none">
                                                   <div className="flex items-center gap-3">
-                                                       <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-tech-bg flex items-center justify-center text-lg md:text-2xl shrink-0">
+                                                       <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-gray-50 flex items-center justify-center text-lg md:text-2xl shrink-0">
                                                             {product.image}
                                                        </div>
                                                        <div className="min-w-0">
-                                                            <p className="text-xs md:text-sm font-medium text-tech-text truncate">
+                                                            <p className="text-xs md:text-sm font-medium text-gray-900 truncate">
                                                                  {product.name}
                                                             </p>
-                                                            <p className="text-xs text-tech-test">
+                                                            <p className="text-xs text-blue-600">
                                                                  #{product.id}
                                                             </p>
                                                        </div>
                                                   </div>
                                              </td>
                                              <td className="px-0 md:px-6 py-2 md:py-4 block md:table-cell text-right text-xs md:text-sm">
-                                                  <span className="px-2 md:px-3 py-1 rounded-lg bg-tech-bg text-tech-navy text-xs font-medium inline-block">
+                                                  <span className="px-2 md:px-3 py-1 rounded-lg bg-gray-50 text-gray-900 text-xs font-medium inline-block">
                                                        {product.category}
                                                   </span>
                                              </td>
-                                             <td className="px-0 md:px-6 py-2 md:py-4 block md:table-cell text-right text-xs md:text-sm font-medium text-tech-text">
+                                             <td className="px-0 md:px-6 py-2 md:py-4 block md:table-cell text-right text-xs md:text-sm font-medium text-gray-900">
                                                   {product.price}
                                              </td>
                                              <td className="px-0 md:px-6 py-2 md:py-4 hidden lg:table-cell">
@@ -170,13 +170,13 @@ const Products = () => {
                                                        {product.stock} عدد
                                                   </span>
                                              </td>
-                                             <td className="px-0 md:px-6 py-2 md:py-4 hidden lg:table-cell text-xs md:text-sm text-tech-navy-melo">
+                                             <td className="px-0 md:px-6 py-2 md:py-4 hidden lg:table-cell text-xs md:text-sm text-gray-600">
                                                   {product.sales}
                                              </td>
                                              <td className="px-0 md:px-6 py-2 md:py-4 block md:table-cell">
                                                   <div className="flex items-center gap-2">
-                                                       <button className="p-2 hover:bg-tech-bg rounded-lg transition-colors">
-                                                            <Edit2 className="w-4 h-4 text-tech-test" />
+                                                       <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+                                                            <Edit2 className="w-4 h-4 text-blue-600" />
                                                        </button>
                                                        <button className="p-2 hover:bg-red-50 rounded-lg transition-colors">
                                                             <Trash2 className="w-4 h-4 text-red-600" />

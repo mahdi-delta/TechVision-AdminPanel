@@ -9,25 +9,25 @@ const Admin = () => {
 
      return (
           <PageProvider>
-               <section className="w-full h-screen flex overflow-hidden bg-transparent">
-                    <div className="hidden md:block h-full shadow-2xl p-1 transition-all duration-300">
+               <section className="w-full h-screen flex overflow-hidden bg-gray-50">
+                    <div className="hidden md:block h-full shadow-sm border-r border-gray-200 p-1 transition-all duration-300">
                          <Sidebar onToggle={() => setSidebarOpen(!sidebarOpen)} />
                     </div>
 
                     {sidebarOpen && (
                          <div
-                              className="fixed inset-0 bg-black/50 z-40 md:hidden"
+                              className="fixed inset-0 bg-black/30 z-40 md:hidden"
                               onClick={() => setSidebarOpen(false)}
                          />
                     )}
 
                     <div
-                         className={`fixed md:hidden left-0 top-0 h-screen w-72 bg-transparent shadow-2xl p-1 z-50 transition-transform duration-300 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}`}
+                         className={`fixed md:hidden left-0 top-0 h-screen w-72 bg-white shadow-lg border-r border-gray-200 p-1 z-50 transition-transform duration-300 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}`}
                     >
                          <Sidebar onToggle={() => setSidebarOpen(false)} />
                     </div>
 
-                    <div className="flex-1 h-full flex flex-col bg-linear-to-br from-tech-bg to-tech-bg m-0 md:m-2 border-0 md:border-2 border-tech-navy-melo/30 rounded-none md:rounded-xl overflow-hidden">
+                    <div className="flex-1 h-full flex flex-col bg-white overflow-hidden">
                          <Header onSidebarToggle={() => setSidebarOpen(!sidebarOpen)} />
                          <Main />
                     </div>

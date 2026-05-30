@@ -6,39 +6,19 @@ const SidebarItems = ({ item, isSettings = false }) => {
      const isActive = activePage === item.title;
 
      return (
-          <div className="w-full mb-2">
+          <div className="w-full mb-1">
                <button
                     onClick={() => setActivePage(item.title)}
-                    className={`w-full flex items-center gap-3 p-3 rounded-md transition-all duration-300 ease-in-out text-white group hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] border ${
+                    className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 group ${
                          isActive
-                              ? isSettings
-                                   ? "bg-linear-to-r from-tech-test to-tech-test border-tech-accent shadow-xl"
-                                   : "bg-tech-navy border-tech-test shadow-lg"
-                              : isSettings
-                                ? "bg-tech-navy-melo border-tech-navy-melo/30 hover:bg-linear-to-r hover:from-tech-test hover:to-tech-test hover:border-tech-accent"
-                                : "bg-transparent border-transparent hover:bg-tech-navy hover:border-tech-navy-melo"
+                              ? "bg-gray-100 text-gray-900 font-medium"
+                              : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
                     }`}
                >
-                    <span
-                         className={`w-5 h-5 shrink-0 transition-all duration-300 ${
-                              isActive
-                                   ? "text-white scale-110"
-                                   : isSettings
-                                     ? "text-tech-navy-light group-hover:text-white group-hover:scale-110 group-hover:rotate-12"
-                                     : "text-tech-navy-light group-hover:text-tech-navy-light group-hover:scale-110 group-hover:rotate-3"
-                         }`}
-                    >
-                         <Icon className="w-full h-full fill-white" />
+                    <span className="w-5 h-5 shrink-0 flex items-center justify-center">
+                         <Icon className={`w-full h-full ${isActive ? "fill-gray-900" : "fill-gray-500 group-hover:fill-gray-700"}`} />
                     </span>
-                    <span
-                         className={`text-right flex-1 font-medium text-sm transition-colors duration-300 ${
-                              isActive
-                                   ? "text-white"
-                                   : isSettings
-                                     ? "text-tech-muted group-hover:text-white"
-                                     : "group-hover:text-tech-bg"
-                         }`}
-                    >
+                    <span className="text-right flex-1 text-sm">
                          {item.title}
                     </span>
                </button>

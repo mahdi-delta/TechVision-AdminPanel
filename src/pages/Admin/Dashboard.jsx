@@ -26,13 +26,13 @@ const Dashboard = () => {
      };
 
      return (
-          <div className="space-y-6 p-1">
+          <div className="space-y-8 p-6">
                {/* Stats Cards */}
-               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     {stats.map((stat, index) => (
                          <div
                               key={index}
-                              className="bg-white rounded-xl  p-6 shadow-md hover:shadow-lg hover:border-tech-muted transition-all duration-300 border border-tech-bg"
+                              className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-200"
                          >
                               <div className="flex items-start justify-between">
                                    <div className="flex-1">
@@ -72,7 +72,7 @@ const Dashboard = () => {
 
                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     {/* Sales Chart */}
-                    <div className="lg:col-span-2 bg-white rounded-2xl p-6 shadow-sm border border-tech-bg">
+                    <div className="lg:col-span-2 bg-white rounded-xl p-6 shadow-sm border border-gray-100">
                          <div className="flex items-center justify-between mb-6">
                               <h3 className="text-lg font-semibold text-tech-text">
                                    نمودار درآمد و فروش
@@ -121,7 +121,7 @@ const Dashboard = () => {
                     </div>
 
                     {/* Category Chart */}
-                    <div className="bg-white rounded-2xl p-6 shadow-sm border border-tech-bg">
+                    <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
                          <div className="flex items-center justify-between mb-6">
                               <h3 className="text-lg font-semibold text-tech-text">
                                    دسته‌بندی فروش
@@ -198,7 +198,7 @@ const Dashboard = () => {
                </div>
 
                {/* Recent Orders Table */}
-               <div className="bg-white rounded-2xl p-6 shadow-sm border border-tech-bg">
+               <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
                     <div className="flex items-center justify-between mb-4">
                          <h3 className="text-lg font-semibold text-tech-text">آخرین سفارشات</h3>
                          <button className="text-sm text-tech-test hover:text-tech-test font-medium">

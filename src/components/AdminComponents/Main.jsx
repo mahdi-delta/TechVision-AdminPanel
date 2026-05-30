@@ -30,7 +30,7 @@ const Main = () => {
      };
 
      return (
-          <div className="p-3 md:p-6 flex-1 overflow-auto bg-linear-to-br from-tech-bg to-tech-bg">
+          <div className="p-6 md:p-8 flex-1 overflow-auto bg-gray-50">
                <div className="max-w-7xl mx-auto">{renderPageContent()}</div>
           </div>
      );

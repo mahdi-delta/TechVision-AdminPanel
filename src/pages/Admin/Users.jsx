@@ -145,16 +145,16 @@ const Users = () => {
                     <StatsCard
                          title="مدیران"
                          value={users.filter((u) => u.role === "مدیر").length}
-                         valueColor="text-tech-test"
+                         valueColor="text-blue-600"
                     />
                     <StatsCard title="کاربر جدید امروز" value={2} valueColor="text-purple-600" />
                </div>
 
                {/* Main Table */}
-               <div className="bg-white rounded-2xl shadow-sm border border-tech-bg">
-                    <div className="p-3 md:p-6 border-b border-tech-muted">
+               <div className="bg-white rounded-xl shadow-sm border border-gray-100">
+                    <div className="p-3 md:p-6 border-b border-gray-200">
                          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-4">
-                              <h2 className="text-xl font-semibold text-tech-text">لیست کاربران</h2>
+                              <h2 className="text-xl font-semibold text-gray-900">لیست کاربران</h2>
                               <div className="flex items-center gap-3">
                                    <SearchInput
                                         value={searchQuery}
@@ -168,7 +168,7 @@ const Users = () => {
                                    />
                                    <button
                                         onClick={() => setShowModal(true)}
-                                        className="px-4 py-2 bg-tech-test text-white rounded-lg hover:bg-tech-test transition-colors text-sm flex items-center gap-2"
+                                        className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-600 transition-colors text-sm flex items-center gap-2"
                                    >
                                         <Plus className="w-5 h-5" />
                                         <span>افزودن کاربر</span>
@@ -178,66 +178,66 @@ const Users = () => {
                     </div>
                     <div className="overflow-x-auto">
                          <table className="w-full">
-                              <thead className="bg-tech-bg hidden md:table-header-group">
+                              <thead className="bg-gray-50 hidden md:table-header-group">
                                    <tr>
-                                        <th className="px-3 md:px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
+                                        <th className="px-3 md:px-6 py-3 text-right text-xs font-medium text-gray-600">
                                              کاربر
                                         </th>
-                                        <th className="px-3 md:px-6 py-3 text-right text-xs font-medium text-tech-navy-melo hidden lg:table-cell">
+                                        <th className="px-3 md:px-6 py-3 text-right text-xs font-medium text-gray-600 hidden lg:table-cell">
                                              ایمیل
                                         </th>
-                                        <th className="px-3 md:px-6 py-3 text-right text-xs font-medium text-tech-navy-melo hidden lg:table-cell">
+                                        <th className="px-3 md:px-6 py-3 text-right text-xs font-medium text-gray-600 hidden lg:table-cell">
                                              نقش
                                         </th>
-                                        <th className="px-3 md:px-6 py-3 text-right text-xs font-medium text-tech-navy-melo hidden lg:table-cell">
+                                        <th className="px-3 md:px-6 py-3 text-right text-xs font-medium text-gray-600 hidden lg:table-cell">
                                              تاریخ عضویت
                                         </th>
-                                        <th className="px-3 md:px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
+                                        <th className="px-3 md:px-6 py-3 text-right text-xs font-medium text-gray-600">
                                              وضعیت
                                         </th>
-                                        <th className="px-3 md:px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
+                                        <th className="px-3 md:px-6 py-3 text-right text-xs font-medium text-gray-600">
                                              عملیات
                                         </th>
                                    </tr>
                               </thead>
-                              <tbody className="divide-y divide-tech-muted">
+                              <tbody className="divide-y divide-gray-200">
                                    {filteredUsers.map((user) => (
                                         <tr
                                              key={user.id}
-                                             className="hover:bg-tech-bg transition-colors block md:table-row border-b md:border-b pb-4 md:pb-0 mb-4 md:mb-0"
+                                             className="hover:bg-gray-100 transition-colors block md:table-row border-b md:border-b pb-4 md:pb-0 mb-4 md:mb-0"
                                         >
-                                             <td className="px-3 md:px-6 py-2 md:py-4 block md:table-cell before:content-attr(data-label) before:block before:font-semibold before:text-tech-navy md:before:hidden md:text-right">
+                                             <td className="px-3 md:px-6 py-2 md:py-4 block md:table-cell before:content-attr(data-label) before:block before:font-semibold before:text-gray-900 md:before:hidden md:text-right">
                                                   <div className="flex items-center gap-3">
                                                        {user.avatarImage ? (
                                                             <img
                                                                  src={user.avatarImage}
                                                                  alt={user.name}
-                                                                 className="w-10 h-10 rounded-full object-cover border-2 border-tech-navy-light"
+                                                                 className="w-10 h-10 rounded-full object-cover border-2 border-gray-700"
                                                             />
                                                        ) : (
-                                                            <div className="w-10 h-10 rounded-full bg-linear-to-br from-tech-accent to-tech-test flex items-center justify-center text-white font-semibold text-sm">
+                                                            <div className="w-10 h-10 rounded-full bg-linear-to-br from-tech-accent to-blue-600 flex items-center justify-center text-white font-semibold text-sm">
                                                                  {user.avatar}
                                                             </div>
                                                        )}
                                                        <div>
-                                                            <p className="text-sm font-medium text-tech-text">
+                                                            <p className="text-sm font-medium text-gray-900">
                                                                  {user.name}
                                                             </p>
-                                                            <p className="text-xs text-tech-test">
+                                                            <p className="text-xs text-blue-600">
                                                                  {user.orders} سفارش
                                                             </p>
                                                        </div>
                                                   </div>
                                              </td>
-                                             <td className="px-3 md:px-6 py-2 md:py-4 text-sm text-tech-navy-melo hidden lg:table-cell">
+                                             <td className="px-3 md:px-6 py-2 md:py-4 text-sm text-gray-600 hidden lg:table-cell">
                                                   {user.email}
                                              </td>
                                              <td className="px-3 md:px-6 py-2 md:py-4 hidden lg:table-cell">
-                                                  <span className="px-3 py-1 rounded-lg bg-tech-bg text-tech-navy text-xs font-medium">
+                                                  <span className="px-3 py-1 rounded-lg bg-gray-50 text-gray-900 text-xs font-medium">
                                                        {user.role}
                                                   </span>
                                              </td>
-                                             <td className="px-3 md:px-6 py-2 md:py-4 text-sm text-tech-navy-melo hidden lg:table-cell">
+                                             <td className="px-3 md:px-6 py-2 md:py-4 text-sm text-gray-600 hidden lg:table-cell">
                                                   {user.joinDate}
                                              </td>
                                              <td className="px-3 md:px-6 py-2 md:py-4">
@@ -255,10 +255,10 @@ const Users = () => {
                                                   <div className="flex items-center gap-2">
                                                        <button
                                                             onClick={() => handleEditUser(user)}
-                                                            className="p-2 hover:bg-tech-bg rounded-lg transition-colors"
+                                                            className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
                                                             title="ویرایش کاربر"
                                                        >
-                                                            <Edit2 className="w-4 h-4 text-tech-test" />
+                                                            <Edit2 className="w-4 h-4 text-blue-600" />
                                                        </button>
                                                        <button
                                                             onClick={() => handleDeleteClick(user)}
@@ -275,24 +275,24 @@ const Users = () => {
                          </table>
                     </div>
                     {/* Pagination */}
-                    <div className="px-3 md:px-6 py-3 md:py-4 border-t border-tech-muted flex flex-col md:flex-row md:items-center md:justify-between gap-3 md:gap-0">
-                         <p className="text-sm text-tech-navy-melo">
+                    <div className="px-3 md:px-6 py-3 md:py-4 border-t border-gray-200 flex flex-col md:flex-row md:items-center md:justify-between gap-3 md:gap-0">
+                         <p className="text-sm text-gray-600">
                               نمایش {filteredUsers.length} از {users.length} کاربر
                          </p>
                          <div className="flex items-center gap-2 flex-wrap">
                               <button
-                                   className="px-2 md:px-3 py-2 border border-tech-navy-light rounded-lg hover:bg-tech-bg disabled:opacity-50 text-xs md:text-sm"
+                                   className="px-2 md:px-3 py-2 border border-gray-700 rounded-lg hover:bg-gray-100 disabled:opacity-50 text-xs md:text-sm"
                                    disabled
                               >
                                    قبلی
                               </button>
-                              <button className="px-2 md:px-3 py-2 bg-tech-test text-white rounded-lg text-xs md:text-sm">
+                              <button className="px-2 md:px-3 py-2 bg-blue-600 text-white rounded-lg text-xs md:text-sm">
                                    1
                               </button>
-                              <button className="px-2 md:px-3 py-2 border border-tech-navy-light rounded-lg hover:bg-tech-bg text-xs md:text-sm">
+                              <button className="px-2 md:px-3 py-2 border border-gray-700 rounded-lg hover:bg-gray-100 text-xs md:text-sm">
                                    2
                               </button>
-                              <button className="px-2 md:px-3 py-2 border border-tech-navy-light rounded-lg hover:bg-tech-bg text-xs md:text-sm">
+                              <button className="px-2 md:px-3 py-2 border border-gray-700 rounded-lg hover:bg-gray-100 text-xs md:text-sm">
                                    بعدی
                               </button>
                          </div>
