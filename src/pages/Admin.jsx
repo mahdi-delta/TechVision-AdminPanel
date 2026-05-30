@@ -29,7 +29,7 @@ const Admin = () => {
                     </div>
 
                     {/* Main Content */}
-                    <div className="flex-1 h-full flex flex-col bg-linear-to-br from-tech-bg to-tech-bg m-1 md:m-2 border-2 border-tech-navy-melo/30 rounded-xl overflow-hidden">
+                    <div className="flex-1 h-full flex flex-col bg-linear-to-br from-tech-bg to-tech-bg m-0 md:m-2 border-0 md:border-2 border-tech-navy-melo/30 rounded-none md:rounded-xl overflow-hidden">
                          <Header onSidebarToggle={() => setSidebarOpen(!sidebarOpen)} />
                          <Main />
                     </div>

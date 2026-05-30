@@ -8,8 +8,8 @@ const Header = ({ onSidebarToggle }) => {
      const { activePage } = usePage();
 
      return (
-          <div className="bg-linear-to-r from-tech-bg via-white to-tech-bg shadow-md border-b border-tech-navy-light/20 rounded-2xl backdrop-blur-sm">
-               <div className="px-3 md:px-6 py-3">
+          <div className="bg-linear-to-r from-tech-bg via-white to-tech-bg shadow-md border-b border-tech-navy-light/20 rounded-none md:rounded-2xl backdrop-blur-sm">
+               <div className="px-3 md:px-6 py-2 md:py-3">
                     <div className="flex items-center justify-between gap-4">
                          <div className="flex items-center gap-2 md:gap-4 min-w-0">
                               <button
