@@ -1,6 +1,6 @@
 import { Package } from "lucide-react";
 
-const PackageIcon = ({className}) => {
+const PackageIcon = ({ className }) => {
      return <Package className={className} />;
 };
 

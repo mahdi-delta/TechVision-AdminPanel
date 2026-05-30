@@ -41,9 +41,7 @@ const OrderEditModal = ({ show, onClose, order, onSave }) => {
                                         <p className="text-sm font-medium text-tech-text">
                                              {order.customer}
                                         </p>
-                                        <p className="text-xs text-tech-test">
-                                             {order.product}
-                                        </p>
+                                        <p className="text-xs text-tech-test">{order.product}</p>
                                    </div>
                               </div>
                               <div className="flex justify-between items-center">

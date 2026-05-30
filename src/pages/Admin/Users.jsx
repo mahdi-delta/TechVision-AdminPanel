@@ -268,6 +268,7 @@ const Users = () => {
                                                             title="حذف کاربر"
                                                        >
                                                             <Trash2 className="w-4 h-4 text-red-600" />
+                                                       </button>
                                                   </div>
                                              </td>
                                         </tr>

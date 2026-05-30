@@ -1,6 +1,6 @@
 import { LayoutGrid } from "lucide-react";
 
-const DashboardIcon = ({className}) => {
+const DashboardIcon = ({ className }) => {
      return <LayoutGrid className={className} />;
 };
 
