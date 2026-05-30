@@ -154,9 +154,7 @@ const Users = () => {
                <div className="bg-white rounded-2xl shadow-sm border border-tech-bg">
                     <div className="p-6 border-b border-tech-muted">
                          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                              <h2 className="text-xl font-semibold text-tech-text">
-                                   لیست کاربران
-                              </h2>
+                              <h2 className="text-xl font-semibold text-tech-text">لیست کاربران</h2>
                               <div className="flex items-center gap-3">
                                    <SearchInput
                                         value={searchQuery}

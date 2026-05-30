@@ -132,9 +132,7 @@ const Orders = () => {
                <div className="bg-white rounded-2xl shadow-sm border border-tech-bg">
                     <div className="p-6 border-b border-tech-muted">
                          <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
-                              <h2 className="text-xl font-semibold text-tech-text">
-                                   سفارشات اخیر
-                              </h2>
+                              <h2 className="text-xl font-semibold text-tech-text">سفارشات اخیر</h2>
                               <div className="flex gap-3 w-full lg:w-auto">
                                    <SearchInput
                                         value={searchQuery}
