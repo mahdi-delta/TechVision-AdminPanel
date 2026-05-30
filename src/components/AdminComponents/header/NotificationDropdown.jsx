@@ -29,7 +29,7 @@ const NotificationDropdown = () => {
                </button>
 
                {showNotifications && (
-                    <div className="absolute left-0 mt-2 w-80 bg-white rounded-2xl shadow-xl border border-tech-muted z-[9999] overflow-hidden">
+                    <div className="absolute left-0 mt-2 w-80 bg-white rounded-2xl shadow-xl border border-tech-muted z-999 overflow-hidden">
                          <div className="p-4 bg-linear-to-r from-tech-accent to-tech-test">
                               <h3 className="text-base font-bold text-white">اعلان‌ها</h3>
                               <p className="text-xs text-white/80 mt-1">

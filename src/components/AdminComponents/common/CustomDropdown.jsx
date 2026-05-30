@@ -36,7 +36,7 @@ const CustomDropdown = ({
                </button>
 
                {isOpen && (
-                    <div className="absolute z-[9998] w-full mt-2 bg-white rounded-xl shadow-2xl border border-tech-muted/30 overflow-hidden animate-fadeIn backdrop-blur-sm">
+                    <div className="absolute z-999 w-full mt-2 bg-white rounded-xl shadow-2xl border border-tech-muted/30 overflow-hidden animate-fadeIn backdrop-blur-sm">
                          <div className="max-h-60 overflow-y-auto">
                               {options.map((option, index) => (
                                    <button
@@ -44,7 +44,7 @@ const CustomDropdown = ({
                                         onClick={() => handleSelect(option)}
                                         className={`w-full px-4 py-3 text-right text-sm transition-all duration-150 flex items-center justify-between group ${
                                              value === option
-                                                  ? "bg-gradient-to-r from-tech-accent/10 to-tech-test/10 border-r-4 border-tech-accent text-tech-accent font-semibold"
+                                                  ? "bg-linear-to-r from-tech-accent/10 to-tech-test/10 border-r-4 border-tech-accent text-tech-accent font-semibold"
                                                   : "text-tech-text hover:bg-tech-bg/50"
                                         }`}
                                    >
