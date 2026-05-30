@@ -6,11 +6,11 @@ import { PageProvider } from "../context/PageContext";
 const Admin = () => {
      return (
           <PageProvider>
-               <section className="w-full h-screen flex overflow-hidden bg-bright-snow-50">
-                    <div className="max-w-70 h-full bg-ink-black-900 shadow-2xl">
+               <section className="w-full h-screen flex overflow-hidden bg-white">
+                    <div className="max-w-72 h-full bg-gradient-to-b from-ink-black-900 to-ink-black-800 shadow-2xl">
                          <Sidebar />
                     </div>
-                    <div className="w-full h-full flex flex-col">
+                    <div className="w-full h-full flex flex-col bg-gradient-to-br from-bright-snow-50 to-bright-snow-100">
                          <Header />
                          <Main />
                     </div>

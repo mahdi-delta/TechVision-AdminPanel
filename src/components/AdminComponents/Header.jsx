@@ -8,22 +8,19 @@ const Header = () => {
 
      return (
           <div className="bg-white shadow-sm border-b border-bright-snow-200">
-               <div className="px-6 py-4">
+               <div className="px-8 py-5">
                     <div className="flex items-center justify-between">
                          <div>
-                              <div className="flex items-center gap-2">
-                                   <h1 className="text-2xl font-bold text-ink-black-900">
-                                        {activePage}
-                                   </h1>
-                                   <span className="text-ink-black-400">|</span>
-                                   <p className="text-sm text-ink-black-600">
-                                        خوش آمدید به پنل مدیریتی
-                                   </p>
-                              </div>
+                              <h1 className="text-3xl font-bold text-ink-black-900 mb-1">
+                                   {activePage}
+                              </h1>
+                              <p className="text-sm text-ink-black-500">
+                                   خوش آمدید به پنل مدیریتی تک‌ویژن
+                              </p>
                          </div>
 
-                         <div className="flex items-center gap-4">
-                              <div className="hidden md:block w-64">
+                         <div className="flex items-center gap-6">
+                              <div className="hidden md:block w-72">
                                    <SearchInput value="" onChange={() => {}} />
                               </div>
 

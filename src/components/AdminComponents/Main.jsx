@@ -30,7 +30,7 @@ const Main = () => {
      };
 
      return (
-          <div className="p-5 flex-1 overflow-auto">
+          <div className="p-6 flex-1 overflow-auto bg-gradient-to-br from-bright-snow-50 to-bright-snow-100">
                <div className="max-w-7xl mx-auto">{renderPageContent()}</div>
           </div>
      );
