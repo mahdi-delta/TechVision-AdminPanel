@@ -13,7 +13,7 @@ const Sidebar = () => {
      return (
           <section
                className={
-                    "h-full relative transition-all duration-300 bg-gradient-to-b from-ink-black-900 to-ink-black-800 border-l border-ink-black-700 " +
+                    "h-full relative transition-all duration-300 bg-linear-to-b from-ink-black-900 to-ink-black-800 border-l border-ink-black-700 " +
                     (SiderbarStatus === "closed" ? "w-0 p-0" : "min-w-72 p-4")
                }
           >
