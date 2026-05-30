@@ -4,13 +4,19 @@ import SidebarItems from "./SidebarItems";
 import { mainMenuItems, settingsItem } from "../../constants";
 import logo from "../../assets/icons/logo/Logo";
 import Logo from "../../assets/icons/logo/Logo";
+import { X } from "lucide-react";
 
-const Sidebar = () => {
+const Sidebar = ({ onToggle }) => {
      const [SiderbarStatus, setSiderbarStatus] = useState("open");
 
      const handleSidebarStatus = () => {
           setSiderbarStatus((prev) => (prev === "open" ? "closed" : "open"));
      };
+
+     const handleClose = () => {
+          onToggle?.();
+     };
+
      return (
           <section
                className={
@@ -20,11 +26,20 @@ const Sidebar = () => {
           >
                {SiderbarStatus === "open" && (
                     <main className="w-full h-full flex flex-col">
-                         <div className="mb-6 pt-3 w-full flex justify-center items-center">
-                              <Logo className="w-7 h-7 fill-white" />
-                              <span className="h-7 pr-2 hidden sm:inline text-white bg-clip-text text-2xl">
-                                   تک ویژن
-                              </span>
+                         <div className="mb-6 pt-3 w-full flex justify-between items-center">
+                              <div className="flex items-center justify-center flex-1">
+                                   <Logo className="w-7 h-7 fill-white" />
+                                   <span className="h-7 pr-2 hidden sm:inline text-white bg-clip-text text-2xl">
+                                        تک ویژن
+                                   </span>
+                              </div>
+                              {/* Close button for mobile */}
+                              <button
+                                   onClick={handleClose}
+                                   className="md:hidden p-2 hover:bg-tech-navy-melo rounded-lg transition-colors text-white"
+                              >
+                                   <X className="w-5 h-5" />
+                              </button>
                          </div>
 
                          <div className="flex-1 overflow-y-auto px-1 space-y-2">
@@ -42,7 +57,7 @@ const Sidebar = () => {
 
                <button
                     className={
-                         "absolute flex justify-center items-center -left-5 top-1/3 border-3 border-tech-bg bg-tech-navy shadow-xl aspect-square w-10 rounded-full transition-all duration-300 hover:scale-110 hover:bg-tech-navy-light text-tech-bg " +
+                         "absolute flex justify-center items-center -left-5 top-1/3 border-3 border-tech-bg bg-tech-navy shadow-xl aspect-square w-10 rounded-full transition-all duration-300 hover:scale-110 hover:bg-tech-navy-light text-tech-bg hidden md:flex " +
                          (SiderbarStatus === "closed" ? "transform -translate-x-6 rotate-180" : "")
                     }
                     onClick={handleSidebarStatus}
