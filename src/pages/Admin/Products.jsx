@@ -136,7 +136,7 @@ const Products = () => {
                                         >
                                              <td className="px-0 md:px-6 py-2 md:py-4 block md:table-cell text-right md:text-right before:content-attr(data-label) before:font-bold before:float-left md:before:content-none">
                                                   <div className="flex items-center gap-3">
-                                                       <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-tech-bg flex items-center justify-center text-lg md:text-2xl flex-shrink-0">
+                                                       <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-tech-bg flex items-center justify-center text-lg md:text-2xl shrink-0">
                                                             {product.image}
                                                        </div>
                                                        <div className="min-w-0">
