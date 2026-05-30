@@ -1,65 +1,16 @@
 @import "tailwindcss";
 
-@theme{
-    --color-sapphire-sky-50: #eaf0fb;
---color-sapphire-sky-100: #d4e2f7;
---color-sapphire-sky-200: #aac4ee;
---color-sapphire-sky-300: #7fa7e6;
---color-sapphire-sky-400: #5589dd;
---color-sapphire-sky-500: #2a6cd5;
---color-sapphire-sky-600: #2256aa;
---color-sapphire-sky-700: #194180;
---color-sapphire-sky-800: #112b55;
---color-sapphire-sky-900: #08162b;
---color-sapphire-sky-950: #060f1e;
-
---color-ink-black-50: #ecf0f8;
---color-ink-black-100: #d9e0f2;
---color-ink-black-200: #b3c1e5;
---color-ink-black-300: #8da2d8;
---color-ink-black-400: #6783cb;
---color-ink-black-500: #4164be;
---color-ink-black-600: #345098;
---color-ink-black-700: #273c72;
---color-ink-black-800: #1a284c;
---color-ink-black-900: #0d1426;
---color-ink-black-950: #090e1b;
-
---color-deep-space-blue-50: #eef1f6;
---color-deep-space-blue-100: #dde4ee;
---color-deep-space-blue-200: #bbc8dd;
---color-deep-space-blue-300: #99adcc;
---color-deep-space-blue-400: #7791bb;
---color-deep-space-blue-500: #5576aa;
---color-deep-space-blue-600: #445e88;
---color-deep-space-blue-700: #334766;
---color-deep-space-blue-800: #222f44;
---color-deep-space-blue-900: #111822;
---color-deep-space-blue-950: #0c1018;
-
---color-sky-reflection-50: #ebf3fa;
---color-sky-reflection-100: #d7e7f4;
---color-sky-reflection-200: #aecfea;
---color-sky-reflection-300: #86b7df;
---color-sky-reflection-400: #5e9fd4;
---color-sky-reflection-500: #3687c9;
---color-sky-reflection-600: #2b6ca1;
---color-sky-reflection-700: #205179;
---color-sky-reflection-800: #153651;
---color-sky-reflection-900: #0b1b28;
---color-sky-reflection-950: #07131c;
-
---color-bright-snow-50: #edf2f7;
---color-bright-snow-100: #dbe6f0;
---color-bright-snow-200: #b8cce0;
---color-bright-snow-300: #94b2d1;
---color-bright-snow-400: #7099c2;
---color-bright-snow-500: #4d7fb3;
---color-bright-snow-600: #3d668f;
---color-bright-snow-700: #2e4c6b;
---color-bright-snow-800: #1f3347;
---color-bright-snow-900: #0f1924;
---color-bright-snow-950: #0b1219;
+@theme {
+     --color-tech-bg: #fafafa;
+     --color-tech-surface: #18181b;
+     --color-tech-accent: #3687c9;
+     --color-tech-test: #2e6eaa;
+     --color-tech-text: #09090b;
+     --color-tech-muted: #a1a1aa;
+     --color-tech-dark: #292a2b;
+     --color-tech-navy-light: #516194;
+     --color-tech-navy-melo: #3f4b73;
+     --color-tech-navy: #0f172a;
 }
 
 * {

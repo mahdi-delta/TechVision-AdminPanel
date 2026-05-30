@@ -13,7 +13,7 @@ const Sidebar = () => {
      return (
           <section
                className={
-                    "h-full relative transition-all duration-300 bg-linear-to-b from-ink-black-900 to-ink-black-800 border-l border-ink-black-700 " +
+                    "h-full relative transition-all duration-300 bg-linear-to-b from-tech-text to-tech-navy border-l border-tech-navy " +
                     (SiderbarStatus === "closed" ? "w-0 p-0" : "min-w-72 p-4")
                }
           >
@@ -35,7 +35,7 @@ const Sidebar = () => {
                          </div>
 
                          <div className="px-1 pb-4 pt-2">
-                              <div className="border-t border-ink-black-700 my-3 opacity-50"></div>
+                              <div className="border-t border-tech-navy my-3 opacity-50"></div>
                               <SidebarItems item={settingsItem} isSettings={true} />
                          </div>
                     </main>
@@ -43,7 +43,7 @@ const Sidebar = () => {
 
                <button
                     className={
-                         "absolute flex justify-center items-center -left-5 top-1/3 border-2 border-sapphire-sky-500 bg-sapphire-sky-600 shadow-xl aspect-square w-10 rounded-full transition-all duration-300 hover:scale-110 hover:bg-sapphire-sky-700 text-white " +
+                         "absolute flex justify-center items-center -left-5 top-1/3 border-2 border-tech-accent bg-tech-test shadow-xl aspect-square w-10 rounded-full transition-all duration-300 hover:scale-110 hover:bg-tech-test text-white " +
                          (SiderbarStatus === "closed" ? "transform -translate-x-6 rotate-180" : "")
                     }
                     onClick={handleSidebarStatus}

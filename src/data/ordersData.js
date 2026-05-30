@@ -100,6 +100,6 @@ export const getStatusColor = (status) => {
           case "لغو شده":
                return "bg-red-50 text-red-700";
           default:
-               return "bg-bright-snow-100 text-ink-black-600";
+               return "bg-tech-bg text-tech-navy-melo";
      }
 };

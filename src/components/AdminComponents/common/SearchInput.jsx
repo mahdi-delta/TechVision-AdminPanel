@@ -6,10 +6,10 @@ const SearchInput = ({ value, onChange, placeholder = "جستجو...", className
                     placeholder={placeholder}
                     value={value}
                     onChange={onChange}
-                    className="pl-4 pr-10 py-2 border border-bright-snow-300 rounded-lg focus:border-sapphire-sky-500 focus:ring-2 focus:ring-sapphire-sky-200 outline-none text-sm w-full"
+                    className="pl-4 pr-10 py-2 border border-tech-navy-light rounded-lg focus:border-tech-accent focus:ring-2 focus:ring-tech-muted outline-none text-sm w-full"
                />
                <svg
-                    className="w-5 h-5 absolute right-3 top-1/2 -translate-y-1/2 text-ink-black-400"
+                    className="w-5 h-5 absolute right-3 top-1/2 -translate-y-1/2 text-tech-navy-light"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"

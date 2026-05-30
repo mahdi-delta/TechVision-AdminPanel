@@ -60,7 +60,7 @@ const Products = () => {
                     <StatsCard
                          title="موجودی کل"
                          value={totalStock}
-                         valueColor="text-sapphire-sky-600"
+                         valueColor="text-tech-test"
                     />
                     <StatsCard title="موجودی کم" value={lowStock} valueColor="text-orange-600" />
                     <StatsCard
@@ -71,10 +71,10 @@ const Products = () => {
                </div>
 
                {/* Main Table */}
-               <div className="bg-white rounded-2xl shadow-sm border border-bright-snow-100">
-                    <div className="p-6 border-b border-bright-snow-200">
+               <div className="bg-white rounded-2xl shadow-sm border border-tech-bg">
+                    <div className="p-6 border-b border-tech-muted">
                          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                              <h2 className="text-xl font-semibold text-ink-black-900">
+                              <h2 className="text-xl font-semibold text-tech-text">
                                    لیست محصولات
                               </h2>
                               <div className="flex items-center gap-3">
@@ -95,7 +95,7 @@ const Products = () => {
                                    />
                                    <button
                                         onClick={() => setShowAddModal(true)}
-                                        className="px-4 py-2 bg-sapphire-sky-600 text-white rounded-lg hover:bg-sapphire-sky-700 transition-colors text-sm flex items-center gap-2"
+                                        className="px-4 py-2 bg-tech-test text-white rounded-lg hover:bg-tech-test transition-colors text-sm flex items-center gap-2"
                                    >
                                         <span>+</span>
                                         <span>افزودن محصول</span>
@@ -105,55 +105,55 @@ const Products = () => {
                     </div>
                     <div className="overflow-x-auto">
                          <table className="w-full">
-                              <thead className="bg-bright-snow-50">
+                              <thead className="bg-tech-bg">
                                    <tr>
-                                        <th className="px-6 py-3 text-right text-xs font-medium text-ink-black-600">
+                                        <th className="px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
                                              محصول
                                         </th>
-                                        <th className="px-6 py-3 text-right text-xs font-medium text-ink-black-600">
+                                        <th className="px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
                                              دسته‌بندی
                                         </th>
-                                        <th className="px-6 py-3 text-right text-xs font-medium text-ink-black-600">
+                                        <th className="px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
                                              قیمت (تومان)
                                         </th>
-                                        <th className="px-6 py-3 text-right text-xs font-medium text-ink-black-600">
+                                        <th className="px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
                                              موجودی
                                         </th>
-                                        <th className="px-6 py-3 text-right text-xs font-medium text-ink-black-600">
+                                        <th className="px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
                                              فروش
                                         </th>
-                                        <th className="px-6 py-3 text-right text-xs font-medium text-ink-black-600">
+                                        <th className="px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
                                              عملیات
                                         </th>
                                    </tr>
                               </thead>
-                              <tbody className="divide-y divide-bright-snow-200">
+                              <tbody className="divide-y divide-tech-muted">
                                    {filteredProducts.map((product) => (
                                         <tr
                                              key={product.id}
-                                             className="hover:bg-bright-snow-50 transition-colors"
+                                             className="hover:bg-tech-bg transition-colors"
                                         >
                                              <td className="px-6 py-4">
                                                   <div className="flex items-center gap-3">
-                                                       <div className="w-12 h-12 rounded-xl bg-bright-snow-100 flex items-center justify-center text-2xl">
+                                                       <div className="w-12 h-12 rounded-xl bg-tech-bg flex items-center justify-center text-2xl">
                                                             {product.image}
                                                        </div>
                                                        <div>
-                                                            <p className="text-sm font-medium text-ink-black-900">
+                                                            <p className="text-sm font-medium text-tech-text">
                                                                  {product.name}
                                                             </p>
-                                                            <p className="text-xs text-ink-black-500">
+                                                            <p className="text-xs text-tech-test">
                                                                  کد: #{product.id}
                                                             </p>
                                                        </div>
                                                   </div>
                                              </td>
                                              <td className="px-6 py-4">
-                                                  <span className="px-3 py-1 rounded-lg bg-bright-snow-100 text-ink-black-700 text-xs font-medium">
+                                                  <span className="px-3 py-1 rounded-lg bg-tech-bg text-tech-navy text-xs font-medium">
                                                        {product.category}
                                                   </span>
                                              </td>
-                                             <td className="px-6 py-4 text-sm font-medium text-ink-black-900">
+                                             <td className="px-6 py-4 text-sm font-medium text-tech-text">
                                                   {product.price}
                                              </td>
                                              <td className="px-6 py-4">
@@ -169,14 +169,14 @@ const Products = () => {
                                                        {product.stock} عدد
                                                   </span>
                                              </td>
-                                             <td className="px-6 py-4 text-sm text-ink-black-600">
+                                             <td className="px-6 py-4 text-sm text-tech-navy-melo">
                                                   {product.sales} فروش
                                              </td>
                                              <td className="px-6 py-4">
                                                   <div className="flex items-center gap-2">
-                                                       <button className="p-2 hover:bg-bright-snow-100 rounded-lg transition-colors">
+                                                       <button className="p-2 hover:bg-tech-bg rounded-lg transition-colors">
                                                             <svg
-                                                                 className="w-4 h-4 text-sapphire-sky-600"
+                                                                 className="w-4 h-4 text-tech-test"
                                                                  fill="none"
                                                                  stroke="currentColor"
                                                                  viewBox="0 0 24 24"

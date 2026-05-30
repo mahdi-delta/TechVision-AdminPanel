@@ -7,14 +7,14 @@ const Header = () => {
      const { activePage } = usePage();
 
      return (
-          <div className="bg-white shadow-sm border-b border-bright-snow-200">
+          <div className="bg-white shadow-sm border-b border-tech-muted">
                <div className="px-8 py-5">
                     <div className="flex items-center justify-between">
                          <div>
-                              <h1 className="text-3xl font-bold text-ink-black-900 mb-1">
+                              <h1 className="text-3xl font-bold text-tech-text mb-1">
                                    {activePage}
                               </h1>
-                              <p className="text-sm text-ink-black-500">
+                              <p className="text-sm text-tech-test">
                                    خوش آمدید به پنل مدیریتی تک‌ویژن
                               </p>
                          </div>

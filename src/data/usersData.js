@@ -4,7 +4,7 @@ export const usersStatsData = [
           title: "کل کاربران",
           value: "1,248",
           icon: "👥",
-          bgColor: "bg-sapphire-sky-100",
+          bgColor: "bg-tech-bg",
      },
      {
           id: 2,

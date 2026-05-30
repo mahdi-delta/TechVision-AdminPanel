@@ -144,16 +144,16 @@ const Users = () => {
                     <StatsCard
                          title="مدیران"
                          value={users.filter((u) => u.role === "مدیر").length}
-                         valueColor="text-sapphire-sky-600"
+                         valueColor="text-tech-test"
                     />
                     <StatsCard title="کاربر جدید امروز" value={2} valueColor="text-purple-600" />
                </div>
 
                {/* Main Table */}
-               <div className="bg-white rounded-2xl shadow-sm border border-bright-snow-100">
-                    <div className="p-6 border-b border-bright-snow-200">
+               <div className="bg-white rounded-2xl shadow-sm border border-tech-bg">
+                    <div className="p-6 border-b border-tech-muted">
                          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                              <h2 className="text-xl font-semibold text-ink-black-900">
+                              <h2 className="text-xl font-semibold text-tech-text">
                                    لیست کاربران
                               </h2>
                               <div className="flex items-center gap-3">
@@ -169,7 +169,7 @@ const Users = () => {
                                    />
                                    <button
                                         onClick={() => setShowModal(true)}
-                                        className="px-4 py-2 bg-sapphire-sky-600 text-white rounded-lg hover:bg-sapphire-sky-700 transition-colors text-sm flex items-center gap-2"
+                                        className="px-4 py-2 bg-tech-test text-white rounded-lg hover:bg-tech-test transition-colors text-sm flex items-center gap-2"
                                    >
                                         <span>+</span>
                                         <span>افزودن کاربر</span>
@@ -179,33 +179,33 @@ const Users = () => {
                     </div>
                     <div className="overflow-x-auto">
                          <table className="w-full">
-                              <thead className="bg-bright-snow-50">
+                              <thead className="bg-tech-bg">
                                    <tr>
-                                        <th className="px-6 py-3 text-right text-xs font-medium text-ink-black-600">
+                                        <th className="px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
                                              کاربر
                                         </th>
-                                        <th className="px-6 py-3 text-right text-xs font-medium text-ink-black-600">
+                                        <th className="px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
                                              ایمیل
                                         </th>
-                                        <th className="px-6 py-3 text-right text-xs font-medium text-ink-black-600">
+                                        <th className="px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
                                              نقش
                                         </th>
-                                        <th className="px-6 py-3 text-right text-xs font-medium text-ink-black-600">
+                                        <th className="px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
                                              تاریخ عضویت
                                         </th>
-                                        <th className="px-6 py-3 text-right text-xs font-medium text-ink-black-600">
+                                        <th className="px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
                                              وضعیت
                                         </th>
-                                        <th className="px-6 py-3 text-right text-xs font-medium text-ink-black-600">
+                                        <th className="px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
                                              عملیات
                                         </th>
                                    </tr>
                               </thead>
-                              <tbody className="divide-y divide-bright-snow-200">
+                              <tbody className="divide-y divide-tech-muted">
                                    {filteredUsers.map((user) => (
                                         <tr
                                              key={user.id}
-                                             className="hover:bg-bright-snow-50 transition-colors"
+                                             className="hover:bg-tech-bg transition-colors"
                                         >
                                              <td className="px-6 py-4">
                                                   <div className="flex items-center gap-3">
@@ -213,32 +213,32 @@ const Users = () => {
                                                             <img
                                                                  src={user.avatarImage}
                                                                  alt={user.name}
-                                                                 className="w-10 h-10 rounded-full object-cover border-2 border-sapphire-sky-300"
+                                                                 className="w-10 h-10 rounded-full object-cover border-2 border-tech-navy-light"
                                                             />
                                                        ) : (
-                                                            <div className="w-10 h-10 rounded-full bg-linear-to-br from-sapphire-sky-500 to-sapphire-sky-700 flex items-center justify-center text-white font-semibold text-sm">
+                                                            <div className="w-10 h-10 rounded-full bg-linear-to-br from-tech-accent to-tech-test flex items-center justify-center text-white font-semibold text-sm">
                                                                  {user.avatar}
                                                             </div>
                                                        )}
                                                        <div>
-                                                            <p className="text-sm font-medium text-ink-black-900">
+                                                            <p className="text-sm font-medium text-tech-text">
                                                                  {user.name}
                                                             </p>
-                                                            <p className="text-xs text-ink-black-500">
+                                                            <p className="text-xs text-tech-test">
                                                                  {user.orders} سفارش
                                                             </p>
                                                        </div>
                                                   </div>
                                              </td>
-                                             <td className="px-6 py-4 text-sm text-ink-black-600">
+                                             <td className="px-6 py-4 text-sm text-tech-navy-melo">
                                                   {user.email}
                                              </td>
                                              <td className="px-6 py-4">
-                                                  <span className="px-3 py-1 rounded-lg bg-bright-snow-100 text-ink-black-700 text-xs font-medium">
+                                                  <span className="px-3 py-1 rounded-lg bg-tech-bg text-tech-navy text-xs font-medium">
                                                        {user.role}
                                                   </span>
                                              </td>
-                                             <td className="px-6 py-4 text-sm text-ink-black-600">
+                                             <td className="px-6 py-4 text-sm text-tech-navy-melo">
                                                   {user.joinDate}
                                              </td>
                                              <td className="px-6 py-4">
@@ -256,11 +256,11 @@ const Users = () => {
                                                   <div className="flex items-center gap-2">
                                                        <button
                                                             onClick={() => handleEditUser(user)}
-                                                            className="p-2 hover:bg-bright-snow-100 rounded-lg transition-colors"
+                                                            className="p-2 hover:bg-tech-bg rounded-lg transition-colors"
                                                             title="ویرایش کاربر"
                                                        >
                                                             <svg
-                                                                 className="w-4 h-4 text-sapphire-sky-600"
+                                                                 className="w-4 h-4 text-tech-test"
                                                                  fill="none"
                                                                  stroke="currentColor"
                                                                  viewBox="0 0 24 24"
@@ -300,24 +300,24 @@ const Users = () => {
                          </table>
                     </div>
                     {/* Pagination */}
-                    <div className="px-6 py-4 border-t border-bright-snow-200 flex items-center justify-between">
-                         <p className="text-sm text-ink-black-600">
+                    <div className="px-6 py-4 border-t border-tech-muted flex items-center justify-between">
+                         <p className="text-sm text-tech-navy-melo">
                               نمایش {filteredUsers.length} از {users.length} کاربر
                          </p>
                          <div className="flex items-center gap-2">
                               <button
-                                   className="px-3 py-2 border border-bright-snow-300 rounded-lg hover:bg-bright-snow-50 disabled:opacity-50 text-sm"
+                                   className="px-3 py-2 border border-tech-navy-light rounded-lg hover:bg-tech-bg disabled:opacity-50 text-sm"
                                    disabled
                               >
                                    قبلی
                               </button>
-                              <button className="px-3 py-2 bg-sapphire-sky-600 text-white rounded-lg text-sm">
+                              <button className="px-3 py-2 bg-tech-test text-white rounded-lg text-sm">
                                    1
                               </button>
-                              <button className="px-3 py-2 border border-bright-snow-300 rounded-lg hover:bg-bright-snow-50 text-sm">
+                              <button className="px-3 py-2 border border-tech-navy-light rounded-lg hover:bg-tech-bg text-sm">
                                    2
                               </button>
-                              <button className="px-3 py-2 border border-bright-snow-300 rounded-lg hover:bg-bright-snow-50 text-sm">
+                              <button className="px-3 py-2 border border-tech-navy-light rounded-lg hover:bg-tech-bg text-sm">
                                    بعدی
                               </button>
                          </div>

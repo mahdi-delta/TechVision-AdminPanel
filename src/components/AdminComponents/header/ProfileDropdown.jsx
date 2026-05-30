@@ -16,40 +16,40 @@ const ProfileDropdown = () => {
           <div className="relative" ref={dropdownRef}>
                <button
                     onClick={() => setShowProfile(!showProfile)}
-                    className="flex items-center gap-3 pl-4 border-l border-bright-snow-300 hover:opacity-80 transition-opacity"
+                    className="flex items-center gap-3 pl-4 border-l border-tech-navy-light hover:opacity-80 transition-opacity"
                >
-                    <div className="w-10 h-10 rounded-full bg-linear-to-br from-sapphire-sky-500 to-sapphire-sky-700 flex items-center justify-center text-white font-bold cursor-pointer hover:scale-110 transition-transform shadow-md">
+                    <div className="w-10 h-10 rounded-full bg-linear-to-br from-tech-accent to-tech-test flex items-center justify-center text-white font-bold cursor-pointer hover:scale-110 transition-transform shadow-md">
                          {currentUser.initials}
                     </div>
                     <div className="text-right hidden sm:block">
-                         <p className="text-sm font-semibold text-ink-black-900">
+                         <p className="text-sm font-semibold text-tech-text">
                               {currentUser.name}
                          </p>
-                         <p className="text-xs text-ink-black-600">{currentUser.role}</p>
+                         <p className="text-xs text-tech-navy-melo">{currentUser.role}</p>
                     </div>
                </button>
 
                {showProfile && (
-                    <div className="absolute left-0 mt-2 w-64 bg-white rounded-2xl shadow-xl border border-bright-snow-200 z-50 overflow-hidden">
-                         <div className="p-4 border-b border-bright-snow-200 bg-linear-to-r from-sapphire-sky-50 to-purple-50">
+                    <div className="absolute left-0 mt-2 w-64 bg-white rounded-2xl shadow-xl border border-tech-muted z-50 overflow-hidden">
+                         <div className="p-4 border-b border-tech-muted bg-linear-to-r from-tech-bg to-purple-50">
                               <div className="flex items-center gap-3">
-                                   <div className="w-12 h-12 rounded-full bg-linear-to-br from-sapphire-sky-500 to-sapphire-sky-700 flex items-center justify-center text-white font-bold shadow-md">
+                                   <div className="w-12 h-12 rounded-full bg-linear-to-br from-tech-accent to-tech-test flex items-center justify-center text-white font-bold shadow-md">
                                         {currentUser.initials}
                                    </div>
                                    <div>
-                                        <p className="font-semibold text-ink-black-900">
+                                        <p className="font-semibold text-tech-text">
                                              {currentUser.name}
                                         </p>
-                                        <p className="text-xs text-ink-black-500">
+                                        <p className="text-xs text-tech-test">
                                              {currentUser.email}
                                         </p>
                                    </div>
                               </div>
                          </div>
                          <div className="p-2">
-                              <button className="w-full text-right px-4 py-2.5 hover:bg-bright-snow-50 rounded-xl transition-colors text-sm text-ink-black-700 flex items-center gap-3">
+                              <button className="w-full text-right px-4 py-2.5 hover:bg-tech-bg rounded-xl transition-colors text-sm text-tech-navy flex items-center gap-3">
                                    <svg
-                                        className="w-5 h-5 text-ink-black-500"
+                                        className="w-5 h-5 text-tech-test"
                                         fill="none"
                                         stroke="currentColor"
                                         viewBox="0 0 24 24"
@@ -63,9 +63,9 @@ const ProfileDropdown = () => {
                                    </svg>
                                    <span>پروفایل من</span>
                               </button>
-                              <button className="w-full text-right px-4 py-2.5 hover:bg-bright-snow-50 rounded-xl transition-colors text-sm text-ink-black-700 flex items-center gap-3">
+                              <button className="w-full text-right px-4 py-2.5 hover:bg-tech-bg rounded-xl transition-colors text-sm text-tech-navy flex items-center gap-3">
                                    <svg
-                                        className="w-5 h-5 text-ink-black-500"
+                                        className="w-5 h-5 text-tech-test"
                                         fill="none"
                                         stroke="currentColor"
                                         viewBox="0 0 24 24"
@@ -85,9 +85,9 @@ const ProfileDropdown = () => {
                                    </svg>
                                    <span>تنظیمات حساب</span>
                               </button>
-                              <button className="w-full text-right px-4 py-2.5 hover:bg-bright-snow-50 rounded-xl transition-colors text-sm text-ink-black-700 flex items-center gap-3">
+                              <button className="w-full text-right px-4 py-2.5 hover:bg-tech-bg rounded-xl transition-colors text-sm text-tech-navy flex items-center gap-3">
                                    <svg
-                                        className="w-5 h-5 text-ink-black-500"
+                                        className="w-5 h-5 text-tech-test"
                                         fill="none"
                                         stroke="currentColor"
                                         viewBox="0 0 24 24"
@@ -102,7 +102,7 @@ const ProfileDropdown = () => {
                                    <span>راهنما</span>
                               </button>
                          </div>
-                         <div className="p-2 border-t border-bright-snow-200 bg-bright-snow-50">
+                         <div className="p-2 border-t border-tech-muted bg-tech-bg">
                               <button className="w-full text-right px-4 py-2.5 hover:bg-red-50 rounded-xl transition-colors text-sm text-red-600 font-medium flex items-center gap-3">
                                    <svg
                                         className="w-5 h-5 text-red-600"

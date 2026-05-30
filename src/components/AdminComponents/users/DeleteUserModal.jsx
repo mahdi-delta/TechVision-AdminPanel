@@ -23,12 +23,12 @@ const DeleteUserModal = ({ show, onClose, onConfirm, userName }) => {
                          </div>
 
                          {/* Title */}
-                         <h3 className="text-xl font-bold text-ink-black-900 mb-2">حذف کاربر</h3>
+                         <h3 className="text-xl font-bold text-tech-text mb-2">حذف کاربر</h3>
 
                          {/* Message */}
-                         <p className="text-ink-black-600 mb-6">
+                         <p className="text-tech-navy-melo mb-6">
                               آیا از حذف کاربر{" "}
-                              <span className="font-semibold text-ink-black-900">{userName}</span>{" "}
+                              <span className="font-semibold text-tech-text">{userName}</span>{" "}
                               اطمینان دارید؟ این عملیات قابل بازگشت نیست.
                          </p>
 
@@ -36,7 +36,7 @@ const DeleteUserModal = ({ show, onClose, onConfirm, userName }) => {
                          <div className="flex gap-3 w-full">
                               <button
                                    onClick={onClose}
-                                   className="flex-1 px-4 py-2.5 border border-bright-snow-300 text-ink-black-700 rounded-xl hover:bg-bright-snow-50 transition-colors font-medium text-sm"
+                                   className="flex-1 px-4 py-2.5 border border-tech-navy-light text-tech-navy rounded-xl hover:bg-tech-bg transition-colors font-medium text-sm"
                               >
                                    انصراف
                               </button>

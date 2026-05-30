@@ -59,7 +59,7 @@ const Orders = () => {
                case "کل سفارشات":
                     return (
                          <svg
-                              className="w-7 h-7 text-sapphire-sky-600"
+                              className="w-7 h-7 text-tech-test"
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
@@ -129,11 +129,11 @@ const Orders = () => {
           <div className="space-y-6">
                {/* Stats Cards */}
                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <div className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-bright-snow-100">
+                    <div className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-tech-bg">
                          <div className="flex items-start justify-between">
                               <div className="flex-1">
-                                   <p className="text-sm text-ink-black-600 mb-2">کل سفارشات</p>
-                                   <h3 className="text-2xl font-bold text-ink-black-900">
+                                   <p className="text-sm text-tech-navy-melo mb-2">کل سفارشات</p>
+                                   <h3 className="text-2xl font-bold text-tech-text">
                                         {totalOrders}
                                    </h3>
                               </div>
@@ -142,10 +142,10 @@ const Orders = () => {
                               </div>
                          </div>
                     </div>
-                    <div className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-bright-snow-100">
+                    <div className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-tech-bg">
                          <div className="flex items-start justify-between">
                               <div className="flex-1">
-                                   <p className="text-sm text-ink-black-600 mb-2">در انتظار</p>
+                                   <p className="text-sm text-tech-navy-melo mb-2">در انتظار</p>
                                    <h3 className="text-2xl font-bold text-yellow-600">
                                         {pendingOrders}
                                    </h3>
@@ -155,10 +155,10 @@ const Orders = () => {
                               </div>
                          </div>
                     </div>
-                    <div className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-bright-snow-100">
+                    <div className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-tech-bg">
                          <div className="flex items-start justify-between">
                               <div className="flex-1">
-                                   <p className="text-sm text-ink-black-600 mb-2">تکمیل شده</p>
+                                   <p className="text-sm text-tech-navy-melo mb-2">تکمیل شده</p>
                                    <h3 className="text-2xl font-bold text-green-600">
                                         {completedOrders}
                                    </h3>
@@ -168,11 +168,11 @@ const Orders = () => {
                               </div>
                          </div>
                     </div>
-                    <div className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-bright-snow-100">
+                    <div className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-tech-bg">
                          <div className="flex items-start justify-between">
                               <div className="flex-1">
-                                   <p className="text-sm text-ink-black-600 mb-2">درآمد کل</p>
-                                   <h3 className="text-2xl font-bold text-ink-black-900">
+                                   <p className="text-sm text-tech-navy-melo mb-2">درآمد کل</p>
+                                   <h3 className="text-2xl font-bold text-tech-text">
                                         {totalRevenue}
                                    </h3>
                               </div>
@@ -184,10 +184,10 @@ const Orders = () => {
                </div>
 
                {/* Orders Table */}
-               <div className="bg-white rounded-2xl shadow-sm border border-bright-snow-100">
-                    <div className="p-6 border-b border-bright-snow-200">
+               <div className="bg-white rounded-2xl shadow-sm border border-tech-bg">
+                    <div className="p-6 border-b border-tech-muted">
                          <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
-                              <h2 className="text-xl font-semibold text-ink-black-900">
+                              <h2 className="text-xl font-semibold text-tech-text">
                                    سفارشات اخیر
                               </h2>
                               <div className="flex gap-3 w-full lg:w-auto">
@@ -214,72 +214,72 @@ const Orders = () => {
                     </div>
                     <div className="overflow-x-auto">
                          <table className="w-full">
-                              <thead className="bg-bright-snow-50">
+                              <thead className="bg-tech-bg">
                                    <tr>
-                                        <th className="px-6 py-3 text-right text-xs font-medium text-ink-black-600">
+                                        <th className="px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
                                              شماره سفارش
                                         </th>
-                                        <th className="px-6 py-3 text-right text-xs font-medium text-ink-black-600">
+                                        <th className="px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
                                              مشتری
                                         </th>
-                                        <th className="px-6 py-3 text-right text-xs font-medium text-ink-black-600">
+                                        <th className="px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
                                              محصول
                                         </th>
-                                        <th className="px-6 py-3 text-right text-xs font-medium text-ink-black-600">
+                                        <th className="px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
                                              مبلغ (تومان)
                                         </th>
-                                        <th className="px-6 py-3 text-right text-xs font-medium text-ink-black-600">
+                                        <th className="px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
                                              روش پرداخت
                                         </th>
-                                        <th className="px-6 py-3 text-right text-xs font-medium text-ink-black-600">
+                                        <th className="px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
                                              تاریخ و زمان
                                         </th>
-                                        <th className="px-6 py-3 text-right text-xs font-medium text-ink-black-600">
+                                        <th className="px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
                                              وضعیت
                                         </th>
-                                        <th className="px-6 py-3 text-right text-xs font-medium text-ink-black-600">
+                                        <th className="px-6 py-3 text-right text-xs font-medium text-tech-navy-melo">
                                              عملیات
                                         </th>
                                    </tr>
                               </thead>
-                              <tbody className="divide-y divide-bright-snow-200">
+                              <tbody className="divide-y divide-tech-muted">
                                    {filteredOrders.map((order) => (
                                         <tr
                                              key={order.id}
-                                             className="hover:bg-bright-snow-50 transition-colors"
+                                             className="hover:bg-tech-bg transition-colors"
                                         >
                                              <td className="px-6 py-4">
-                                                  <span className="text-sm font-medium text-ink-black-900">
+                                                  <span className="text-sm font-medium text-tech-text">
                                                        #{order.id}
                                                   </span>
                                              </td>
                                              <td className="px-6 py-4">
                                                   <div className="flex items-center gap-3">
-                                                       <div className="w-10 h-10 rounded-full bg-sapphire-sky-100 text-sapphire-sky-700 flex items-center justify-center font-medium">
+                                                       <div className="w-10 h-10 rounded-full bg-tech-bg text-tech-test flex items-center justify-center font-medium">
                                                             {order.customerAvatar}
                                                        </div>
-                                                       <span className="text-sm font-medium text-ink-black-900">
+                                                       <span className="text-sm font-medium text-tech-text">
                                                             {order.customer}
                                                        </span>
                                                   </div>
                                              </td>
-                                             <td className="px-6 py-4 text-sm text-ink-black-600">
+                                             <td className="px-6 py-4 text-sm text-tech-navy-melo">
                                                   {order.product}
                                              </td>
-                                             <td className="px-6 py-4 text-sm font-medium text-ink-black-900">
+                                             <td className="px-6 py-4 text-sm font-medium text-tech-text">
                                                   {order.amount}
                                              </td>
                                              <td className="px-6 py-4">
-                                                  <span className="px-3 py-1 rounded-lg bg-bright-snow-100 text-ink-black-700 text-xs font-medium">
+                                                  <span className="px-3 py-1 rounded-lg bg-tech-bg text-tech-navy text-xs font-medium">
                                                        {order.paymentMethod}
                                                   </span>
                                              </td>
                                              <td className="px-6 py-4">
                                                   <div className="text-sm">
-                                                       <p className="text-ink-black-900 font-medium">
+                                                       <p className="text-tech-text font-medium">
                                                             {order.date}
                                                        </p>
-                                                       <p className="text-ink-black-500 text-xs">
+                                                       <p className="text-tech-test text-xs">
                                                             {order.time}
                                                        </p>
                                                   </div>
@@ -297,11 +297,11 @@ const Orders = () => {
                                                   <div className="flex items-center gap-2">
                                                        <button
                                                             onClick={() => handleViewOrder(order)}
-                                                            className="p-2 hover:bg-bright-snow-100 rounded-lg transition-colors"
+                                                            className="p-2 hover:bg-tech-bg rounded-lg transition-colors"
                                                             title="مشاهده جزئیات"
                                                        >
                                                             <svg
-                                                                 className="w-4 h-4 text-sapphire-sky-600"
+                                                                 className="w-4 h-4 text-tech-test"
                                                                  fill="none"
                                                                  stroke="currentColor"
                                                                  viewBox="0 0 24 24"
@@ -322,11 +322,11 @@ const Orders = () => {
                                                        </button>
                                                        <button
                                                             onClick={() => handleEditOrder(order)}
-                                                            className="p-2 hover:bg-bright-snow-100 rounded-lg transition-colors"
+                                                            className="p-2 hover:bg-tech-bg rounded-lg transition-colors"
                                                             title="تغییر وضعیت"
                                                        >
                                                             <svg
-                                                                 className="w-4 h-4 text-ink-black-600"
+                                                                 className="w-4 h-4 text-tech-navy-melo"
                                                                  fill="none"
                                                                  stroke="currentColor"
                                                                  viewBox="0 0 24 24"
@@ -348,16 +348,16 @@ const Orders = () => {
                     </div>
 
                     {/* Pagination */}
-                    <div className="p-4 border-t border-bright-snow-200 flex items-center justify-between">
-                         <p className="text-sm text-ink-black-600">نمایش 1 تا 8 از 8 سفارش</p>
+                    <div className="p-4 border-t border-tech-muted flex items-center justify-between">
+                         <p className="text-sm text-tech-navy-melo">نمایش 1 تا 8 از 8 سفارش</p>
                          <div className="flex gap-2">
-                              <button className="px-3 py-1 border border-bright-snow-300 rounded-lg text-sm text-ink-black-600 hover:bg-bright-snow-50 transition-colors">
+                              <button className="px-3 py-1 border border-tech-navy-light rounded-lg text-sm text-tech-navy-melo hover:bg-tech-bg transition-colors">
                                    قبلی
                               </button>
-                              <button className="px-3 py-1 bg-sapphire-sky-600 text-white rounded-lg text-sm">
+                              <button className="px-3 py-1 bg-tech-test text-white rounded-lg text-sm">
                                    1
                               </button>
-                              <button className="px-3 py-1 border border-bright-snow-300 rounded-lg text-sm text-ink-black-600 hover:bg-bright-snow-50 transition-colors">
+                              <button className="px-3 py-1 border border-tech-navy-light rounded-lg text-sm text-tech-navy-melo hover:bg-tech-bg transition-colors">
                                    بعدی
                               </button>
                          </div>

@@ -46,12 +46,12 @@ const AddUserModal = ({ show, onClose, onSave, user, setUser, isEditing = false 
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
                <div className="bg-white rounded-2xl shadow-xl max-w-md w-full p-6">
                     <div className="flex items-center justify-between mb-6">
-                         <h3 className="text-xl font-bold text-ink-black-900">
+                         <h3 className="text-xl font-bold text-tech-text">
                               {isEditing ? "ویرایش کاربر" : "افزودن کاربر جدید"}
                          </h3>
                          <button
                               onClick={onClose}
-                              className="text-ink-black-400 hover:text-ink-black-600"
+                              className="text-tech-navy-light hover:text-tech-navy-melo"
                          >
                               <svg
                                    className="w-6 h-6"
@@ -71,7 +71,7 @@ const AddUserModal = ({ show, onClose, onSave, user, setUser, isEditing = false 
 
                     <div className="space-y-4">
                          <div>
-                              <label className="block text-sm font-medium text-ink-black-700 mb-2">
+                              <label className="block text-sm font-medium text-tech-navy mb-2">
                                    نام و نام خانوادگی
                               </label>
                               <input
@@ -79,12 +79,12 @@ const AddUserModal = ({ show, onClose, onSave, user, setUser, isEditing = false 
                                    value={user.name}
                                    onChange={(e) => setUser({ ...user, name: e.target.value })}
                                    placeholder="مثال: علی احمدی"
-                                   className="w-full px-4 py-2.5 border border-bright-snow-300 rounded-xl focus:border-sapphire-sky-500 focus:ring-2 focus:ring-sapphire-sky-200 outline-none text-sm"
+                                   className="w-full px-4 py-2.5 border border-tech-navy-light rounded-xl focus:border-tech-accent focus:ring-2 focus:ring-tech-muted outline-none text-sm"
                               />
                          </div>
 
                          <div>
-                              <label className="block text-sm font-medium text-ink-black-700 mb-2">
+                              <label className="block text-sm font-medium text-tech-navy mb-2">
                                    ایمیل
                               </label>
                               <input
@@ -92,12 +92,12 @@ const AddUserModal = ({ show, onClose, onSave, user, setUser, isEditing = false 
                                    value={user.email}
                                    onChange={(e) => setUser({ ...user, email: e.target.value })}
                                    placeholder="example@gmail.com"
-                                   className="w-full px-4 py-2.5 border border-bright-snow-300 rounded-xl focus:border-sapphire-sky-500 focus:ring-2 focus:ring-sapphire-sky-200 outline-none text-sm"
+                                   className="w-full px-4 py-2.5 border border-tech-navy-light rounded-xl focus:border-tech-accent focus:ring-2 focus:ring-tech-muted outline-none text-sm"
                               />
                          </div>
 
                          <div>
-                              <label className="block text-sm font-medium text-ink-black-700 mb-2">
+                              <label className="block text-sm font-medium text-tech-navy mb-2">
                                    نقش کاربری
                               </label>
                               <CustomDropdown
@@ -109,7 +109,7 @@ const AddUserModal = ({ show, onClose, onSave, user, setUser, isEditing = false 
                          </div>
 
                          <div>
-                              <label className="block text-sm font-medium text-ink-black-700 mb-2">
+                              <label className="block text-sm font-medium text-tech-navy mb-2">
                                    وضعیت
                               </label>
                               <CustomDropdown
@@ -120,14 +120,14 @@ const AddUserModal = ({ show, onClose, onSave, user, setUser, isEditing = false 
                          </div>
 
                          <div>
-                              <label className="block text-sm font-medium text-ink-black-700 mb-2">
+                              <label className="block text-sm font-medium text-tech-navy mb-2">
                                    تصویر پروفایل (اختیاری)
                               </label>
                               <div className="flex items-center gap-4">
                                    {/* Preview */}
                                    <div className="shrink-0">
                                         {user.avatarImage ? (
-                                             <div className="relative w-20 h-20 rounded-full overflow-hidden border-2 border-sapphire-sky-500">
+                                             <div className="relative w-20 h-20 rounded-full overflow-hidden border-2 border-tech-accent">
                                                   <img
                                                        src={user.avatarImage}
                                                        alt="Preview"
@@ -141,7 +141,7 @@ const AddUserModal = ({ show, onClose, onSave, user, setUser, isEditing = false 
                                                   </button>
                                              </div>
                                         ) : (
-                                             <div className="w-20 h-20 rounded-full bg-linear-to-br from-sapphire-sky-500 to-sapphire-sky-700 flex items-center justify-center text-white font-bold text-2xl">
+                                             <div className="w-20 h-20 rounded-full bg-linear-to-br from-tech-accent to-tech-test flex items-center justify-center text-white font-bold text-2xl">
                                                   {getAvatarInitial()}
                                              </div>
                                         )}
@@ -157,11 +157,11 @@ const AddUserModal = ({ show, onClose, onSave, user, setUser, isEditing = false 
                                         />
                                         <label
                                              htmlFor="avatar-upload"
-                                             className="inline-block px-4 py-2.5 bg-bright-snow-100 text-ink-black-700 rounded-xl hover:bg-bright-snow-200 transition-colors font-medium text-sm cursor-pointer"
+                                             className="inline-block px-4 py-2.5 bg-tech-bg text-tech-navy rounded-xl hover:bg-tech-muted transition-colors font-medium text-sm cursor-pointer"
                                         >
                                              {user.avatarImage ? "تغییر تصویر" : "انتخاب تصویر"}
                                         </label>
-                                        <p className="text-xs text-ink-black-500 mt-2">
+                                        <p className="text-xs text-tech-test mt-2">
                                              در صورت عدم انتخاب، حرف اول نام نمایش داده می‌شود
                                         </p>
                                    </div>
@@ -172,13 +172,13 @@ const AddUserModal = ({ show, onClose, onSave, user, setUser, isEditing = false 
                     <div className="flex gap-3 mt-6">
                          <button
                               onClick={onClose}
-                              className="flex-1 px-4 py-2.5 border border-bright-snow-300 text-ink-black-700 rounded-xl hover:bg-bright-snow-50 transition-colors font-medium text-sm"
+                              className="flex-1 px-4 py-2.5 border border-tech-navy-light text-tech-navy rounded-xl hover:bg-tech-bg transition-colors font-medium text-sm"
                          >
                               لغو
                          </button>
                          <button
                               onClick={handleSave}
-                              className="flex-1 px-4 py-2.5 bg-sapphire-sky-600 text-white rounded-xl hover:bg-sapphire-sky-700 transition-colors font-medium text-sm"
+                              className="flex-1 px-4 py-2.5 bg-tech-test text-white rounded-xl hover:bg-tech-test transition-colors font-medium text-sm"
                          >
                               {isEditing ? "ذخیره تغییرات" : "افزودن کاربر"}
                          </button>

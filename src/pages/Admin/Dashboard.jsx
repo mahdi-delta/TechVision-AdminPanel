@@ -87,16 +87,16 @@ const Dashboard = () => {
                     {stats.map((stat, index) => (
                          <div
                               key={index}
-                              className="bg-white rounded-2xl p-6 shadow-md hover:shadow-lg hover:border-sapphire-sky-200 transition-all duration-300 border border-bright-snow-100"
+                              className="bg-white rounded-2xl p-6 shadow-md hover:shadow-lg hover:border-tech-muted transition-all duration-300 border border-tech-bg"
                          >
                               <div className="flex items-start justify-between">
                                    <div className="flex-1">
-                                        <p className="text-sm text-ink-black-500 mb-2 font-medium">
+                                        <p className="text-sm text-tech-test mb-2 font-medium">
                                              {stat.title}
                                         </p>
-                                        <h3 className="text-3xl font-bold text-ink-black-900 mb-1">
+                                        <h3 className="text-3xl font-bold text-tech-text mb-1">
                                              {stat.value}
-                                             <span className="text-sm font-normal text-ink-black-500 mr-1">
+                                             <span className="text-sm font-normal text-tech-test mr-1">
                                                   {stat.unit}
                                              </span>
                                         </h3>
@@ -111,7 +111,7 @@ const Dashboard = () => {
                                                   {stat.change}
                                              </span>
                                              {stat.changeLabel && (
-                                                  <span className="text-xs text-ink-black-500">
+                                                  <span className="text-xs text-tech-test">
                                                        {stat.changeLabel}
                                                   </span>
                                              )}
@@ -127,9 +127,9 @@ const Dashboard = () => {
 
                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     {/* Sales Chart */}
-                    <div className="lg:col-span-2 bg-white rounded-2xl p-6 shadow-sm border border-bright-snow-100">
+                    <div className="lg:col-span-2 bg-white rounded-2xl p-6 shadow-sm border border-tech-bg">
                          <div className="flex items-center justify-between mb-6">
-                              <h3 className="text-lg font-semibold text-ink-black-900">
+                              <h3 className="text-lg font-semibold text-tech-text">
                                    نمودار درآمد و فروش
                               </h3>
                               <CustomDropdown
@@ -147,38 +147,38 @@ const Dashboard = () => {
                                    >
                                         <div className="w-full relative flex items-end gap-1">
                                              <div
-                                                  className="flex-1 bg-linear-to-t from-sapphire-sky-500 to-sapphire-sky-400 rounded-t-lg hover:opacity-80 transition-opacity cursor-pointer"
+                                                  className="flex-1 bg-linear-to-t from-tech-accent to-tech-navy-light rounded-t-lg hover:opacity-80 transition-opacity cursor-pointer"
                                                   style={{ height: `${data.sales * 3}px` }}
                                              ></div>
                                              <div
-                                                  className="flex-1 bg-linear-to-t from-ink-black-400 to-ink-black-300 rounded-t-lg hover:opacity-80 transition-opacity cursor-pointer"
+                                                  className="flex-1 bg-linear-to-t from-tech-navy-light to-tech-navy-light rounded-t-lg hover:opacity-80 transition-opacity cursor-pointer"
                                                   style={{ height: `${data.orders * 3}px` }}
                                              ></div>
                                         </div>
-                                        <span className="text-xs text-ink-black-600">
+                                        <span className="text-xs text-tech-navy-melo">
                                              {data.month}
                                         </span>
                                    </div>
                               ))}
                          </div>
-                         <div className="flex items-center justify-center gap-6 mt-6 pt-4 border-t border-bright-snow-200">
+                         <div className="flex items-center justify-center gap-6 mt-6 pt-4 border-t border-tech-muted">
                               <div className="flex items-center gap-2">
-                                   <div className="w-3 h-3 rounded-full bg-sapphire-sky-500"></div>
-                                   <span className="text-sm text-ink-black-600">
+                                   <div className="w-3 h-3 rounded-full bg-tech-accent"></div>
+                                   <span className="text-sm text-tech-navy-melo">
                                         فروش (میلیون تومان)
                                    </span>
                               </div>
                               <div className="flex items-center gap-2">
-                                   <div className="w-3 h-3 rounded-full bg-ink-black-400"></div>
-                                   <span className="text-sm text-ink-black-600">هزینه</span>
+                                   <div className="w-3 h-3 rounded-full bg-tech-navy-light"></div>
+                                   <span className="text-sm text-tech-navy-melo">هزینه</span>
                               </div>
                          </div>
                     </div>
 
                     {/* Category Chart */}
-                    <div className="bg-white rounded-2xl p-6 shadow-sm border border-bright-snow-100">
+                    <div className="bg-white rounded-2xl p-6 shadow-sm border border-tech-bg">
                          <div className="flex items-center justify-between mb-6">
-                              <h3 className="text-lg font-semibold text-ink-black-900">
+                              <h3 className="text-lg font-semibold text-tech-text">
                                    دسته‌بندی فروش
                               </h3>
                               <CustomDropdown
@@ -225,8 +225,8 @@ const Dashboard = () => {
                                         />
                                    </svg>
                                    <div className="absolute inset-0 flex flex-col items-center justify-center">
-                                        <span className="text-sm text-ink-black-600">کل فروش</span>
-                                        <span className="text-2xl font-bold text-ink-black-900">
+                                        <span className="text-sm text-tech-navy-melo">کل فروش</span>
+                                        <span className="text-2xl font-bold text-tech-text">
                                              ۱۰۰%
                                         </span>
                                    </div>
@@ -239,11 +239,11 @@ const Dashboard = () => {
                                              <div
                                                   className={`w-3 h-3 rounded-full ${cat.color}`}
                                              ></div>
-                                             <span className="text-sm text-ink-black-700">
+                                             <span className="text-sm text-tech-navy">
                                                   {cat.name}
                                              </span>
                                         </div>
-                                        <span className="text-sm font-medium text-ink-black-900">
+                                        <span className="text-sm font-medium text-tech-text">
                                              {cat.value}%
                                         </span>
                                    </div>
@@ -253,27 +253,27 @@ const Dashboard = () => {
                </div>
 
                {/* Recent Orders Table */}
-               <div className="bg-white rounded-2xl p-6 shadow-sm border border-bright-snow-100">
+               <div className="bg-white rounded-2xl p-6 shadow-sm border border-tech-bg">
                     <div className="flex items-center justify-between mb-4">
-                         <h3 className="text-lg font-semibold text-ink-black-900">آخرین سفارشات</h3>
-                         <button className="text-sm text-sapphire-sky-600 hover:text-sapphire-sky-700 font-medium">
+                         <h3 className="text-lg font-semibold text-tech-text">آخرین سفارشات</h3>
+                         <button className="text-sm text-tech-test hover:text-tech-test font-medium">
                               مشاهده همه
                          </button>
                     </div>
                     <div className="overflow-x-auto">
                          <table className="w-full">
                               <thead>
-                                   <tr className="border-b border-bright-snow-200">
-                                        <th className="text-right py-3 px-4 text-xs font-medium text-ink-black-600">
+                                   <tr className="border-b border-tech-muted">
+                                        <th className="text-right py-3 px-4 text-xs font-medium text-tech-navy-melo">
                                              شماره سفارش
                                         </th>
-                                        <th className="text-right py-3 px-4 text-xs font-medium text-ink-black-600">
+                                        <th className="text-right py-3 px-4 text-xs font-medium text-tech-navy-melo">
                                              مشتری
                                         </th>
-                                        <th className="text-right py-3 px-4 text-xs font-medium text-ink-black-600">
+                                        <th className="text-right py-3 px-4 text-xs font-medium text-tech-navy-melo">
                                              مبلغ
                                         </th>
-                                        <th className="text-right py-3 px-4 text-xs font-medium text-ink-black-600">
+                                        <th className="text-right py-3 px-4 text-xs font-medium text-tech-navy-melo">
                                              وضعیت
                                         </th>
                                    </tr>
@@ -282,15 +282,15 @@ const Dashboard = () => {
                                    {recentOrders.map((order, index) => (
                                         <tr
                                              key={index}
-                                             className="border-b border-bright-snow-100 hover:bg-bright-snow-50 transition-colors"
+                                             className="border-b border-tech-bg hover:bg-tech-bg transition-colors"
                                         >
-                                             <td className="py-3 px-4 text-sm text-ink-black-900">
+                                             <td className="py-3 px-4 text-sm text-tech-text">
                                                   {order.id}
                                              </td>
-                                             <td className="py-3 px-4 text-sm text-ink-black-700">
+                                             <td className="py-3 px-4 text-sm text-tech-navy">
                                                   {order.customer}
                                              </td>
-                                             <td className="py-3 px-4 text-sm font-medium text-ink-black-900">
+                                             <td className="py-3 px-4 text-sm font-medium text-tech-text">
                                                   {order.amount} تومان
                                              </td>
                                              <td className="py-3 px-4">
