@@ -19,7 +19,7 @@ const Sidebar = ({ onToggle }) => {
      return (
           <section
                className={
-                    "h-full relative transition-all duration-300 bg-white border-l border-gray-200 rounded-xl " +
+                    "h-full relative transition-all duration-300 bg-white border-l border-gray-300 rounded-xl " +
                     (SiderbarStatus === "closed" ? "w-0 p-0" : "min-w-72 p-5")
                }
           >
@@ -55,7 +55,7 @@ const Sidebar = ({ onToggle }) => {
 
                <button
                     className={
-                         "absolute flex justify-center items-center -left-5 top-1/3 border-2 border-gray-200 bg-white shadow-sm aspect-square w-10 rounded-full transition-all duration-300 hover:scale-110 hover:bg-gray-50 text-gray-600 hidden md:flex " +
+                         "absolute flex justify-center items-center -left-5 top-1/3 border-2 border-gray-200 bg-white shadow-sm aspect-square w-10 rounded-full transition-all duration-300 hover:scale-110 hover:bg-gray-50 text-gray-600 md:flex " +
                          (SiderbarStatus === "closed" ? "transform -translate-x-6 rotate-180" : "")
                     }
                     onClick={handleSidebarStatus}
