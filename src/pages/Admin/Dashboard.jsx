@@ -73,9 +73,9 @@ const Dashboard = () => {
                     </div>
 
                     {/* Charts Section */}
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
                          {/* Sales Chart - Full width on mobile, 2 cols on large */}
-                         <div className="lg:col-span-2 w-full">
+                         <div className=" w-full">
                               <div className="w-full bg-white rounded-lg md:rounded-xl p-4 md:p-6 shadow-sm border border-gray-100">
                                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 md:gap-4 mb-4 md:mb-6">
                                         <h3 className="text-base md:text-lg font-semibold text-gray-900">
@@ -90,7 +90,7 @@ const Dashboard = () => {
                                              />
                                         </div>
                                    </div>
-                                   <div className="w-full h-64 md:h-80 lg:h-96 -mx-4 md:-mx-6 px-4 md:px-6">
+                                   <div className="w-full h-max md:-mx-6">
                                         <SalesChart />
                                    </div>
                               </div>
@@ -99,10 +99,10 @@ const Dashboard = () => {
                          {/* Category Chart */}
                          <div className="w-full">
                               <div className="w-full bg-white rounded-lg md:rounded-xl p-4 md:p-6 shadow-sm border border-gray-100 h-full">
-                                   <h3 className="text-base md:text-lg font-semibold text-gray-900 mb-4 md:mb-6">
+                                   <h3 className="text-base md:text-lg font-semibold text-gray-900 ">
                                         دسته‌بندی محصولات
                                    </h3>
-                                   <div className="w-full h-64 md:h-80">
+                                   <div className="w-full h-max">
                                         <CategoryChart />
                                    </div>
                               </div>

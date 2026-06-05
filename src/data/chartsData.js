@@ -13,7 +13,7 @@ export const monthlySalesData = [
      { month: "آذر", sales: 61000, revenue: 6100, orders: 63 },
      { month: "دی", sales: 55000, revenue: 5500, orders: 59 },
      { month: "بهمن", sales: 67000, revenue: 6700, orders: 68 },
-     { month: "اسف��د", sales: 72000, revenue: 7200, orders: 75 },
+     { month: "اسفند", sales: 72000, revenue: 7200, orders: 75 },
 ];
 
 // نمودار دسته‌بندی محصولات

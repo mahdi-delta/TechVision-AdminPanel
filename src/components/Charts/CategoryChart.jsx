@@ -1,74 +1,49 @@
 import React from "react";
-import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from "recharts";
+import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from "recharts";
 import { categoryChartData } from "../../data/chartsData";
 
 const CategoryChart = () => {
      const RADIAN = Math.PI / 180;
-     const renderCustomLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent }) => {
-          const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-          const x = cx + radius * Math.cos(-midAngle * RADIAN);
-          const y = cy + radius * Math.sin(-midAngle * RADIAN);
-
-          return (
-               <text
-                    x={x}
-                    y={y}
-                    fill="white"
-                    textAnchor={x > cx ? "start" : "end"}
-                    dominantBaseline="central"
-                    className="font-bold text-sm"
-               >
-                    {`${(percent * 100).toFixed(0)}%`}
-               </text>
-          );
-     };
 
      return (
-          <div className="">
-               <ResponsiveContainer width="100%" height={250}>
-                    <PieChart>
-                         <Pie
-                              data={categoryChartData}
-                              cx="50%"
-                              cy="50%"
-                              labelLine={false}
-                              label={renderCustomLabel}
-                              outerRadius={120}
-                              fill="#8884d8"
-                              dataKey="value"
-                         >
-                              {categoryChartData.map((entry, index) => (
-                                   <Cell key={`cell-${index}`} fill={entry.fill} />
-                              ))}
-                         </Pie>
-                         <Tooltip
-                              contentStyle={{
-                                   backgroundColor: "#fff",
-                                   border: "1px solid #e5e7eb",
-                                   borderRadius: "8px",
-                              }}
-                              formatter={(value) => value.toLocaleString("fa-IR")}
-                         />
-                         {/* <Legend
-                              layout="vertical"
-                              align="right"
-                              verticalAlign="middle"
-                              wrapperStyle={{ direction: "rtl", paddingRight: "20px" }}
-                         /> */}
-                    </PieChart>
-               </ResponsiveContainer>
-
-               <div className="mt-6 grid grid-cols-2 md:grid-cols-5 gap-3">
+          <div className="w-full h-full flex">
+               {/* Legend Grid */}
+               <div className="w-30 grid grid-cols-1">
                     {categoryChartData.map((item, index) => (
-                         <div key={index} className="text-center p-3 bg-gray-50 rounded-lg">
+                         <div
+                              key={index}
+                              className="flex items-center gap-2 p-2 bg-gray-50 rounded"
+                         >
                               <div
-                                   className="w-3 h-3 rounded-full mx-auto mb-2"
+                                   className="w-2.5 h-2.5 rounded-full shrink-0"
                                    style={{ backgroundColor: item.fill }}
-                              ></div>
-                              <p className="text-xs text-gray-600">{item.name}</p>
-                              <p className="text-sm font-bold text-tech-navy">{item.value}%</p>
+                              />
+                              <div className="flex-1 flex min-w-0 gap-7">
+                                   <p className="text-xs text-gray-700 font-medium">{item.name}</p>
+                                   <p className="text-xs font-bold text-gray-900">{item.value}%</p>
+                              </div>
                          </div>
                     ))}
+               </div>
+               <div className="flex-1 min-h-0 flex items-center justify-center">
+                    <ResponsiveContainer width="100%" height={280}>
+                         <PieChart margin={{ top: 0, right: 0, left: 0, bottom: 0 }}>
+                              <Pie
+                                   data={categoryChartData}
+                                   cx="50%"
+                                   cy="50%"
+                                   outerRadius={80}
+                                   innerRadius={45}
+                                   fill="#8884d8"
+                                   dataKey="value"
+                                   paddingAngle={2}
+                              >
+                                   {categoryChartData.map((entry, index) => (
+                                        <Cell key={`cell-${index}`} fill={entry.fill} />
+                                   ))}
+                              </Pie>
+                         </PieChart>
+                    </ResponsiveContainer>
                </div>
           </div>
      );
