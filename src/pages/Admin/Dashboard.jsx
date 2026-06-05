@@ -201,9 +201,6 @@ const Dashboard = () => {
                <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
                     <div className="flex items-center justify-between mb-4">
                          <h3 className="text-lg font-semibold text-tech-text">آخرین سفارشات</h3>
-                         <button className="text-sm text-tech-test hover:text-tech-test font-medium">
-                              مشاهده همه
-                         </button>
                     </div>
                     <div className="overflow-x-auto">
                          <table className="w-full">

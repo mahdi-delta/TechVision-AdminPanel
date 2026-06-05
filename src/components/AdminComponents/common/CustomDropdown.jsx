@@ -27,9 +27,9 @@ const CustomDropdown = ({
           <div className={`relative ${className}`} ref={dropdownRef}>
                <button
                     onClick={() => setIsOpen(!isOpen)}
-                    className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl text-sm text-right flex items-center justify-between hover:border-gray-700 hover:shadow-md focus:border-tech-accent focus:ring-2 focus:ring-tech-accent/20 transition-all duration-200 outline-none group"
+                    className="w-full px-4 py-2 rounded-xl text-sm text-right flex items-center justify-between hover:border-gray-700 hover:shadow-md focus:border-tech-accent  focus:ring-tech-accent/20 transition-all duration-200 outline-none group"
                >
-                    <span className="text-gray-900 font-semibold">{value || placeholder}</span>
+                    <span className="text-tech-navy font-semibold">{value || placeholder}</span>
                     <ChevronDown
                          className={`w-5 h-5 text-gray-600 group-hover:text-tech-accent transition-all duration-300 ${isOpen ? "rotate-180" : ""}`}
                     />

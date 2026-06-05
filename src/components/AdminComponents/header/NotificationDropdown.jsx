@@ -24,7 +24,7 @@ const NotificationDropdown = () => {
                     onClick={() => setShowNotifications(!showNotifications)}
                     className="relative p-2 rounded-lg hover:bg-gray-50 transition-colors group"
                >
-                    <Bell className="w-6 h-6 text-gray-600 group-hover:text-blue-600 transition-colors" />
+                    <Bell className="w-6 h-6 text-gray-600 group-hover:fill-gray-400 transition-fill" />
                     <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
                </button>
 

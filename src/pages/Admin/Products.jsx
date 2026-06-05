@@ -70,7 +70,7 @@ const Products = () => {
                {/* Main Table */}
                <div className="bg-white rounded-xl shadow-sm border border-gray-100">
                     <div className="p-3 md:p-6 border-b border-gray-200">
-                         <div className="flex flex-col gap-3 md:gap-4">
+                         <div className="flex justify-between gap-3 md:gap-4">
                               <h2 className="text-lg md:text-xl font-semibold text-gray-900">
                                    لیست محصولات
                               </h2>
@@ -96,7 +96,7 @@ const Products = () => {
                                    </div>
                                    <button
                                         onClick={() => setShowAddModal(true)}
-                                        className="px-3 md:px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-600 transition-colors text-sm flex items-center justify-center md:justify-start gap-2 flex-shrink-0"
+                                        className="px-3 md:px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-600 transition-colors text-sm flex items-center justify-center md:justify-start gap-2 shrink-0"
                                    >
                                         <Plus className="w-5 h-5" />
                                         <span className="hidden md:inline">افزودن محصول</span>

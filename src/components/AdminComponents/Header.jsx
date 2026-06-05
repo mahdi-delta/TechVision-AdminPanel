@@ -24,9 +24,6 @@ const Header = ({ onSidebarToggle }) => {
                          </div>
 
                          <div className="flex items-center gap-4 shrink-0">
-                              <div className="hidden md:block">
-                                   <SearchInput value="" onChange={() => {}} />
-                              </div>
                               <NotificationDropdown />
                               <ProfileDropdown />
                          </div>
