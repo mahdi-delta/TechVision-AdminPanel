@@ -62,7 +62,9 @@ const Dashboard = () => {
                                                   )}
                                              </div>
                                         </div>
-                                        <div className={`${stat.bgColor} p-2 md:p-3 rounded-lg md:rounded-xl flex-shrink-0`}>
+                                        <div
+                                             className={`${stat.bgColor} p-2 md:p-3 rounded-lg md:rounded-xl flex-shrink-0`}
+                                        >
                                              {getIcon(stat.title)}
                                         </div>
                                    </div>
@@ -160,7 +162,8 @@ const Dashboard = () => {
                                                             className={`text-xs px-2 md:px-3 py-1 rounded-full font-medium ${
                                                                  order.status === "تکمیل"
                                                                       ? "bg-green-100 text-green-700"
-                                                                      : order.status === "در حال پردازش"
+                                                                      : order.status ===
+                                                                          "در حال پردازش"
                                                                         ? "bg-blue-100 text-blue-700"
                                                                         : "bg-yellow-100 text-yellow-700"
                                                             }`}
@@ -202,9 +205,13 @@ const Dashboard = () => {
                                                   {order.status}
                                              </span>
                                         </div>
-                                        <p className="text-sm text-gray-700 mb-1">{order.customer}</p>
+                                        <p className="text-sm text-gray-700 mb-1">
+                                             {order.customer}
+                                        </p>
                                         <div className="flex items-center justify-between">
-                                             <span className="text-xs text-gray-600">{order.amount}</span>
+                                             <span className="text-xs text-gray-600">
+                                                  {order.amount}
+                                             </span>
                                              <button className="text-blue-600 hover:text-blue-700 text-xs font-medium">
                                                   مشاهده
                                              </button>
