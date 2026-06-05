@@ -9,13 +9,13 @@ import {
      Legend,
      ResponsiveContainer,
 } from "recharts";
-import { monthlySalesData } from "../../data/chartsData";
+import { salesData6Months, salesData1Year } from "../../data/chartsData";
 
-const SalesChart = () => {
+const SalesChart = ({ chartPeriod }) => {
      return (
           <ResponsiveContainer width="100%" height={250}>
                <LineChart
-                    data={monthlySalesData}
+                    data={chartPeriod === "۶ ماه گذشته" ? salesData6Months : salesData1Year}
                     margin={{ top: 5, right: 30, left: -0, bottom: 5 }}
                >
                     <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />

@@ -83,7 +83,7 @@ const Dashboard = () => {
                                         </h3>
                                         <div className="w-full sm:w-auto">
                                              <CustomDropdown
-                                                  options={["۶ ماه گذشته", "۱ سال گذشته", "همه"]}
+                                                  options={["۱ سال گذشته", "۶ ماه گذشته"]}
                                                   value={chartPeriod}
                                                   onChange={setChartPeriod}
                                                   className="w-full sm:w-40"
@@ -91,7 +91,7 @@ const Dashboard = () => {
                                         </div>
                                    </div>
                                    <div className="w-full h-max md:-mx-6">
-                                        <SalesChart />
+                                        <SalesChart chartPeriod={chartPeriod}/>
                                    </div>
                               </div>
                          </div>
