@@ -1,14 +1,13 @@
-import { statsData, salesChartData, categoryData, recentOrders } from "../../data/dashboardData";
 import { useState } from "react";
 import { DollarSign, ShoppingBag, AlertCircle, Users } from "lucide-react";
 import CustomDropdown from "../../components/AdminComponents/common/CustomDropdown";
+import SalesChart from "../../components/Charts/SalesChart";
+import CategoryChart from "../../components/Charts/CategoryChart";
+import { statsData, recentOrders } from "../../data/dashboardData";
 
 const Dashboard = () => {
      const stats = statsData;
-     const salesData = salesChartData;
-     const categories = categoryData;
      const [chartPeriod, setChartPeriod] = useState("۶ ماه گذشته");
-     const [categoryPeriod, setCategoryPeriod] = useState("۶ ماه گذشته");
 
      const getIcon = (title) => {
           switch (title) {
@@ -27,7 +26,7 @@ const Dashboard = () => {
 
      return (
           <div className="space-y-8 p-6">
-               {/* Stats Cards */}
+               {/* Stats Cards Grid */}
                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     {stats.map((stat, index) => (
                          <div
@@ -36,12 +35,12 @@ const Dashboard = () => {
                          >
                               <div className="flex items-start justify-between">
                                    <div className="flex-1">
-                                        <p className="text-sm text-tech-test mb-2 font-medium">
+                                        <p className="text-sm text-gray-600 mb-2 font-medium">
                                              {stat.title}
                                         </p>
-                                        <h3 className="text-3xl font-bold text-tech-text mb-1">
+                                        <h3 className="text-3xl font-bold text-gray-900 mb-1">
                                              {stat.value}
-                                             <span className="text-sm font-normal text-tech-test mr-1">
+                                             <span className="text-sm font-normal text-gray-600 mr-1">
                                                   {stat.unit}
                                              </span>
                                         </h3>
@@ -56,7 +55,7 @@ const Dashboard = () => {
                                                   {stat.change}
                                              </span>
                                              {stat.changeLabel && (
-                                                  <span className="text-xs text-tech-test">
+                                                  <span className="text-xs text-gray-500">
                                                        {stat.changeLabel}
                                                   </span>
                                              )}
@@ -70,183 +69,101 @@ const Dashboard = () => {
                     ))}
                </div>
 
+               {/* Charts Grid */}
                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    {/* Sales Chart */}
-                    <div className="lg:col-span-2 bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-                         <div className="flex items-center justify-between mb-6">
-                              <h3 className="text-lg font-semibold text-tech-text">
-                                   نمودار درآمد و فروش
-                              </h3>
-                              <CustomDropdown
-                                   options={["۶ ماه گذشته", "۱ سال گذشته", "همه"]}
-                                   value={chartPeriod}
-                                   onChange={setChartPeriod}
-                                   className="w-40"
-                              />
-                         </div>
-                         <div className="h-64 flex items-end justify-between gap-3">
-                              {salesData.map((data, index) => (
-                                   <div
-                                        key={index}
-                                        className="flex-1 flex flex-col items-center gap-2"
-                                   >
-                                        <div className="w-full relative flex items-end gap-1">
-                                             <div
-                                                  className="flex-1 bg-linear-to-t from-tech-accent to-tech-navy-light rounded-t-lg hover:opacity-80 transition-opacity cursor-pointer"
-                                                  style={{ height: `${data.sales * 3}px` }}
-                                             ></div>
-                                             <div
-                                                  className="flex-1 bg-linear-to-t from-tech-navy-light to-tech-navy-light rounded-t-lg hover:opacity-80 transition-opacity cursor-pointer"
-                                                  style={{ height: `${data.orders * 3}px` }}
-                                             ></div>
-                                        </div>
-                                        <span className="text-xs text-tech-navy-melo">
-                                             {data.month}
-                                        </span>
-                                   </div>
-                              ))}
-                         </div>
-                         <div className="flex items-center justify-center gap-6 mt-6 pt-4 border-t border-tech-muted">
-                              <div className="flex items-center gap-2">
-                                   <div className="w-3 h-3 rounded-full bg-tech-accent"></div>
-                                   <span className="text-sm text-tech-navy-melo">
-                                        فروش (میلیون تومان)
-                                   </span>
+                    {/* Sales Chart - Takes 2 columns */}
+                    <div className="lg:col-span-2">
+                         <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+                              <div className="flex items-center justify-between mb-6">
+                                   <h3 className="text-lg font-semibold text-gray-900">
+                                        نمودار فروش و درآمد
+                                   </h3>
+                                   <CustomDropdown
+                                        options={["۶ ماه گذشته", "۱ سال گذشته", "همه"]}
+                                        value={chartPeriod}
+                                        onChange={setChartPeriod}
+                                        className="w-40"
+                                   />
                               </div>
-                              <div className="flex items-center gap-2">
-                                   <div className="w-3 h-3 rounded-full bg-tech-navy-light"></div>
-                                   <span className="text-sm text-tech-navy-melo">هزینه</span>
-                              </div>
+                              <SalesChart />
                          </div>
                     </div>
 
-                    {/* Category Chart */}
-                    <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-                         <div className="flex items-center justify-between mb-6">
-                              <h3 className="text-lg font-semibold text-tech-text">
-                                   دسته‌بندی فروش
-                              </h3>
-                              <CustomDropdown
-                                   options={["۶ ماه گذشته"]}
-                                   value={categoryPeriod}
-                                   onChange={setCategoryPeriod}
-                                   className="w-40"
-                              />
-                         </div>
-                         <div className="flex items-center justify-center mb-6">
-                              <div className="relative w-48 h-48">
-                                   <svg className="w-full h-full" viewBox="0 0 100 100">
-                                        <circle
-                                             cx="50"
-                                             cy="50"
-                                             r="40"
-                                             fill="none"
-                                             stroke="#3B82F6"
-                                             strokeWidth="20"
-                                             strokeDasharray="115.6 251.2"
-                                             transform="rotate(-90 50 50)"
-                                        />
-                                        <circle
-                                             cx="50"
-                                             cy="50"
-                                             r="40"
-                                             fill="none"
-                                             stroke="#10B981"
-                                             strokeWidth="20"
-                                             strokeDasharray="87.92 251.2"
-                                             strokeDashoffset="-115.6"
-                                             transform="rotate(-90 50 50)"
-                                        />
-                                        <circle
-                                             cx="50"
-                                             cy="50"
-                                             r="40"
-                                             fill="none"
-                                             stroke="#A855F7"
-                                             strokeWidth="20"
-                                             strokeDasharray="50.24 251.2"
-                                             strokeDashoffset="-203.52"
-                                             transform="rotate(-90 50 50)"
-                                        />
-                                   </svg>
-                                   <div className="absolute inset-0 flex flex-col items-center justify-center">
-                                        <span className="text-sm text-tech-navy-melo">کل فروش</span>
-                                        <span className="text-2xl font-bold text-tech-text">
-                                             ۱۰۰%
-                                        </span>
-                                   </div>
+                    {/* Category Chart - Takes 1 column */}
+                    <div>
+                         <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 h-full">
+                              <div className="mb-6">
+                                   <h3 className="text-lg font-semibold text-gray-900">
+                                        دسته‌بندی محصولات
+                                   </h3>
                               </div>
-                         </div>
-                         <div className="space-y-3">
-                              {categories.map((cat, index) => (
-                                   <div key={index} className="flex items-center justify-between">
-                                        <div className="flex items-center gap-2">
-                                             <div
-                                                  className={`w-3 h-3 rounded-full ${cat.color}`}
-                                             ></div>
-                                             <span className="text-sm text-tech-navy">
-                                                  {cat.name}
-                                             </span>
-                                        </div>
-                                        <span className="text-sm font-medium text-tech-text">
-                                             {cat.value}%
-                                        </span>
-                                   </div>
-                              ))}
+                              <CategoryChart />
                          </div>
                     </div>
                </div>
 
                {/* Recent Orders Table */}
                <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-                    <div className="flex items-center justify-between mb-4">
-                         <h3 className="text-lg font-semibold text-tech-text">آخرین سفارشات</h3>
+                    <div className="flex items-center justify-between mb-6">
+                         <h3 className="text-lg font-semibold text-gray-900">آخرین سفارشات</h3>
+                         <button className="text-sm text-blue-600 hover:text-blue-700 font-medium transition-colors">
+                              مشاهده همه
+                         </button>
                     </div>
+
                     <div className="overflow-x-auto">
                          <table className="w-full">
                               <thead>
-                                   <tr className="border-b border-tech-muted">
-                                        <th className="text-right py-3 px-4 text-xs font-medium text-tech-navy-melo">
+                                   <tr className="border-b border-gray-200">
+                                        <th className="text-right py-4 px-6 text-xs font-semibold text-gray-700 bg-gray-50">
                                              شماره سفارش
                                         </th>
-                                        <th className="text-right py-3 px-4 text-xs font-medium text-tech-navy-melo">
+                                        <th className="text-right py-4 px-6 text-xs font-semibold text-gray-700 bg-gray-50">
                                              مشتری
                                         </th>
-                                        <th className="text-right py-3 px-4 text-xs font-medium text-tech-navy-melo">
+                                        <th className="text-right py-4 px-6 text-xs font-semibold text-gray-700 bg-gray-50">
                                              مبلغ
                                         </th>
-                                        <th className="text-right py-3 px-4 text-xs font-medium text-tech-navy-melo">
+                                        <th className="text-right py-4 px-6 text-xs font-semibold text-gray-700 bg-gray-50">
                                              وضعیت
+                                        </th>
+                                        <th className="text-center py-4 px-6 text-xs font-semibold text-gray-700 bg-gray-50">
+                                             عملیات
                                         </th>
                                    </tr>
                               </thead>
                               <tbody>
-                                   {recentOrders.map((order, index) => (
+                                   {recentOrders.slice(0, 8).map((order, index) => (
                                         <tr
                                              key={index}
-                                             className="border-b border-tech-bg hover:bg-tech-bg transition-colors"
+                                             className="border-b border-gray-100 hover:bg-gray-50 transition-colors"
                                         >
-                                             <td className="py-3 px-4 text-sm text-tech-text">
+                                             <td className="py-4 px-6 text-sm font-medium text-gray-900">
                                                   {order.id}
                                              </td>
-                                             <td className="py-3 px-4 text-sm text-tech-navy">
+                                             <td className="py-4 px-6 text-sm text-gray-600">
                                                   {order.customer}
                                              </td>
-                                             <td className="py-3 px-4 text-sm font-medium text-tech-text">
+                                             <td className="py-4 px-6 text-sm font-semibold text-gray-900">
                                                   {order.amount} تومان
                                              </td>
-                                             <td className="py-3 px-4">
+                                             <td className="py-4 px-6">
                                                   <span
-                                                       className={`text-xs px-3 py-1 rounded-full ${
+                                                       className={`text-xs px-3 py-1.5 rounded-full font-medium ${
                                                             order.status === "تکمیل"
-                                                                 ? "bg-green-50 text-green-700"
+                                                                 ? "bg-green-100 text-green-700"
                                                                  : order.status === "در حال پردازش"
-                                                                   ? "bg-blue-50 text-blue-700"
-                                                                   : "bg-yellow-50 text-yellow-700"
+                                                                   ? "bg-blue-100 text-blue-700"
+                                                                   : "bg-yellow-100 text-yellow-700"
                                                        }`}
                                                   >
                                                        {order.status}
                                                   </span>
+                                             </td>
+                                             <td className="py-4 px-6 text-center">
+                                                  <button className="text-blue-600 hover:text-blue-700 text-xs font-medium transition-colors">
+                                                       مشاهده
+                                                  </button>
                                              </td>
                                         </tr>
                                    ))}
