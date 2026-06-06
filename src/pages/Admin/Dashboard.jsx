@@ -25,7 +25,7 @@ const Dashboard = () => {
      };
 
      return (
-          <div className="w-full min-h-screen bg-gray-50 p-4 md:p-6 lg:p-8">
+          <div className="w-full min-h-screen bg-gray-50 ">
                <div className="w-full max-w-7xl mx-auto space-y-6">
                     {/* Stats Cards Grid */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">

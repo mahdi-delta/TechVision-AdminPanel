@@ -20,7 +20,11 @@ const ProfileDropdown = () => {
                     className="flex items-center gap-3 pl-4 border-l border-gray-200 hover:opacity-80 transition-opacity rounded-lg pr-2 hover:bg-gray-50"
                >
                     <div className="w-10 h-10 rounded-full bg-linear-to-br from-tech-accent to-blue-600 flex items-center justify-center text-white font-bold cursor-pointer hover:scale-110 transition-transform shadow-sm">
-                         {currentUser.initials}
+                         {currentUser?.avatar ? (
+                              <img src={currentUser.avatar} className="rounded-full" />
+                         ) : (
+                              currentUser.initials
+                         )}
                     </div>
                     <div className="text-right hidden sm:block">
                          <p className="text-sm font-semibold text-gray-900">{currentUser.name}</p>
@@ -33,15 +37,20 @@ const ProfileDropdown = () => {
                          <div className="p-4 border-b border-gray-200 bg-linear-to-r from-gray-50 to-purple-50">
                               <div className="flex items-center gap-3">
                                    <div className="w-12 h-12 rounded-full bg-linear-to-br from-tech-accent to-blue-600 flex items-center justify-center text-white font-bold shadow-sm">
-                                        {currentUser.initials}
+                                        {currentUser?.avatar ? (
+                                             <img
+                                                  src={currentUser.avatar}
+                                                  className="rounded-full"
+                                             />
+                                        ) : (
+                                             currentUser.initials
+                                        )}
                                    </div>
                                    <div>
                                         <p className="font-semibold text-gray-900">
                                              {currentUser.name}
                                         </p>
-                                        <p className="text-xs text-blue-600">
-                                             {currentUser.email}
-                                        </p>
+                                        <p className="text-xs text-blue-600">{currentUser.email}</p>
                                    </div>
                               </div>
                          </div>
