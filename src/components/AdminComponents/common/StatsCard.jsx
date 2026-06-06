@@ -3,7 +3,7 @@ const StatsCard = ({ title, value, icon, iconBg, valueColor = "text-gray-900" })
           <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 hover:shadow-md hover:border-gray-200 transition-all duration-300">
                <div className="flex items-center justify-between">
                     <div>
-                         <p className="text-sm text-blue-600 mb-2 font-medium">{title}</p>
+                         <p className="text-sm text-tech-navy-melo mb-2 font-medium">{title}</p>
                          <h3 className={`text-3xl font-bold ${valueColor}`}>{value}</h3>
                     </div>
                     {icon && (

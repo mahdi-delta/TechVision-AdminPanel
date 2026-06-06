@@ -7,7 +7,7 @@ import { statsData, recentOrders } from "../../data/dashboardData";
 
 const Dashboard = () => {
      const stats = statsData;
-     const [chartPeriod, setChartPeriod] = useState("۶ ماه گذشته");
+     const [chartPeriod, setChartPeriod] = useState("۱ سال گذشته");
 
      const getIcon = (title) => {
           switch (title) {
@@ -83,7 +83,12 @@ const Dashboard = () => {
                                         </h3>
                                         <div className="w-full sm:w-auto">
                                              <CustomDropdown
-                                                  options={["۱ سال گذشته", "۶ ماه گذشته"]}
+                                                  options={[
+                                                       "۱ سال گذشته",
+                                                       "۶ ماه گذشته",
+                                                       "این ماه",
+                                                       "امروز",
+                                                  ]}
                                                   value={chartPeriod}
                                                   onChange={setChartPeriod}
                                                   className="w-full sm:w-40"
@@ -91,7 +96,7 @@ const Dashboard = () => {
                                         </div>
                                    </div>
                                    <div className="w-full h-max md:-mx-6">
-                                        <SalesChart chartPeriod={chartPeriod}/>
+                                        <SalesChart chartPeriod={chartPeriod} />
                                    </div>
                               </div>
                          </div>

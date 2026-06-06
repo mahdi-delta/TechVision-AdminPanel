@@ -1,5 +1,51 @@
 // Chart Data - داده‌های نمودار
 
+// نمودار فروش روزانه (۲۴ ساعت گذشته)
+export const salesData1Day = [
+     { time: "00:00", sales: 200, revenue: 20, orders: 2 },
+     { time: "03:00", sales: 100, revenue: 10, orders: 1 },
+     { time: "06:00", sales: 450, revenue: 45, orders: 4 },
+     { time: "09:00", sales: 1500, revenue: 150, orders: 12 },
+     { time: "12:00", sales: 2800, revenue: 280, orders: 24 },
+     { time: "15:00", sales: 3200, revenue: 320, orders: 28 },
+     { time: "18:00", sales: 2500, revenue: 250, orders: 21 },
+     { time: "21:00", sales: 1200, revenue: 120, orders: 10 },
+];
+
+// نمودار فروش 1 ماهه (۳۰ روز گذشته)
+export const salesData1Month = [
+     { day: "1", sales: 1200, revenue: 120, orders: 10 },
+     { day: "2", sales: 1100, revenue: 110, orders: 9 },
+     { day: "3", sales: 1400, revenue: 140, orders: 12 },
+     { day: "4", sales: 1600, revenue: 160, orders: 14 },
+     { day: "5", sales: 1800, revenue: 180, orders: 15 },
+     { day: "6", sales: 1300, revenue: 130, orders: 11 },
+     { day: "7", sales: 900,  revenue: 90,  orders: 8  }, // معمولاً روزهای تعطیل افت فروش داریم
+     { day: "8", sales: 1100, revenue: 110, orders: 9  },
+     { day: "9", sales: 1500, revenue: 150, orders: 13 },
+     { day: "10", sales: 1700, revenue: 170, orders: 14 },
+     { day: "11", sales: 1900, revenue: 190, orders: 16 },
+     { day: "12", sales: 2100, revenue: 210, orders: 18 },
+     { day: "13", sales: 2000, revenue: 200, orders: 17 },
+     { day: "14", sales: 1000, revenue: 100, orders: 8  }, 
+     { day: "15", sales: 1300, revenue: 130, orders: 11 },
+     { day: "16", sales: 1600, revenue: 160, orders: 14 },
+     { day: "17", sales: 1800, revenue: 180, orders: 15 },
+     { day: "18", sales: 2200, revenue: 220, orders: 19 },
+     { day: "19", sales: 2400, revenue: 240, orders: 20 },
+     { day: "20", sales: 2100, revenue: 210, orders: 18 },
+     { day: "21", sales: 1200, revenue: 120, orders: 10 }, 
+     { day: "22", sales: 1400, revenue: 140, orders: 12 },
+     { day: "23", sales: 1700, revenue: 170, orders: 14 },
+     { day: "24", sales: 1900, revenue: 190, orders: 16 },
+     { day: "25", sales: 2500, revenue: 250, orders: 21 },
+     { day: "26", sales: 2800, revenue: 280, orders: 23 },
+     { day: "27", sales: 2600, revenue: 260, orders: 22 },
+     { day: "28", sales: 1500, revenue: 150, orders: 13 },
+     { day: "29", sales: 1800, revenue: 180, orders: 15 },
+     { day: "30", sales: 2200, revenue: 220, orders: 18 },
+];
+
 // نمودار فروش 6 ماه
 export const salesData6Months = [
      { month: "فروردین", sales: 24000, revenue: 4000, orders: 32 },

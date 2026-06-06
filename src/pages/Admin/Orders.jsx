@@ -198,7 +198,7 @@ const Orders = () => {
                                              </td>
                                              <td className="px-3 md:px-6 py-2 md:py-4 block md:table-cell before:content-attr(data-label) before:block before:font-semibold before:text-gray-900 md:before:hidden">
                                                   <div className="flex items-center gap-3">
-                                                       <div className="w-10 h-10 rounded-full bg-gray-50 text-blue-600 flex items-center justify-center font-medium">
+                                                       <div className="w-10 h-10 rounded-full bg-linear-45 from-tech-navy to-tech-navy-melo text-white flex items-center justify-center font-medium">
                                                             {order.customerAvatar}
                                                        </div>
                                                        <span className="text-sm font-medium text-gray-900">
@@ -267,7 +267,7 @@ const Orders = () => {
                               <button className="px-2 md:px-3 py-1 border border-gray-700 rounded-lg text-xs md:text-sm text-gray-600 hover:bg-gray-100 transition-colors">
                                    قبلی
                               </button>
-                              <button className="px-2 md:px-3 py-1 bg-blue-600 text-white rounded-lg text-xs md:text-sm">
+                              <button className="px-2 md:px-3 py-1 bg-tech-navy-melo text-white rounded-lg text-xs md:text-sm">
                                    1
                               </button>
                               <button className="px-2 md:px-3 py-1 border border-gray-700 rounded-lg text-xs md:text-sm text-gray-600 hover:bg-gray-100 transition-colors">

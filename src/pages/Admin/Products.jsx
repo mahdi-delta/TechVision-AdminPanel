@@ -96,7 +96,7 @@ const Products = () => {
                                    </div>
                                    <button
                                         onClick={() => setShowAddModal(true)}
-                                        className="px-3 md:px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-600 transition-colors text-sm flex items-center justify-center md:justify-start gap-2 shrink-0"
+                                        className="px-3 md:px-4 py-2 bg-tech-navy-melo text-white rounded-lg hover:bg-tech-navy-melo transition-colors text-sm flex items-center justify-center md:justify-start gap-2 shrink-0"
                                    >
                                         <Plus className="w-5 h-5" />
                                         <span className="hidden md:inline">افزودن محصول</span>
