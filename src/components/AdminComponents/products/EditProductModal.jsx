@@ -1,45 +1,55 @@
 import { X } from "lucide-react";
+import { useEffect } from "react";
 import { useFormik } from "formik";
 import { productValidationSchema } from "../../../validation/productValidation";
 import { useProductStore } from "../../../store/adminStore/useProductStore";
 import CustomDropdown from "../common/CustomDropdown";
 
-const AddProductModal = ({ show, onClose }) => {
-     const addProduct = useProductStore((state) => state.addProduct);
+const EditProductModal = ({ show, onClose, product }) => {
+     const updateProduct = useProductStore((state) => state.updateProduct);
 
      const formik = useFormik({
           initialValues: {
+               id: "",
                name: "",
                category: "لپ‌تاپ",
                price: "",
                stock: "",
                image: "💻",
+               sales: 0,
           },
           validationSchema: productValidationSchema,
-          onSubmit: (values, { resetForm }) => {
-               addProduct(values);
-               resetForm();
+          enableReinitialize: true,
+          onSubmit: (values) => {
+               updateProduct(values);
                onClose();
-               alert("محصول با موفقیت اضافه شد");
+               alert("تغییرات محصول با موفقیت ذخیره شد");
           },
      });
 
-     if (!show) return null;
+     // همگام‌سازی استیت فرمیک به محض لود شدن محصول انتخابی
+     useEffect(() => {
+          if (product) {
+               formik.setValues({
+                    id: product.id,
+                    name: product.name,
+                    category: product.category,
+                    price: product.price,
+                    stock: product.stock,
+                    image: product.image,
+                    sales: product.sales || 0,
+               });
+          }
+     }, [product]);
 
-     const handleCancel = () => {
-          formik.resetForm();
-          onClose();
-     };
+     if (!show) return null;
 
      return (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
                <div className="bg-white rounded-xl shadow-md max-w-md w-full p-6 border border-gray-200">
                     <div className="flex items-center justify-between mb-6">
-                         <h3 className="text-xl font-bold text-gray-900">افزودن محصول جدید</h3>
-                         <button
-                              onClick={handleCancel}
-                              className="text-gray-700 hover:text-gray-600"
-                         >
+                         <h3 className="text-xl font-bold text-gray-900">ویرایش محصول</h3>
+                         <button onClick={onClose} className="text-gray-700 hover:text-gray-600">
                               <X className="w-6 h-6" />
                          </button>
                     </div>
@@ -91,7 +101,7 @@ const AddProductModal = ({ show, onClose }) => {
                                         value={formik.values.price}
                                         onChange={formik.handleChange}
                                         onBlur={formik.handleBlur}
-                                        placeholder="12,500,000"
+                                        placeholder="مثال: ۴۵,۰۰۰,۰۰۰"
                                         className={`w-full px-4 py-2.5 border rounded-xl focus:ring-2 focus:ring-gray-100 outline-none text-sm ${
                                              formik.touched.price && formik.errors.price
                                                   ? "border-red-500"
@@ -114,7 +124,7 @@ const AddProductModal = ({ show, onClose }) => {
                                         value={formik.values.stock}
                                         onChange={formik.handleChange}
                                         onBlur={formik.handleBlur}
-                                        placeholder="25"
+                                        placeholder="مثال: ۱۵"
                                         className={`w-full px-4 py-2.5 border rounded-xl focus:ring-2 focus:ring-gray-100 outline-none text-sm ${
                                              formik.touched.stock && formik.errors.stock
                                                   ? "border-red-500"
@@ -131,7 +141,7 @@ const AddProductModal = ({ show, onClose }) => {
 
                          <div>
                               <label className="block text-sm font-medium text-gray-900 mb-2">
-                                   آیکون محصول
+                                   آیکون/تصویر (ایموجی)
                               </label>
                               <div className="flex gap-2">
                                    {["💻", "🖱️", "⌨️", "🖥️", "📱", "🎧"].map((icon) => (
@@ -154,7 +164,7 @@ const AddProductModal = ({ show, onClose }) => {
                          <div className="flex gap-3 mt-6">
                               <button
                                    type="button"
-                                   onClick={handleCancel}
+                                   onClick={onClose}
                                    className="flex-1 px-4 py-2.5 border border-gray-200 text-gray-900 rounded-xl hover:bg-gray-100 transition-colors font-medium text-sm"
                               >
                                    لغو
@@ -163,7 +173,7 @@ const AddProductModal = ({ show, onClose }) => {
                                    type="submit"
                                    className="flex-1 px-4 py-2.5 bg-tech-navy-melo text-white rounded-xl hover:bg-tech-navy/80 transition-colors font-medium text-sm"
                               >
-                                   افزودن محصول
+                                   ذخیره تغییرات
                               </button>
                          </div>
                     </form>
@@ -172,4 +182,4 @@ const AddProductModal = ({ show, onClose }) => {
      );
 };
 
-export default AddProductModal;
+export default EditProductModal;

@@ -1,25 +1,24 @@
-import { productsData } from "../../data/productsData";
 import { useState } from "react";
 import { Plus, Edit2, Trash2 } from "lucide-react";
+import { useProductStore } from "../../store/adminStore/useProductStore"; // 👈 اضافه شد
 import StatsCard from "../../components/AdminComponents/common/StatsCard";
 import SearchInput from "../../components/AdminComponents/common/SearchInput";
 import AddProductModal from "../../components/AdminComponents/products/AddProductModal";
+import EditProductModal from "../../components/AdminComponents/products/EditProductModal";
+import DeleteProductModal from "../../components/AdminComponents/products/DeleteProductModal";
 import CustomDropdown from "../../components/AdminComponents/common/CustomDropdown";
 
 const Products = () => {
-     const [products, setProducts] = useState(productsData);
+     const products = useProductStore((state) => state.products); // 👈 جایگزین useState شد
+
      const [searchQuery, setSearchQuery] = useState("");
      const [categoryFilter, setCategoryFilter] = useState("همه دسته‌ها");
-     const [showAddModal, setShowAddModal] = useState(false);
-     const [newProduct, setNewProduct] = useState({
-          name: "",
-          category: "لپ‌تاپ",
-          price: "",
-          stock: "",
-          image: "💻",
-     });
 
-     // Filter products based on search and category
+     const [showAddModal, setShowAddModal] = useState(false);
+     const [showEditModal, setShowEditModal] = useState(false);
+     const [showDeleteModal, setShowDeleteModal] = useState(false);
+     const [selectedProduct, setSelectedProduct] = useState(null);
+
      const filteredProducts = products.filter((product) => {
           const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase());
           const matchesCategory =
@@ -30,27 +29,14 @@ const Products = () => {
      const totalStock = filteredProducts.reduce((sum, p) => sum + p.stock, 0);
      const lowStock = filteredProducts.filter((p) => p.stock < 10).length;
 
-     const handleAddProduct = () => {
-          const productToAdd = {
-               id: products.length + 1,
-               name: newProduct.name,
-               category: newProduct.category,
-               price: newProduct.price,
-               stock: parseInt(newProduct.stock),
-               sales: 0,
-               image: newProduct.image,
-          };
+     const handleOpenEditModal = (product) => {
+          setSelectedProduct(product);
+          setShowEditModal(true);
+     };
 
-          setProducts([...products, productToAdd]);
-          setShowAddModal(false);
-          setNewProduct({
-               name: "",
-               category: "لپ‌تاپ",
-               price: "",
-               stock: "",
-               image: "💻",
-          });
-          alert("محصول با موفقیت اضافه شد");
+     const handleOpenDeleteModal = (product) => {
+          setSelectedProduct(product);
+          setShowDeleteModal(true);
      };
 
      return (
@@ -175,10 +161,20 @@ const Products = () => {
                                              </td>
                                              <td className="px-0 md:px-6 py-2 md:py-4 block md:table-cell">
                                                   <div className="flex items-center gap-2">
-                                                       <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+                                                       <button
+                                                            onClick={() =>
+                                                                 handleOpenEditModal(product)
+                                                            }
+                                                            className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                                                       >
                                                             <Edit2 className="w-4 h-4 text-blue-600" />
                                                        </button>
-                                                       <button className="p-2 hover:bg-red-50 rounded-lg transition-colors">
+                                                       <button
+                                                            onClick={() =>
+                                                                 handleOpenDeleteModal(product)
+                                                            }
+                                                            className="p-2 hover:bg-red-50 rounded-lg transition-colors"
+                                                       >
                                                             <Trash2 className="w-4 h-4 text-red-600" />
                                                        </button>
                                                   </div>
@@ -191,12 +187,20 @@ const Products = () => {
                </div>
 
                {/* Add Product Modal */}
-               <AddProductModal
-                    show={showAddModal}
-                    onClose={() => setShowAddModal(false)}
-                    onSave={handleAddProduct}
-                    product={newProduct}
-                    setProduct={setNewProduct}
+               <AddProductModal show={showAddModal} onClose={() => setShowAddModal(false)} />
+
+               {/* Edit Product Modal */}
+               <EditProductModal
+                    show={showEditModal}
+                    onClose={() => setShowEditModal(false)}
+                    product={selectedProduct}
+               />
+
+               {/* Delete Product Modal */}
+               <DeleteProductModal
+                    show={showDeleteModal}
+                    onClose={() => setShowDeleteModal(false)}
+                    product={selectedProduct}
                />
           </div>
      );
