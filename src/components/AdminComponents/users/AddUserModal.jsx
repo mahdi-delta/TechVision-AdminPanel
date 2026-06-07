@@ -1,7 +1,54 @@
-import CustomDropdown from "../common/CustomDropdown";
 import { X } from "lucide-react";
+import { useEffect } from "react";
+import { useFormik } from "formik";
+import { userValidationSchema } from "../../../validation/usersValidation";
+import { useUserStore } from "../../../store/adminStore/useUserStore";
+import CustomDropdown from "../common/CustomDropdown";
 
-const AddUserModal = ({ show, onClose, onSave, user, setUser, isEditing = false }) => {
+const AddUserModal = ({ show, onClose, user, isEditing = false }) => {
+     const addUser = useUserStore((state) => state.addUser);
+     const updateUser = useUserStore((state) => state.updateUser);
+
+     const formik = useFormik({
+          initialValues: {
+               id: "",
+               name: "",
+               email: "",
+               role: "کاربر",
+               status: "فعال",
+               avatarImage: null,
+          },
+          validationSchema: userValidationSchema,
+          enableReinitialize: true,
+          onSubmit: (values, { resetForm }) => {
+               if (isEditing) {
+                    updateUser(values);
+                    alert("تغییرات کاربر با موفقیت ذخیره شد");
+               } else {
+                    addUser(values);
+                    alert("کاربر جدید با موفقیت اضافه شد");
+               }
+               resetForm();
+               onClose();
+          },
+     });
+
+     // مقداردهی اولیه فیلدها هنگام باز شدن مودال ویرایش کاربر
+     useEffect(() => {
+          if (user && show) {
+               formik.setValues({
+                    id: user.id || "",
+                    name: user.name || "",
+                    email: user.email || "",
+                    role: user.role || "کاربر",
+                    status: user.status || "فعال",
+                    avatarImage: user.avatarImage || null,
+               });
+          } else if (!isEditing && show) {
+               formik.resetForm();
+          }
+     }, [user, show, isEditing]);
+
      if (!show) return null;
 
      const handleImageUpload = (e) => {
@@ -9,38 +56,23 @@ const AddUserModal = ({ show, onClose, onSave, user, setUser, isEditing = false 
           if (file) {
                const reader = new FileReader();
                reader.onloadend = () => {
-                    setUser({ ...user, avatarImage: reader.result });
+                    formik.setFieldValue("avatarImage", reader.result);
                };
                reader.readAsDataURL(file);
           }
      };
 
      const handleRemoveImage = () => {
-          setUser({ ...user, avatarImage: null });
+          formik.setFieldValue("avatarImage", null);
      };
 
      const getAvatarInitial = () => {
-          return user.name ? user.name.charAt(0) : "ک";
+          return formik.values.name ? formik.values.name.charAt(0) : "ک";
      };
 
-     const handleSave = () => {
-          if (!user.name || !user.email || !user.role) {
-               alert("لطفا تمام فیلدها را پر کنید");
-               return;
-          }
-          // Validate email format
-          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-          if (!emailRegex.test(user.email)) {
-               alert("لطفا یک ایمیل معتبر وارد کنید");
-               return;
-          }
-
-          // Set avatar to first letter of name if no image uploaded
-          if (!user.avatarImage) {
-               setUser({ ...user, avatar: getAvatarInitial() });
-          }
-
-          onSave();
+     const handleCancel = () => {
+          formik.resetForm();
+          onClose();
      };
 
      return (
@@ -51,25 +83,36 @@ const AddUserModal = ({ show, onClose, onSave, user, setUser, isEditing = false 
                               {isEditing ? "ویرایش کاربر" : "افزودن کاربر جدید"}
                          </h3>
                          <button
-                              onClick={onClose}
+                              onClick={handleCancel}
                               className="text-gray-700 hover:text-gray-600"
                          >
                               <X className="w-6 h-6" />
                          </button>
                     </div>
 
-                    <div className="space-y-4">
+                    <form onSubmit={formik.handleSubmit} className="space-y-4">
                          <div>
                               <label className="block text-sm font-medium text-gray-900 mb-2">
                                    نام و نام خانوادگی
                               </label>
                               <input
                                    type="text"
-                                   value={user.name}
-                                   onChange={(e) => setUser({ ...user, name: e.target.value })}
+                                   name="name"
+                                   value={formik.values.name}
+                                   onChange={formik.handleChange}
+                                   onBlur={formik.handleBlur}
                                    placeholder="مثال: علی احمدی"
-                                   className="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:border-tech-accent focus:ring-2 focus:ring-gray-100 outline-none text-sm"
+                                   className={`w-full px-4 py-2.5 border rounded-xl focus:ring-2 focus:ring-gray-100 outline-none text-sm ${
+                                        formik.touched.name && formik.errors.name
+                                             ? "border-red-500"
+                                             : "border-gray-200 focus:border-tech-accent"
+                                   }`}
                               />
+                              {formik.touched.name && formik.errors.name && (
+                                   <p className="text-red-500 text-xs mt-1.5 pr-1">
+                                        {formik.errors.name}
+                                   </p>
+                              )}
                          </div>
 
                          <div>
@@ -78,11 +121,22 @@ const AddUserModal = ({ show, onClose, onSave, user, setUser, isEditing = false 
                               </label>
                               <input
                                    type="email"
-                                   value={user.email}
-                                   onChange={(e) => setUser({ ...user, email: e.target.value })}
+                                   name="email"
+                                   value={formik.values.email}
+                                   onChange={formik.handleChange}
+                                   onBlur={formik.handleBlur}
                                    placeholder="example@gmail.com"
-                                   className="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:border-tech-accent focus:ring-2 focus:ring-gray-100 outline-none text-sm"
+                                   className={`w-full px-4 py-2.5 border rounded-xl focus:ring-2 focus:ring-gray-100 outline-none text-sm ${
+                                        formik.touched.email && formik.errors.email
+                                             ? "border-red-500"
+                                             : "border-gray-200 focus:border-tech-accent"
+                                   }`}
                               />
+                              {formik.touched.email && formik.errors.email && (
+                                   <p className="text-red-500 text-xs mt-1.5 pr-1">
+                                        {formik.errors.email}
+                                   </p>
+                              )}
                          </div>
 
                          <div>
@@ -91,9 +145,8 @@ const AddUserModal = ({ show, onClose, onSave, user, setUser, isEditing = false 
                               </label>
                               <CustomDropdown
                                    options={["کاربر", "مدیر"]}
-                                   value={user.role}
-                                   onChange={(val) => setUser({ ...user, role: val })}
-                                   placeholder="انتخاب نقش"
+                                   value={formik.values.role}
+                                   onChange={(val) => formik.setFieldValue("role", val)}
                               />
                          </div>
 
@@ -103,8 +156,8 @@ const AddUserModal = ({ show, onClose, onSave, user, setUser, isEditing = false 
                               </label>
                               <CustomDropdown
                                    options={["فعال", "غیرفعال"]}
-                                   value={user.status}
-                                   onChange={(val) => setUser({ ...user, status: val })}
+                                   value={formik.values.status}
+                                   onChange={(val) => formik.setFieldValue("status", val)}
                               />
                          </div>
 
@@ -113,16 +166,16 @@ const AddUserModal = ({ show, onClose, onSave, user, setUser, isEditing = false 
                                    تصویر پروفایل (اختیاری)
                               </label>
                               <div className="flex items-center gap-4">
-                                   {/* Preview */}
                                    <div className="shrink-0">
-                                        {user.avatarImage ? (
+                                        {formik.values.avatarImage ? (
                                              <div className="relative w-20 h-20 rounded-full overflow-hidden border-2 border-tech-accent">
                                                   <img
-                                                       src={user.avatarImage}
+                                                       src={formik.values.avatarImage}
                                                        alt="Preview"
                                                        className="w-full h-full object-cover"
                                                   />
                                                   <button
+                                                       type="button"
                                                        onClick={handleRemoveImage}
                                                        className="absolute top-0 right-0 w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors text-xs"
                                                   >
@@ -135,7 +188,6 @@ const AddUserModal = ({ show, onClose, onSave, user, setUser, isEditing = false 
                                              </div>
                                         )}
                                    </div>
-                                   {/* Upload Button */}
                                    <div className="flex-1">
                                         <input
                                              type="file"
@@ -148,7 +200,9 @@ const AddUserModal = ({ show, onClose, onSave, user, setUser, isEditing = false 
                                              htmlFor="avatar-upload"
                                              className="inline-block px-4 py-2.5 bg-gray-50 text-gray-900 rounded-xl hover:bg-gray-100 transition-colors font-medium text-sm cursor-pointer border border-gray-100"
                                         >
-                                             {user.avatarImage ? "تغییر تصویر" : "انتخاب تصویر"}
+                                             {formik.values.avatarImage
+                                                  ? "تغییر تصویر"
+                                                  : "انتخاب تصویر"}
                                         </label>
                                         <p className="text-xs text-blue-600 mt-2">
                                              در صورت عدم انتخاب، حرف اول نام نمایش داده می‌شود
@@ -156,22 +210,23 @@ const AddUserModal = ({ show, onClose, onSave, user, setUser, isEditing = false 
                                    </div>
                               </div>
                          </div>
-                    </div>
 
-                    <div className="flex gap-3 mt-6">
-                         <button
-                              onClick={onClose}
-                              className="flex-1 px-4 py-2.5 border border-gray-200 text-gray-900 rounded-xl hover:bg-gray-100 transition-colors font-medium text-sm"
-                         >
-                              لغو
-                         </button>
-                         <button
-                              onClick={handleSave}
-                              className="flex-1 px-4 py-2.5 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors font-medium text-sm"
-                         >
-                              {isEditing ? "ذخیره تغییرات" : "افزودن کاربر"}
-                         </button>
-                    </div>
+                         <div className="flex gap-3 mt-6">
+                              <button
+                                   type="button"
+                                   onClick={handleCancel}
+                                   className="flex-1 px-4 py-2.5 border border-gray-200 text-gray-900 rounded-xl hover:bg-gray-100 transition-colors font-medium text-sm"
+                              >
+                                   لغو
+                              </button>
+                              <button
+                                   type="submit"
+                                   className="flex-1 px-4 py-2.5 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors font-medium text-sm"
+                              >
+                                   {isEditing ? "ذخیره تغییرات" : "افزودن کاربر"}
+                              </button>
+                         </div>
+                    </form>
                </div>
           </div>
      );

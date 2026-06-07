@@ -63,7 +63,7 @@ const Dashboard = () => {
                                              </div>
                                         </div>
                                         <div
-                                             className={`${stat.bgColor} p-2 md:p-3 rounded-lg md:rounded-xl flex-shrink-0`}
+                                             className={`${stat.bgColor} p-2 md:p-3 rounded-lg md:rounded-xl shrink-0`}
                                         >
                                              {getIcon(stat.title)}
                                         </div>

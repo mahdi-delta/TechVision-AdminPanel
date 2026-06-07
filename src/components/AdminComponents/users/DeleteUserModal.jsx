@@ -1,7 +1,16 @@
 import { AlertCircle } from "lucide-react";
+import { useUserStore } from "../../../store/adminStore/useUserStore";
 
-const DeleteUserModal = ({ show, onClose, onConfirm, userName }) => {
-     if (!show) return null;
+const DeleteUserModal = ({ show, onClose, user }) => {
+     const deleteUser = useUserStore((state) => state.deleteUser);
+
+     if (!show || !user) return null;
+
+     const handleConfirm = () => {
+          deleteUser(user.id);
+          onClose();
+          alert("کاربر با موفقیت حذف شد");
+     };
 
      return (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
@@ -18,7 +27,7 @@ const DeleteUserModal = ({ show, onClose, onConfirm, userName }) => {
                          {/* Message */}
                          <p className="text-gray-600 mb-6">
                               آیا از حذف کاربر{" "}
-                              <span className="font-semibold text-gray-900">{userName}</span>{" "}
+                              <span className="font-semibold text-gray-900">{user.name}</span>{" "}
                               اطمینان دارید؟ این عملیات قابل بازگشت نیست.
                          </p>
 
@@ -31,7 +40,7 @@ const DeleteUserModal = ({ show, onClose, onConfirm, userName }) => {
                                    انصراف
                               </button>
                               <button
-                                   onClick={onConfirm}
+                                   onClick={handleConfirm}
                                    className="flex-1 px-4 py-2.5 bg-red-600 text-white rounded-xl hover:bg-red-700 transition-colors font-medium text-sm"
                               >
                                    بله، حذف شود

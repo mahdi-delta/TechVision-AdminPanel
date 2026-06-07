@@ -1,6 +1,8 @@
-import { usersTableData } from "../../data/usersData";
 import { useState } from "react";
 import { Plus, Edit2, Trash2 } from "lucide-react";
+import { useUserStore } from "../../store/adminStore/useUserStore";
+import { useTable } from "../../hooks/useTable"; // 👈 اضافه شد
+import TableSkeleton from "../../components/AdminComponents/common/TableSkeleton"; // 👈 اضافه شد
 import StatsCard from "../../components/AdminComponents/common/StatsCard";
 import SearchInput from "../../components/AdminComponents/common/SearchInput";
 import AddUserModal from "../../components/AdminComponents/users/AddUserModal";
@@ -8,129 +10,59 @@ import DeleteUserModal from "../../components/AdminComponents/users/DeleteUserMo
 import CustomDropdown from "../../components/AdminComponents/common/CustomDropdown";
 
 const Users = () => {
-     const [users, setUsers] = useState(usersTableData);
-     const [searchQuery, setSearchQuery] = useState("");
-     const [statusFilter, setStatusFilter] = useState("همه");
+     const users = useUserStore((state) => state.users);
+
      const [showModal, setShowModal] = useState(false);
      const [showDeleteModal, setShowDeleteModal] = useState(false);
-     const [userToDelete, setUserToDelete] = useState(null);
-     const [editingUser, setEditingUser] = useState(null);
-     const [newUser, setNewUser] = useState({
-          name: "",
-          email: "",
-          role: "",
-          status: "فعال",
-          avatarImage: null,
-          orders: 0,
+     const [selectedUser, setSelectedUser] = useState(null);
+     const [isEditing, setIsEditing] = useState(false);
+
+     const {
+          processedData: filteredUsers,
+          totalItems,
+          totalPages,
+          currentPage,
+          setCurrentPage,
+          searchQuery,
+          setSearchQuery,
+          filterValue: statusFilter,
+          setFilterValue: setStatusFilter,
+          sortField,
+          sortOrder,
+          handleSort,
+          isLoading,
+     } = useTable({
+          data: users,
+          searchFields: ["name", "email"],
+          filterField: "status",
+          defaultPageSize: 6,
      });
 
-     // Filter users based on search and status
-     const filteredUsers = users.filter((user) => {
-          const matchesSearch =
-               user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-               user.email.toLowerCase().includes(searchQuery.toLowerCase());
-          const matchesStatus = statusFilter === "همه" || user.status === statusFilter;
-          return matchesSearch && matchesStatus;
-     });
-
-     const handleAddUser = () => {
-          const today = new Date();
-          const persianDate = `${today.getFullYear() - 621}/${String(today.getMonth() + 1).padStart(2, "0")}/${String(today.getDate()).padStart(2, "0")}`;
-
-          const userToAdd = {
-               id: users.length + 1,
-               name: newUser.name,
-               email: newUser.email,
-               role: newUser.role,
-               status: newUser.status,
-               avatar: newUser.avatarImage ? null : newUser.name.charAt(0),
-               avatarImage: newUser.avatarImage,
-               joinDate: persianDate,
-               orders: 0,
-          };
-
-          setUsers([...users, userToAdd]);
-          setShowModal(false);
-          setNewUser({
-               name: "",
-               email: "",
-               role: "",
-               status: "فعال",
-               avatarImage: null,
-               orders: 0,
-          });
-     };
-
-     const handleEditUser = (user) => {
-          setEditingUser(user);
-          setNewUser({
-               name: user.name,
-               email: user.email,
-               role: user.role,
-               status: user.status,
-               avatarImage: user.avatarImage || null,
-               orders: user.orders,
-          });
+     const handleOpenAddModal = () => {
+          setSelectedUser(null);
+          setIsEditing(false);
           setShowModal(true);
      };
 
-     const handleUpdateUser = () => {
-          const updatedUsers = users.map((user) => {
-               if (user.id === editingUser.id) {
-                    return {
-                         ...user,
-                         name: newUser.name,
-                         email: newUser.email,
-                         role: newUser.role,
-                         status: newUser.status,
-                         avatar: newUser.avatarImage ? null : newUser.name.charAt(0),
-                         avatarImage: newUser.avatarImage,
-                    };
-               }
-               return user;
-          });
-
-          setUsers(updatedUsers);
-          setShowModal(false);
-          setEditingUser(null);
-          setNewUser({
-               name: "",
-               email: "",
-               role: "",
-               status: "فعال",
-               avatarImage: null,
-               orders: 0,
-          });
+     const handleOpenEditModal = (user) => {
+          setSelectedUser(user);
+          setIsEditing(true);
+          setShowModal(true);
      };
 
-     const handleDeleteClick = (user) => {
-          setUserToDelete(user);
+     const handleOpenDeleteModal = (user) => {
+          setSelectedUser(user);
           setShowDeleteModal(true);
-     };
-
-     const handleConfirmDelete = () => {
-          setUsers(users.filter((user) => user.id !== userToDelete.id));
-          setShowDeleteModal(false);
-          setUserToDelete(null);
-     };
-
-     const handleCancelDelete = () => {
-          setShowDeleteModal(false);
-          setUserToDelete(null);
      };
 
      const handleCloseModal = () => {
           setShowModal(false);
-          setEditingUser(null);
-          setNewUser({
-               name: "",
-               email: "",
-               role: "",
-               status: "فعال",
-               avatarImage: null,
-               orders: 0,
-          });
+          setSelectedUser(null);
+          setIsEditing(false);
      };
+
+     // ایجاد لیست شماره صفحات برای نمایش در بخش pagination
+     const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
 
      return (
           <div className="space-y-3 md:space-y-6">
@@ -167,7 +99,7 @@ const Users = () => {
                                         className="min-w-32"
                                    />
                                    <button
-                                        onClick={() => setShowModal(true)}
+                                        onClick={handleOpenAddModal}
                                         className="px-4 py-2 bg-tech-navy-melo text-white rounded-lg hover:bg-tech-navy-melo transition-colors text-sm flex items-center gap-2"
                                    >
                                         <Plus className="w-5 h-5" />
@@ -180,11 +112,22 @@ const Users = () => {
                          <table className="w-full">
                               <thead className="bg-gray-50 hidden md:table-header-group">
                                    <tr>
-                                        <th className="px-3 md:px-6 py-3 text-right text-xs font-medium text-gray-600">
-                                             کاربر
+                                        {/* با کلیک روی عناوین مشخص شده، لیست بر اساس همان فیلد مرتب می‌شود */}
+                                        <th
+                                             onClick={() => handleSort("name")}
+                                             className="px-3 md:px-6 py-3 text-right text-xs font-medium text-gray-600 cursor-pointer hover:bg-gray-100 transition-colors"
+                                        >
+                                             کاربر{" "}
+                                             {sortField === "name" &&
+                                                  (sortOrder === "asc" ? "▲" : "▼")}
                                         </th>
-                                        <th className="px-3 md:px-6 py-3 text-right text-xs font-medium text-gray-600 hidden lg:table-cell">
-                                             ایمیل
+                                        <th
+                                             onClick={() => handleSort("email")}
+                                             className="px-3 md:px-6 py-3 text-right text-xs font-medium text-gray-600 hidden lg:table-cell cursor-pointer hover:bg-gray-100 transition-colors"
+                                        >
+                                             ایمیل{" "}
+                                             {sortField === "email" &&
+                                                  (sortOrder === "asc" ? "▲" : "▼")}
                                         </th>
                                         <th className="px-3 md:px-6 py-3 text-right text-xs font-medium text-gray-600 hidden lg:table-cell">
                                              نقش
@@ -201,95 +144,133 @@ const Users = () => {
                                    </tr>
                               </thead>
                               <tbody className="divide-y divide-gray-200">
-                                   {filteredUsers.map((user) => (
-                                        <tr
-                                             key={user.id}
-                                             className="hover:bg-gray-100 transition-colors block md:table-row border-b md:border-b pb-4 md:pb-0 mb-4 md:mb-0"
-                                        >
-                                             <td className="px-3 md:px-6 py-2 md:py-4 block md:table-cell before:content-attr(data-label) before:block before:font-semibold before:text-gray-900 md:before:hidden md:text-right">
-                                                  <div className="flex items-center gap-3">
-                                                       {user.avatarImage ? (
-                                                            <img
-                                                                 src={user.avatarImage}
-                                                                 alt={user.name}
-                                                                 className="w-10 h-10 rounded-full object-cover border-2 border-gray-700"
-                                                            />
-                                                       ) : (
-                                                            <div className="w-10 h-10 rounded-full bg-linear-to-br from-tech-navy to-tech-navy-melo flex items-center justify-center text-white font-semibold text-sm">
-                                                                 {user.avatar}
-                                                            </div>
-                                                       )}
-                                                       <div>
-                                                            <p className="text-sm font-medium text-gray-900">
-                                                                 {user.name}
-                                                            </p>
-                                                            <p className="text-xs text-tech-navy-melo">
-                                                                 {user.orders} سفارش
-                                                            </p>
-                                                       </div>
-                                                  </div>
-                                             </td>
-                                             <td className="px-3 md:px-6 py-2 md:py-4 text-sm text-gray-600 hidden lg:table-cell">
-                                                  {user.email}
-                                             </td>
-                                             <td className="px-3 md:px-6 py-2 md:py-4 hidden lg:table-cell">
-                                                  <span className="px-3 py-1 rounded-lg bg-gray-50 text-gray-900 text-xs font-medium">
-                                                       {user.role}
-                                                  </span>
-                                             </td>
-                                             <td className="px-3 md:px-6 py-2 md:py-4 text-sm text-gray-600 hidden lg:table-cell">
-                                                  {user.joinDate}
-                                             </td>
-                                             <td className="px-3 md:px-6 py-2 md:py-4">
-                                                  <span
-                                                       className={`px-3 py-1 text-xs rounded-full font-medium ${
-                                                            user.status === "فعال"
-                                                                 ? "bg-green-50 text-green-700"
-                                                                 : "bg-red-50 text-red-700"
-                                                       }`}
-                                                  >
-                                                       {user.status}
-                                                  </span>
-                                             </td>
-                                             <td className="px-3 md:px-6 py-2 md:py-4">
-                                                  <div className="flex items-center gap-2">
-                                                       <button
-                                                            onClick={() => handleEditUser(user)}
-                                                            className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
-                                                            title="ویرایش کاربر"
-                                                       >
-                                                            <Edit2 className="w-4 h-4 text-tech-navy-melo" />
-                                                       </button>
-                                                       <button
-                                                            onClick={() => handleDeleteClick(user)}
-                                                            className="p-2 hover:bg-red-50 rounded-lg transition-colors"
-                                                            title="حذف کاربر"
-                                                       >
-                                                            <Trash2 className="w-4 h-4 text-red-600" />
-                                                       </button>
-                                                  </div>
+                                   {isLoading ? (
+                                        // نمایش لودینگ افکت متحرک در زمان تغییر وضعیت یا لود فرم 👈
+                                        <TableSkeleton rowsCount={5} colsCount={6} />
+                                   ) : filteredUsers.length === 0 ? (
+                                        <tr>
+                                             <td
+                                                  colSpan={6}
+                                                  className="text-center py-8 text-gray-500 text-sm"
+                                             >
+                                                  کاربری یافت نشد.
                                              </td>
                                         </tr>
-                                   ))}
+                                   ) : (
+                                        filteredUsers.map((user) => (
+                                             <tr
+                                                  key={user.id}
+                                                  className="hover:bg-gray-100 transition-colors block md:table-row border-b md:border-b pb-4 md:pb-0 mb-4 md:mb-0"
+                                             >
+                                                  <td className="px-3 md:px-6 py-2 md:py-4 block md:table-cell before:content-attr(data-label) before:block before:font-semibold before:text-gray-900 md:before:hidden md:text-right">
+                                                       <div className="flex items-center gap-3">
+                                                            {user.avatarImage ? (
+                                                                 <img
+                                                                      src={user.avatarImage}
+                                                                      alt={user.name}
+                                                                      className="w-10 h-10 rounded-full object-cover border-2 border-gray-700"
+                                                                 />
+                                                            ) : (
+                                                                 <div className="w-10 h-10 rounded-full bg-linear-to-br from-tech-navy to-tech-navy-melo flex items-center justify-center text-white font-semibold text-sm">
+                                                                      {user.avatar}
+                                                                 </div>
+                                                            )}
+                                                            <div>
+                                                                 <p className="text-sm font-medium text-gray-900">
+                                                                      {user.name}
+                                                                 </p>
+                                                                 <p className="text-xs text-tech-navy-melo">
+                                                                      {user.orders} سفارش
+                                                                 </p>
+                                                            </div>
+                                                       </div>
+                                                  </td>
+                                                  <td className="px-3 md:px-6 py-2 md:py-4 text-sm text-gray-600 hidden lg:table-cell">
+                                                       {user.email}
+                                                  </td>
+                                                  <td className="px-3 md:px-6 py-2 md:py-4 hidden lg:table-cell">
+                                                       <span className="px-3 py-1 rounded-lg bg-gray-50 text-gray-900 text-xs font-medium">
+                                                            {user.role}
+                                                       </span>
+                                                  </td>
+                                                  <td className="px-3 md:px-6 py-2 md:py-4 text-sm text-gray-600 hidden lg:table-cell">
+                                                       {user.joinDate}
+                                                  </td>
+                                                  <td className="px-3 md:px-6 py-2 md:py-4">
+                                                       <span
+                                                            className={`px-3 py-1 text-xs rounded-full font-medium ${
+                                                                 user.status === "فعال"
+                                                                      ? "bg-green-50 text-green-700"
+                                                                      : "bg-red-50 text-red-700"
+                                                            }`}
+                                                       >
+                                                            {user.status}
+                                                       </span>
+                                                  </td>
+                                                  <td className="px-3 md:px-6 py-2 md:py-4">
+                                                       <div className="flex items-center gap-2">
+                                                            <button
+                                                                 onClick={() =>
+                                                                      handleOpenEditModal(user)
+                                                                 }
+                                                                 className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                                                                 title="ویرایش کاربر"
+                                                            >
+                                                                 <Edit2 className="w-4 h-4 text-tech-navy-melo" />
+                                                            </button>
+                                                            <button
+                                                                 onClick={() =>
+                                                                      handleOpenDeleteModal(user)
+                                                                 }
+                                                                 className="p-2 hover:bg-red-50 rounded-lg transition-colors"
+                                                                 title="حذف کاربر"
+                                                            >
+                                                                 <Trash2 className="w-4 h-4 text-red-600" />
+                                                            </button>
+                                                       </div>
+                                                  </td>
+                                             </tr>
+                                        ))
+                                   )}
                               </tbody>
                          </table>
                     </div>
                     {/* Pagination */}
                     <div className="px-3 md:px-6 py-3 md:py-4 border-t border-gray-200 flex flex-col md:flex-row md:items-center md:justify-between gap-3 md:gap-0">
                          <p className="text-sm text-gray-600">
-                              نمایش {filteredUsers.length} از {users.length} کاربر
+                              نمایش {filteredUsers.length} از {totalItems} کاربر
                          </p>
                          <div className="flex items-center gap-2 flex-wrap">
                               <button
-                                   className="px-1 md:px-3 py-1 border border-gray-700 rounded-lg hover:bg-gray-100 disabled:opacity-50 text-xs md:text-sm"
-                                   disabled
+                                   onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+                                   className="px-2 md:px-3 py-1 border border-gray-700 rounded-lg hover:bg-gray-100 disabled:opacity-50 text-xs md:text-sm"
+                                   disabled={currentPage === 1}
                               >
                                    قبلی
                               </button>
-                              <button className="px-1 md:px-3 py-1 bg-tech-navy-melo text-white rounded-lg text-xs md:text-sm">
-                                   1
-                              </button>
-                              <button className="px-1 md:px-3 py-1 border border-gray-700 rounded-lg hover:bg-gray-100 text-xs md:text-sm">
+
+                              {/* تولید دکمه‌های شماره صفحه به صورت پویا 👈 */}
+                              {pageNumbers.map((num) => (
+                                   <button
+                                        key={num}
+                                        onClick={() => setCurrentPage(num)}
+                                        className={`px-2 md:px-3 py-1 rounded-lg text-xs md:text-sm transition-all ${
+                                             currentPage === num
+                                                  ? "bg-tech-navy-melo text-white"
+                                                  : "border border-gray-700 hover:bg-gray-100"
+                                        }`}
+                                   >
+                                        {num}
+                                   </button>
+                              ))}
+
+                              <button
+                                   onClick={() =>
+                                        setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+                                   }
+                                   className="px-2 md:px-3 py-1 border border-gray-700 rounded-lg hover:bg-gray-100 disabled:opacity-50 text-xs md:text-sm"
+                                   disabled={currentPage === totalPages}
+                              >
                                    بعدی
                               </button>
                          </div>
@@ -300,18 +281,15 @@ const Users = () => {
                <AddUserModal
                     show={showModal}
                     onClose={handleCloseModal}
-                    onSave={editingUser ? handleUpdateUser : handleAddUser}
-                    user={newUser}
-                    setUser={setNewUser}
-                    isEditing={!!editingUser}
+                    user={selectedUser}
+                    isEditing={isEditing}
                />
 
                {/* Delete User Modal */}
                <DeleteUserModal
                     show={showDeleteModal}
-                    onClose={handleCancelDelete}
-                    onConfirm={handleConfirmDelete}
-                    userName={userToDelete?.name}
+                    onClose={() => setShowDeleteModal(false)}
+                    user={selectedUser}
                />
           </div>
      );
