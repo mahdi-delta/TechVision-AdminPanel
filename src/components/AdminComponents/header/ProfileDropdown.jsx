@@ -1,11 +1,14 @@
 import { useState, useRef } from "react";
 import { User, Settings, HelpCircle, LogOut } from "lucide-react";
 import useClickOutside from "../../../hooks/useClickOutside";
-import { currentUser } from "../../../data/userData";
+import { useAuthStore } from "../../../store/adminStore/useAuthStore";
+import profile from "../../../assets/images/profileImage.png"
 
 const ProfileDropdown = () => {
      const [showProfile, setShowProfile] = useState(false);
      const dropdownRef = useRef(null);
+     
+     const currentUser = useAuthStore((state) => state.currentUser);
 
      useClickOutside(dropdownRef, () => {
           if (showProfile) {
@@ -20,8 +23,8 @@ const ProfileDropdown = () => {
                     className="flex items-center gap-3 pl-4 border-l border-gray-200 hover:opacity-80 transition-opacity rounded-lg pr-2 hover:bg-gray-50"
                >
                     <div className="w-10 h-10 rounded-full bg-linear-to-br from-tech-accent to-blue-600 flex items-center justify-center text-white font-bold cursor-pointer hover:scale-110 transition-transform shadow-sm">
-                         {currentUser?.avatar ? (
-                              <img src={currentUser.avatar} className="rounded-full" />
+                         {profile ? (
+                              <img src={profile} className="rounded-full" />
                          ) : (
                               currentUser.initials
                          )}
