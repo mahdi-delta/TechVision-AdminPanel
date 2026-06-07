@@ -19,7 +19,7 @@ const NotificationDropdown = () => {
      ];
 
      return (
-          <div className="relative " ref={dropdownRef}>
+          <div className="relative" ref={dropdownRef}>
                <button
                     onClick={() => setShowNotifications(!showNotifications)}
                     className="relative p-2 rounded-lg hover:bg-gray-50 transition-colors group"
@@ -29,7 +29,7 @@ const NotificationDropdown = () => {
                </button>
 
                {showNotifications && (
-                    <div className="absolute left-0 mt-2 w-80 bg-white rounded-xl shadow-md border border-gray-200 z-999 overflow-hidden">
+                    <div className="absolute left-0 mt-2 w-80 bg-white rounded-xl shadow-md border border-gray-200 overflow-hidden">
                          <div className="p-4 bg-linear-to-r from-tech-accent to-blue-600">
                               <h3 className="text-base font-bold text-white">اعلان‌ها</h3>
                               <p className="text-xs text-white/80 mt-1">
