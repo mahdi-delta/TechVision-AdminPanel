@@ -1,7 +1,7 @@
 export const productsData = [
      {
           id: 1,
-          name: "لپ‌تاپ Dell XPS 15",
+          name: "لپتاپ Dell XPS 15",
           category: "لپ‌تاپ",
           price: "45,000,000",
           stock: 12,
@@ -55,7 +55,7 @@ export const productsData = [
      },
      {
           id: 7,
-          name: "لپ‌تاپ مک‌بوک پرو M3 Max",
+          name: "لپتاپ مک‌بوک پرو M3 Max",
           category: "لپ‌تاپ",
           price: "145,000,000",
           stock: 4,
@@ -64,7 +64,7 @@ export const productsData = [
      },
      {
           id: 8,
-          name: "لپ‌تاپ گیمینگ ایسوس ROG",
+          name: "لپتاپ گیمینگ ایسوس ROG",
           category: "لپ‌تاپ",
           price: "88,000,000",
           stock: 6,
@@ -127,7 +127,7 @@ export const productsData = [
      },
      {
           id: 15,
-          name: "لپ‌تاپ لنوو ThinkPad X1",
+          name: "لپتاپ لنوو ThinkPad X1",
           category: "لپ‌تاپ",
           price: "72,000,000",
           stock: 11,

@@ -42,7 +42,7 @@ const CustomDropdown = ({
                                    <button
                                         key={index}
                                         onClick={() => handleSelect(option)}
-                                        className={`w-full px-4 py-3 text-right text-sm transition-all duration-150 flex items-center justify-between group ${
+                                        className={`w-full px-4 py-3 text-right text-sm transition-all duration-150 flex items-center gap-3 group ${
                                              value === option
                                                   ? "bg-linear-to-r from-tech-accent/10 to-blue-600/10 border-r-4 border-tech-accent text-tech-accent font-semibold"
                                                   : "text-gray-900 hover:bg-gray-50"

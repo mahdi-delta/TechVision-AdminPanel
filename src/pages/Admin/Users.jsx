@@ -61,13 +61,12 @@ const Users = () => {
           setIsEditing(false);
      };
 
-     // ایجاد لیست شماره صفحات برای نمایش در بخش pagination
      const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
 
      return (
           <div className="space-y-3 md:space-y-6">
                {/* Stats */}
-               <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 px-3 md:px-0">
+               <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
                     <StatsCard title="کل کاربران" value={users.length} />
                     <StatsCard
                          title="کاربران فعال"
@@ -87,7 +86,7 @@ const Users = () => {
                     <div className="p-3 md:p-6 border-b border-gray-200">
                          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-4">
                               <h2 className="text-xl font-semibold text-gray-900">لیست کاربران</h2>
-                              <div className="flex items-center gap-3">
+                              <div className="flex flex-col md:flex-row items-stretch md:items-center gap-2 md:gap-3">
                                    <SearchInput
                                         value={searchQuery}
                                         onChange={(e) => setSearchQuery(e.target.value)}
@@ -100,10 +99,10 @@ const Users = () => {
                                    />
                                    <button
                                         onClick={handleOpenAddModal}
-                                        className="px-4 py-2 bg-tech-navy-melo text-white rounded-lg hover:bg-tech-navy-melo transition-colors text-sm flex items-center gap-2"
+                                        className="flex justify-center px-4 py-2 bg-tech-navy-melo text-white rounded-lg hover:bg-tech-navy-melo transition-colors text-sm items-center gap-2"
                                    >
                                         <Plus className="w-5 h-5" />
-                                        <span>افزودن کاربر</span>
+                                        <span className="hidden md:inline">افزودن محصول</span>
                                    </button>
                               </div>
                          </div>
@@ -112,7 +111,6 @@ const Users = () => {
                          <table className="w-full">
                               <thead className="bg-gray-50 hidden md:table-header-group">
                                    <tr>
-                                        {/* با کلیک روی عناوین مشخص شده، لیست بر اساس همان فیلد مرتب می‌شود */}
                                         <th
                                              onClick={() => handleSort("name")}
                                              className="px-3 md:px-6 py-3 text-right text-xs font-medium text-gray-600 cursor-pointer hover:bg-gray-100 transition-colors"
@@ -145,7 +143,6 @@ const Users = () => {
                               </thead>
                               <tbody className="divide-y divide-gray-200">
                                    {isLoading ? (
-                                        // نمایش لودینگ افکت متحرک در زمان تغییر وضعیت یا لود فرم 👈
                                         <TableSkeleton rowsCount={5} colsCount={6} />
                                    ) : filteredUsers.length === 0 ? (
                                         <tr>
@@ -249,7 +246,6 @@ const Users = () => {
                                    قبلی
                               </button>
 
-                              {/* تولید دکمه‌های شماره صفحه به صورت پویا 👈 */}
                               {pageNumbers.map((num) => (
                                    <button
                                         key={num}

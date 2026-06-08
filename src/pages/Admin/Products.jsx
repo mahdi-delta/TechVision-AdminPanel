@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Plus, Edit2, Trash2 } from "lucide-react";
 import { useProductStore } from "../../store/adminStore/useProductStore";
-import { useTable } from "../../hooks/useTable"; // 👈 ایمپورت هوک مشترک
-import TableSkeleton from "../../components/AdminComponents/common/TableSkeleton"; // 👈 ایمپورت اسکلتون مشترک
+import { useTable } from "../../hooks/useTable";
+import TableSkeleton from "../../components/AdminComponents/common/TableSkeleton"; 
 import StatsCard from "../../components/AdminComponents/common/StatsCard";
 import SearchInput from "../../components/AdminComponents/common/SearchInput";
 import AddProductModal from "../../components/AdminComponents/products/AddProductModal";
@@ -11,16 +11,13 @@ import DeleteProductModal from "../../components/AdminComponents/products/Delete
 import CustomDropdown from "../../components/AdminComponents/common/CustomDropdown";
 
 const Products = () => {
-     // دریافت محصولات از استور زاستند
      const products = useProductStore((state) => state.products);
 
-     // مدیریت مودال‌ها
      const [showAddModal, setShowAddModal] = useState(false);
      const [showEditModal, setShowEditModal] = useState(false);
      const [showDeleteModal, setShowDeleteModal] = useState(false);
      const [selectedProduct, setSelectedProduct] = useState(null);
 
-     // اتصال لیست محصولات به هوک مشترکuseTable 👈
      const {
           processedData: filteredProducts,
           totalItems,
@@ -42,7 +39,6 @@ const Products = () => {
           defaultPageSize: 6,
      });
 
-     // محاسبه آمارهای فیلتر شده بر اساس دیتای فعال جدول
      const totalStock = filteredProducts.reduce((sum, p) => sum + p.stock, 0);
      const lowStock = filteredProducts.filter((p) => p.stock < 10).length;
 
@@ -56,7 +52,6 @@ const Products = () => {
           setShowDeleteModal(true);
      };
 
-     // تولید دکمه‌های شماره صفحه به صورت پویا
      const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
 
      return (
@@ -76,7 +71,7 @@ const Products = () => {
                {/* Main Table */}
                <div className="bg-white rounded-xl shadow-sm border border-gray-100">
                     <div className="p-3 md:p-6 border-b border-gray-200">
-                         <div className="flex justify-between gap-3 md:gap-4">
+                         <div className="sm:flex flex-col justify-between gap-3 md:gap-4">
                               <h2 className="text-lg md:text-xl font-semibold text-gray-900">
                                    لیست محصولات
                               </h2>
@@ -114,7 +109,6 @@ const Products = () => {
                          <table className="w-full">
                               <thead className="bg-gray-50 hidden md:table-header-group">
                                    <tr>
-                                        {/* امکان کلیک روی ستون‌ها جهت تغییر حالت مرتب‌سازی صعودی/نزولی */}
                                         <th
                                              onClick={() => handleSort("name")}
                                              className="px-3 md:px-6 py-3 text-right text-xs font-medium text-gray-600 cursor-pointer hover:bg-gray-100 transition-colors"
@@ -162,7 +156,6 @@ const Products = () => {
                               </thead>
                               <tbody className="divide-y divide-gray-200">
                                    {isLoading ? (
-                                        // نمایش لودینگ افکت اسکلتون متحرک در زمان انتظار برای محصولات
                                         <TableSkeleton rowsCount={5} colsCount={6} />
                                    ) : filteredProducts.length === 0 ? (
                                         <tr>
@@ -259,7 +252,6 @@ const Products = () => {
                                    قبلی
                               </button>
 
-                              {/* دکمه‌های شماره صفحه پویا */}
                               {pageNumbers.map((num) => (
                                    <button
                                         key={num}

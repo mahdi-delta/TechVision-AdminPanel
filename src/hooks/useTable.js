@@ -1,10 +1,10 @@
 import { useState, useEffect, useMemo } from "react";
 
-export const useTable = ({ data, searchFields = [], filterField = "", defaultPageSize =5 }) => {
+export const useTable = ({ data, searchFields = [], filterField = "", defaultPageSize = 5 }) => {
      const [searchQuery, setSearchQuery] = useState("");
      const [filterValue, setFilterValue] = useState("همه");
      const [sortField, setSortField] = useState(null);
-     const [sortOrder, setSortOrder] = useState("asc"); // 'asc' | 'desc'
+     const [sortOrder, setSortOrder] = useState("asc");
      const [currentPage, setCurrentPage] = useState(1);
      const [isLoading, setIsLoading] = useState(true);
 
@@ -12,7 +12,7 @@ export const useTable = ({ data, searchFields = [], filterField = "", defaultPag
           setIsLoading(true);
           const timer = setTimeout(() => {
                setIsLoading(false);
-          }, 600); // ۶۰۰ میلی‌ثانیه تاخیر شبیه‌سازی شده
+          }, 600);
           return () => clearTimeout(timer);
      }, [searchQuery, filterValue, sortField, sortOrder]);
 
@@ -30,8 +30,7 @@ export const useTable = ({ data, searchFields = [], filterField = "", defaultPag
                });
 
                const matchesFilter =
-                    filterValue === "همه" ||
-                    filterValue === "همه دسته‌ها" ||
+                    filterValue.startsWith("همه") |
                     item[filterField] === filterValue;
 
                return matchesSearch && matchesFilter;

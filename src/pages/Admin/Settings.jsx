@@ -62,7 +62,6 @@ const Settings = () => {
                               <DisplaySection />
                               <NotificationSection />
 
-                              {/* دکمه‌های فرم اصلی */}
                               <div className="w-fill flex flex-col md:flex-row md:justify-end gap-3 mx-6 px-3 md:px-0">
                                    <button
                                         type="reset"
@@ -79,7 +78,6 @@ const Settings = () => {
                               </div>
                          </Form>
 
-                         {/* بخش امنیت و رمز عبور */}
                          <SecuritySection
                               twoFactor={values.twoFactor}
                               onTwoFactorChange={(e) =>

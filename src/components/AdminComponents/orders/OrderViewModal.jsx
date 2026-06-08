@@ -64,9 +64,7 @@ const OrderViewModal = ({ show, onClose, order }) => {
                                         </span>
                                    </div>
                                    <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                                        <span className="text-sm text-gray-600">
-                                             روش پرداخت:
-                                        </span>
+                                        <span className="text-sm text-gray-600">روش پرداخت:</span>
                                         <span className="px-3 py-1 rounded-lg bg-gray-50 text-gray-900 text-xs font-medium border border-gray-100">
                                              {order.paymentMethod}
                                         </span>
@@ -84,7 +82,7 @@ const OrderViewModal = ({ show, onClose, order }) => {
                               </div>
                          </div>
 
-                         {/* Timeline (optional) */}
+                         {/* Additional Info */}
                          <div className="bg-gray-50 rounded-xl p-4 border border-gray-100">
                               <h4 className="text-sm font-semibold text-gray-900 mb-3">
                                    جزئیات بیشتر

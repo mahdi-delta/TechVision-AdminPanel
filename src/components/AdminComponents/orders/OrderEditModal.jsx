@@ -1,15 +1,24 @@
-import { useState } from "react";
 import { X } from "lucide-react";
+import { useFormik } from "formik";
+import { useOrderStore } from "../../../store/adminStore/useOrderStore";
 import { getStatusColor } from "../../../data/ordersData";
 
-const OrderEditModal = ({ show, onClose, order, onSave }) => {
-     const [status, setStatus] = useState(order?.status || "");
+const OrderEditModal = ({ show, onClose, order }) => {
+     const updateOrderStatus = useOrderStore((state) => state.updateOrderStatus);
+
+     const formik = useFormik({
+          initialValues: {
+               status: order?.status || "",
+          },
+          enableReinitialize: true,
+          onSubmit: (values) => {
+               updateOrderStatus(order.id, values.status);
+               onClose();
+               alert(`وضعیت سفارش #${order.id} با موفقیت تغییر کرد.`);
+          },
+     });
 
      if (!show || !order) return null;
-
-     const handleSave = () => {
-          onSave(status);
-     };
 
      const statuses = ["تکمیل شده", "در حال پردازش", "در انتظار تایید", "لغو شده"];
 
@@ -22,6 +31,7 @@ const OrderEditModal = ({ show, onClose, order, onSave }) => {
                               ویرایش سفارش #{order.id}
                          </h3>
                          <button
+                              type="button"
                               onClick={onClose}
                               className="text-gray-700 hover:text-gray-600"
                          >
@@ -30,7 +40,7 @@ const OrderEditModal = ({ show, onClose, order, onSave }) => {
                     </div>
 
                     {/* Content */}
-                    <div className="space-y-4">
+                    <form onSubmit={formik.handleSubmit} className="space-y-4">
                          {/* Order Info */}
                          <div className="bg-gray-50 rounded-xl p-4 border border-gray-100">
                               <div className="flex items-center gap-3 mb-3">
@@ -67,8 +77,8 @@ const OrderEditModal = ({ show, onClose, order, onSave }) => {
                                                   type="radio"
                                                   name="status"
                                                   value={statusOption}
-                                                  checked={status === statusOption}
-                                                  onChange={(e) => setStatus(e.target.value)}
+                                                  checked={formik.values.status === statusOption}
+                                                  onChange={formik.handleChange}
                                                   className="w-4 h-4 text-blue-600 focus:ring-2 focus:ring-gray-100"
                                              />
                                              <span
@@ -96,23 +106,24 @@ const OrderEditModal = ({ show, onClose, order, onSave }) => {
                                    </span>
                               </p>
                          </div>
-                    </div>
 
-                    {/* Footer */}
-                    <div className="flex gap-3 mt-6">
-                         <button
-                              onClick={onClose}
-                              className="flex-1 px-4 py-2.5 border border-gray-200 text-gray-900 rounded-xl hover:bg-gray-100 transition-colors font-medium text-sm"
-                         >
-                              انصراف
-                         </button>
-                         <button
-                              onClick={handleSave}
-                              className="flex-1 px-4 py-2.5 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors font-medium text-sm"
-                         >
-                              ذخیره تغییرات
-                         </button>
-                    </div>
+                         {/* Footer Buttons */}
+                         <div className="flex gap-3 mt-6">
+                              <button
+                                   type="button"
+                                   onClick={onClose}
+                                   className="flex-1 px-4 py-2.5 border border-gray-200 text-gray-900 rounded-xl hover:bg-gray-100 transition-colors font-medium text-sm"
+                              >
+                                   انصراف
+                              </button>
+                              <button
+                                   type="submit"
+                                   className="flex-1 px-4 py-2.5 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors font-medium text-sm"
+                              >
+                                   ذخیره تغییرات
+                              </button>
+                         </div>
+                    </form>
                </div>
           </div>
      );

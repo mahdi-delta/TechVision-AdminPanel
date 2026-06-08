@@ -3,7 +3,7 @@ export const ordersData = [
           id: 1028,
           customer: "علی احمدی",
           customerAvatar: "ع",
-          product: "لپ‌تاپ Dell XPS 15",
+          product: "لپتاپ Dell XPS 15",
           amount: "45,000,000",
           status: "تکمیل شده",
           date: "1403/12/05",
