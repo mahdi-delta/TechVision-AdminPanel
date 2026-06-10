@@ -1,6 +1,6 @@
 import React from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from "recharts";
-import { categoryChartData } from "../../data/chartsData";
+import { categoryChartData } from "../../../../data/chartsData";
 
 const CategoryChart = () => {
      const RADIAN = Math.PI / 180;
@@ -10,10 +10,7 @@ const CategoryChart = () => {
                {/* Legend Grid */}
                <div className="w-30 grid grid-cols-1">
                     {categoryChartData.map((item, index) => (
-                         <div
-                              key={index}
-                              className="flex items-center gap-2 p-2 bg-gray-0 rounded"
-                         >
+                         <div key={index} className="flex items-center gap-2 p-2 bg-gray-0 rounded">
                               <div
                                    className="w-2.5 h-2.5 rounded-full shrink-0"
                                    style={{ backgroundColor: item.fill }}

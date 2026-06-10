@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { DollarSign, ShoppingBag, AlertCircle, Users } from "lucide-react";
 import CustomDropdown from "../../components/AdminComponents/common/CustomDropdown";
-import SalesChart from "../../components/Charts/SalesChart";
-import CategoryChart from "../../components/Charts/CategoryChart";
+import SalesChart from "../../components/AdminComponents/dashboard/charts/SalesChart";
+import CategoryChart from "../../components/AdminComponents/dashboard/charts/CategoryChart";
 import { statsData, recentOrders } from "../../data/dashboardData";
 
 const Dashboard = () => {

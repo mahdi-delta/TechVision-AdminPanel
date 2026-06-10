@@ -6,6 +6,8 @@ import TableSkeleton from "../../components/AdminComponents/common/TableSkeleton
 import TableControls from "../../components/AdminComponents/common/TableControls";
 import TablePagination from "../../components/AdminComponents/common/TablePagination";
 import StatsCard from "../../components/AdminComponents/common/StatsCard";
+import TopProductsChart from "../../components/AdminComponents/products/charts/TopProductsChart";
+import StockStatusChart from "../../components/AdminComponents/products/charts/StockStatusChart";
 import AddProductModal from "../../components/AdminComponents/products/AddProductModal";
 import EditProductModal from "../../components/AdminComponents/products/EditProductModal";
 import DeleteProductModal from "../../components/AdminComponents/products/DeleteProductModal";
@@ -18,6 +20,7 @@ const Products = () => {
      const [showDeleteModal, setShowDeleteModal] = useState(false);
      const [selectedProduct, setSelectedProduct] = useState(null);
 
+     // اتصال لیست محصولات به هوک مشترک جدول
      const {
           processedData: filteredProducts,
           totalItems,
@@ -55,7 +58,7 @@ const Products = () => {
      return (
           <div className="space-y-4 md:space-y-6">
                {/* Stats Grid */}
-               <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 md:px-0">
+               <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
                     <StatsCard title="کل محصولات" value={products.length} />
                     <StatsCard title="موجودی کل" value={totalStock} valueColor="text-blue-600" />
                     <StatsCard title="موجودی کم" value={lowStock} valueColor="text-orange-600" />
@@ -64,6 +67,11 @@ const Products = () => {
                          value={new Set(products.map((p) => p.category)).size}
                          valueColor="text-purple-600"
                     />
+               </div>
+
+               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
+                    <TopProductsChart />
+                    <StockStatusChart />
                </div>
 
                {/* Main Card Container */}
@@ -130,7 +138,7 @@ const Products = () => {
                                                        </h4>
                                                   </div>
                                              </div>
-                                             <span className="px-2.5 py-0.5 rounded-lg bg-gray-50 text-gray-900 text-xs font-medium border border-gray-150">
+                                             <span className="px-2.5 py-0.5 rounded-lg bg-gray-100 text-gray-900 text-xs font-medium">
                                                   {product.category}
                                              </span>
                                         </div>
@@ -157,7 +165,7 @@ const Products = () => {
                                                        onClick={() => handleOpenEditModal(product)}
                                                        className="px-3 py-1.5 bg-gray-50 hover:bg-gray-100 text-gray-700 rounded-lg text-xs font-medium flex items-center gap-1.5 transition-colors"
                                                   >
-                                                       <Edit2 className="w-3.5 h-3.5 text-blue-600" />
+                                                       <Edit2 className="w-3.5 h-3.5 text-tech-navy-melo" />
                                                        <span>ویرایش</span>
                                                   </button>
                                                   <button
@@ -184,41 +192,31 @@ const Products = () => {
                                              onClick={() => handleSort("name")}
                                              className="px-6 py-3 text-right text-xs font-semibold text-gray-600 cursor-pointer hover:bg-gray-100 transition-colors"
                                         >
-                                             محصول{" "}
-                                             {sortField === "name" &&
-                                                  (sortOrder === "asc" ? "▲" : "▼")}
+                                             محصول {sortField === "name" && (sortOrder === "asc" ? "▲" : "▼")}
                                         </th>
                                         <th
                                              onClick={() => handleSort("category")}
                                              className="px-6 py-3 text-right text-xs font-semibold text-gray-600 cursor-pointer hover:bg-gray-100 transition-colors"
                                         >
-                                             دسته‌بندی{" "}
-                                             {sortField === "category" &&
-                                                  (sortOrder === "asc" ? "▲" : "▼")}
+                                             دسته‌بندی {sortField === "category" && (sortOrder === "asc" ? "▲" : "▼")}
                                         </th>
                                         <th
                                              onClick={() => handleSort("price")}
                                              className="px-6 py-3 text-right text-xs font-semibold text-gray-600 cursor-pointer hover:bg-gray-100 transition-colors"
                                         >
-                                             قیمت (تومان){" "}
-                                             {sortField === "price" &&
-                                                  (sortOrder === "asc" ? "▲" : "▼")}
+                                             قیمت (تومان) {sortField === "price" && (sortOrder === "asc" ? "▲" : "▼")}
                                         </th>
                                         <th
                                              onClick={() => handleSort("stock")}
                                              className="px-6 py-3 text-right text-xs font-semibold text-gray-600 hidden lg:table-cell cursor-pointer hover:bg-gray-100 transition-colors"
                                         >
-                                             موجودی{" "}
-                                             {sortField === "stock" &&
-                                                  (sortOrder === "asc" ? "▲" : "▼")}
+                                             موجودی {sortField === "stock" && (sortOrder === "asc" ? "▲" : "▼")}
                                         </th>
                                         <th
                                              onClick={() => handleSort("sales")}
                                              className="px-6 py-3 text-right text-xs font-semibold text-gray-600 hidden lg:table-cell cursor-pointer hover:bg-gray-100 transition-colors"
                                         >
-                                             فروش{" "}
-                                             {sortField === "sales" &&
-                                                  (sortOrder === "asc" ? "▲" : "▼")}
+                                             فروش {sortField === "sales" && (sortOrder === "asc" ? "▲" : "▼")}
                                         </th>
                                         <th className="px-6 py-3 text-right text-xs font-semibold text-gray-600">
                                              عملیات
@@ -252,7 +250,7 @@ const Products = () => {
                                                                  <p className="text-sm font-semibold text-gray-900 truncate">
                                                                       {product.name}
                                                                  </p>
-                                                                 <p className="text-xs text-blue-600 mt-0.5">
+                                                                 <p className="text-xs text-tech-navy-melo mt-0.5">
                                                                       #{product.id}
                                                                  </p>
                                                             </div>
@@ -282,7 +280,7 @@ const Products = () => {
                                                                  }
                                                                  className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
                                                             >
-                                                                 <Edit2 className="w-4 h-4 text-blue-600" />
+                                                                 <Edit2 className="w-4 h-4 text-tech-navy-melo" />
                                                             </button>
                                                             <button
                                                                  onClick={() =>
@@ -301,6 +299,7 @@ const Products = () => {
                          </table>
                     </div>
 
+                    {/* پجینیشن داینامیک محصول */}
                     <TablePagination
                          currentPage={currentPage}
                          setCurrentPage={setCurrentPage}

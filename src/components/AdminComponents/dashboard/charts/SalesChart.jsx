@@ -9,10 +9,14 @@ import {
      Legend,
      ResponsiveContainer,
 } from "recharts";
-import { salesData1Day, salesData1Month, salesData6Months, salesData1Year } from "../../data/chartsData";
+import {
+     salesData1Day,
+     salesData1Month,
+     salesData6Months,
+     salesData1Year,
+} from "../../../../data/chartsData";
 
 const SalesChart = ({ chartPeriod }) => {
-     // استفاده از useMemo برای جلوگیری از محاسبه مجدد در رندرهای اضافی
      const { currentData, xAxisKey, tooltipPrefix } = useMemo(() => {
           switch (chartPeriod) {
                case "امروز":
@@ -21,7 +25,7 @@ const SalesChart = ({ chartPeriod }) => {
                          xAxisKey: "time",
                          tooltipPrefix: "ساعت: ",
                     };
-               case "این ماه": // یا هر اسمی که برای فیلتر ۱ ماهه گذاشتید
+               case "این ماه":
                     return {
                          currentData: salesData1Month,
                          xAxisKey: "day",
@@ -41,7 +45,7 @@ const SalesChart = ({ chartPeriod }) => {
                     };
                default:
                     return {
-                         currentData: salesData6Months, // دیتای پیش‌فرض
+                         currentData: salesData6Months,
                          xAxisKey: "month",
                          tooltipPrefix: "ماه: ",
                     };
@@ -50,15 +54,11 @@ const SalesChart = ({ chartPeriod }) => {
 
      return (
           <ResponsiveContainer width="100%" height={250}>
-               <LineChart
-                    data={currentData}
-                    margin={{ top: 5, right: 30, left: -0, bottom: 5 }}
-               >
+               <LineChart data={currentData} margin={{ top: 5, right: 30, left: -0, bottom: 5 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
-                    
-                    {/* کلید محور X به صورت داینامیک */}
+
                     <XAxis dataKey={xAxisKey} tick={{ fill: "#6b7280", fontSize: 12 }} />
-                    
+
                     <YAxis tick={{ fill: "#6b7280", fontSize: 12, dx: -35 }} />
                     <Tooltip
                          contentStyle={{
@@ -67,7 +67,6 @@ const SalesChart = ({ chartPeriod }) => {
                               borderRadius: "8px",
                          }}
                          formatter={(value) => value.toLocaleString("fa-IR")}
-                         // پیشوند تولتیپ به صورت داینامیک (ساعت، روز یا ماه)
                          labelFormatter={(label) => `${tooltipPrefix}${label}`}
                     />
                     <Legend wrapperStyle={{ direction: "rtl", paddingTop: "20px" }} />
