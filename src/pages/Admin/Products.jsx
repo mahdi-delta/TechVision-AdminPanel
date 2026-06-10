@@ -1,14 +1,14 @@
 import { useState } from "react";
-import { Plus, Edit2, Trash2 } from "lucide-react";
+import { Edit2, Trash2 } from "lucide-react";
 import { useProductStore } from "../../store/adminStore/useProductStore";
 import { useTable } from "../../hooks/useTable";
-import TableSkeleton from "../../components/AdminComponents/common/TableSkeleton"; 
+import TableSkeleton from "../../components/AdminComponents/common/TableSkeleton";
+import TableControls from "../../components/AdminComponents/common/TableControls";
+import TablePagination from "../../components/AdminComponents/common/TablePagination";
 import StatsCard from "../../components/AdminComponents/common/StatsCard";
-import SearchInput from "../../components/AdminComponents/common/SearchInput";
 import AddProductModal from "../../components/AdminComponents/products/AddProductModal";
 import EditProductModal from "../../components/AdminComponents/products/EditProductModal";
 import DeleteProductModal from "../../components/AdminComponents/products/DeleteProductModal";
-import CustomDropdown from "../../components/AdminComponents/common/CustomDropdown";
 
 const Products = () => {
      const products = useProductStore((state) => state.products);
@@ -34,9 +34,9 @@ const Products = () => {
           isLoading,
      } = useTable({
           data: products,
-          searchFields: ["name"], 
+          searchFields: ["name"],
           filterField: "category",
-          defaultPageSize: 6,
+          defaultPageSize: 5,
      });
 
      const totalStock = filteredProducts.reduce((sum, p) => sum + p.stock, 0);
@@ -52,12 +52,10 @@ const Products = () => {
           setShowDeleteModal(true);
      };
 
-     const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
-
      return (
           <div className="space-y-4 md:space-y-6">
-               {/* Stats */}
-               <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
+               {/* Stats Grid */}
+               <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 px-3 md:px-0">
                     <StatsCard title="کل محصولات" value={products.length} />
                     <StatsCard title="موجودی کل" value={totalStock} valueColor="text-blue-600" />
                     <StatsCard title="موجودی کم" value={lowStock} valueColor="text-orange-600" />
@@ -68,50 +66,123 @@ const Products = () => {
                     />
                </div>
 
-               {/* Main Table */}
-               <div className="bg-white rounded-xl shadow-sm border border-gray-100">
-                    <div className="p-3 md:p-6 border-b border-gray-200">
-                         <div className="sm:flex flex-col justify-between gap-3 md:gap-4">
-                              <h2 className="text-lg md:text-xl font-semibold text-gray-900">
-                                   لیست محصولات
-                              </h2>
-                              <div className="flex flex-col md:flex-row items-stretch md:items-center gap-2 md:gap-3">
-                                   <div className="flex-1 md:flex-none md:w-72">
-                                        <SearchInput
-                                             value={searchQuery}
-                                             onChange={(e) => setSearchQuery(e.target.value)}
-                                        />
-                                   </div>
-                                   <div className="flex-1 md:flex-none md:min-w-44">
-                                        <CustomDropdown
-                                             options={[
-                                                  "همه دسته‌ها",
-                                                  "لپ‌تاپ",
-                                                  "لوازم جانبی",
-                                                  "مانیتور",
-                                             ]}
-                                             value={categoryFilter}
-                                             onChange={setCategoryFilter}
-                                             className="w-full md:min-w-44"
-                                        />
-                                   </div>
-                                   <button
-                                        onClick={() => setShowAddModal(true)}
-                                        className="px-3 md:px-4 py-2 bg-tech-navy-melo text-white rounded-lg hover:bg-tech-navy-melo transition-colors text-sm flex items-center justify-center md:justify-start gap-2 shrink-0"
+               {/* Main Card Container */}
+               <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden mx-3 md:mx-0">
+                    <TableControls
+                         title="لیست محصولات"
+                         searchQuery={searchQuery}
+                         onSearchChange={setSearchQuery}
+                         filterValue={categoryFilter}
+                         onFilterChange={setCategoryFilter}
+                         filterOptions={["همه دسته‌ها", "لپ‌تاپ", "لوازم جانبی", "مانیتور"]}
+                         addButtonText="افزودن محصول"
+                         onAddClick={() => setShowAddModal(true)}
+                         searchPlaceholder="جستجو در محصولات..."
+                    />
+
+                    <div className="md:hidden space-y-3 p-3 bg-gray-50/50">
+                         {isLoading ? (
+                              [1, 2, 3].map((n) => (
+                                   <div
+                                        key={n}
+                                        className="bg-white p-4 rounded-xl border border-gray-100 animate-pulse space-y-3"
                                    >
-                                        <Plus className="w-5 h-5" />
-                                        <span className="hidden md:inline">افزودن محصول</span>
-                                   </button>
+                                        <div className="flex items-center justify-between">
+                                             <div className="flex items-center gap-3">
+                                                  <div className="w-10 h-10 rounded-xl bg-gray-200"></div>
+                                                  <div className="space-y-1.5">
+                                                       <div className="h-4 bg-gray-200 rounded w-28"></div>
+                                                       <div className="h-3 bg-gray-150 rounded w-16"></div>
+                                                  </div>
+                                             </div>
+                                             <div className="h-6 bg-gray-200 rounded-lg w-16"></div>
+                                        </div>
+                                        <div className="border-t border-gray-100 pt-3 flex justify-between">
+                                             <div className="space-y-1">
+                                                  <div className="h-3 bg-gray-100 rounded w-8"></div>
+                                                  <div className="h-4 bg-gray-200 rounded w-16"></div>
+                                             </div>
+                                             <div className="space-y-1 text-left">
+                                                  <div className="h-3 bg-gray-100 rounded w-12"></div>
+                                                  <div className="h-4 bg-gray-200 rounded w-14"></div>
+                                             </div>
+                                        </div>
+                                   </div>
+                              ))
+                         ) : filteredProducts.length === 0 ? (
+                              <div className="text-center py-8 text-gray-500 text-sm bg-white rounded-xl border border-gray-100">
+                                   محصولی یافت نشد.
                               </div>
-                         </div>
+                         ) : (
+                              filteredProducts.map((product) => (
+                                   <div
+                                        key={product.id}
+                                        className="bg-white p-4 rounded-xl border border-gray-100 shadow-xs space-y-3"
+                                   >
+                                        <div className="flex items-center justify-between">
+                                             <div className="flex items-center gap-3">
+                                                  <div className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center text-lg shrink-0">
+                                                       {product.image}
+                                                  </div>
+                                                  <div>
+                                                       <h4 className="max-w-25 text-sm font-bold text-gray-900">
+                                                            {product.name}
+                                                       </h4>
+                                                  </div>
+                                             </div>
+                                             <span className="px-2.5 py-0.5 rounded-lg bg-gray-50 text-gray-900 text-xs font-medium border border-gray-150">
+                                                  {product.category}
+                                             </span>
+                                        </div>
+                                        <div className="border-t border-gray-100 pt-3 flex justify-between items-center text-xs">
+                                             <div className="space-y-1">
+                                                  <p className="text-gray-500">قیمت</p>
+                                                  <p className="font-bold text-gray-900">
+                                                       {product.price} تومان
+                                                  </p>
+                                             </div>
+                                             <div className="space-y-1 text-center">
+                                                  <p className="text-gray-500">موجودی</p>
+                                                  <span
+                                                       className={`px-2.5 py-0.5 text-xs rounded-full font-medium inline-block ${product.stock > 20 ? "bg-green-50 text-green-700" : product.stock > 10 ? "bg-yellow-50 text-yellow-700" : "bg-red-50 text-red-700"}`}
+                                                  >
+                                                       {product.stock} عدد
+                                                  </span>
+                                             </div>
+                                        </div>
+                                        <div className="border-t border-gray-100 pt-3 flex justify-between items-center text-xs text-gray-600">
+                                             <span>فروش: {product.sales} عدد</span>
+                                             <div className="flex gap-2">
+                                                  <button
+                                                       onClick={() => handleOpenEditModal(product)}
+                                                       className="px-3 py-1.5 bg-gray-50 hover:bg-gray-100 text-gray-700 rounded-lg text-xs font-medium flex items-center gap-1.5 transition-colors"
+                                                  >
+                                                       <Edit2 className="w-3.5 h-3.5 text-blue-600" />
+                                                       <span>ویرایش</span>
+                                                  </button>
+                                                  <button
+                                                       onClick={() =>
+                                                            handleOpenDeleteModal(product)
+                                                       }
+                                                       className="px-3 py-1.5 bg-red-50 hover:bg-red-100 text-red-700 rounded-lg text-xs font-medium flex items-center gap-1.5 transition-colors"
+                                                  >
+                                                       <Trash2 className="w-3.5 h-3.5" />
+                                                       <span>حذف</span>
+                                                  </button>
+                                             </div>
+                                        </div>
+                                   </div>
+                              ))
+                         )}
                     </div>
-                    <div className="overflow-x-auto">
+
+                    <div className="hidden md:block overflow-x-auto">
                          <table className="w-full">
-                              <thead className="bg-gray-50 hidden md:table-header-group">
+                              <thead className="bg-gray-50">
                                    <tr>
                                         <th
                                              onClick={() => handleSort("name")}
-                                             className="px-3 md:px-6 py-3 text-right text-xs font-medium text-gray-600 cursor-pointer hover:bg-gray-100 transition-colors"
+                                             className="px-6 py-3 text-right text-xs font-semibold text-gray-600 cursor-pointer hover:bg-gray-100 transition-colors"
                                         >
                                              محصول{" "}
                                              {sortField === "name" &&
@@ -119,7 +190,7 @@ const Products = () => {
                                         </th>
                                         <th
                                              onClick={() => handleSort("category")}
-                                             className="px-3 md:px-6 py-3 text-right text-xs font-medium text-gray-600 cursor-pointer hover:bg-gray-100 transition-colors"
+                                             className="px-6 py-3 text-right text-xs font-semibold text-gray-600 cursor-pointer hover:bg-gray-100 transition-colors"
                                         >
                                              دسته‌بندی{" "}
                                              {sortField === "category" &&
@@ -127,7 +198,7 @@ const Products = () => {
                                         </th>
                                         <th
                                              onClick={() => handleSort("price")}
-                                             className="px-3 md:px-6 py-3 text-right text-xs font-medium text-gray-600 cursor-pointer hover:bg-gray-100 transition-colors"
+                                             className="px-6 py-3 text-right text-xs font-semibold text-gray-600 cursor-pointer hover:bg-gray-100 transition-colors"
                                         >
                                              قیمت (تومان){" "}
                                              {sortField === "price" &&
@@ -135,7 +206,7 @@ const Products = () => {
                                         </th>
                                         <th
                                              onClick={() => handleSort("stock")}
-                                             className="px-3 md:px-6 py-3 text-right text-xs font-medium text-gray-600 hidden lg:table-cell cursor-pointer hover:bg-gray-100 transition-colors"
+                                             className="px-6 py-3 text-right text-xs font-semibold text-gray-600 hidden lg:table-cell cursor-pointer hover:bg-gray-100 transition-colors"
                                         >
                                              موجودی{" "}
                                              {sortField === "stock" &&
@@ -143,13 +214,13 @@ const Products = () => {
                                         </th>
                                         <th
                                              onClick={() => handleSort("sales")}
-                                             className="px-3 md:px-6 py-3 text-right text-xs font-medium text-gray-600 hidden lg:table-cell cursor-pointer hover:bg-gray-100 transition-colors"
+                                             className="px-6 py-3 text-right text-xs font-semibold text-gray-600 hidden lg:table-cell cursor-pointer hover:bg-gray-100 transition-colors"
                                         >
                                              فروش{" "}
                                              {sortField === "sales" &&
                                                   (sortOrder === "asc" ? "▲" : "▼")}
                                         </th>
-                                        <th className="px-3 md:px-6 py-3 text-right text-xs font-medium text-gray-600">
+                                        <th className="px-6 py-3 text-right text-xs font-semibold text-gray-600">
                                              عملیات
                                         </th>
                                    </tr>
@@ -170,48 +241,40 @@ const Products = () => {
                                         filteredProducts.map((product) => (
                                              <tr
                                                   key={product.id}
-                                                  className="hover:bg-gray-100 transition-colors block md:table-row border-b md:border-b border-gray-200 mb-3 md:mb-0 p-3 md:p-0 rounded-lg md:rounded-none md:border-0"
+                                                  className="hover:bg-tech-navy-melo/5 transition-colors"
                                              >
-                                                  <td className="px-0 md:px-6 py-2 md:py-4 block md:table-cell text-right md:text-right before:content-attr(data-label) before:font-bold before:float-left md:before:content-none">
+                                                  <td className="px-6 py-4">
                                                        <div className="flex items-center gap-3">
-                                                            <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-gray-50 flex items-center justify-center text-lg md:text-2xl shrink-0">
+                                                            <div className="w-11 h-11 rounded-xl bg-gray-50 flex items-center justify-center text-xl shrink-0 border border-gray-150">
                                                                  {product.image}
                                                             </div>
                                                             <div className="min-w-0">
-                                                                 <p className="text-xs md:text-sm font-medium text-gray-900 truncate">
+                                                                 <p className="text-sm font-semibold text-gray-900 truncate">
                                                                       {product.name}
                                                                  </p>
-                                                                 <p className="text-xs text-blue-600">
+                                                                 <p className="text-xs text-blue-600 mt-0.5">
                                                                       #{product.id}
                                                                  </p>
                                                             </div>
                                                        </div>
                                                   </td>
-                                                  <td className="px-0 md:px-6 py-2 md:py-4 block md:table-cell text-right text-xs md:text-sm">
-                                                       <span className="px-2 md:px-3 py-1 rounded-lg bg-gray-50 text-gray-900 text-xs font-medium inline-block">
-                                                            {product.category}
-                                                       </span>
+                                                  <td className="px-6 py-4 text-sm text-gray-700">
+                                                       {product.category}
                                                   </td>
-                                                  <td className="px-0 md:px-6 py-2 md:py-4 block md:table-cell text-right text-xs md:text-sm font-medium text-gray-900">
+                                                  <td className="px-6 py-4 text-sm font-bold text-gray-900">
                                                        {product.price}
                                                   </td>
-                                                  <td className="px-0 md:px-6 py-2 md:py-4 hidden lg:table-cell">
+                                                  <td className="px-6 py-4 hidden lg:table-cell">
                                                        <span
-                                                            className={`px-2 md:px-3 py-1 text-xs rounded-full font-medium inline-block ${
-                                                                 product.stock > 20
-                                                                      ? "bg-green-50 text-green-700"
-                                                                      : product.stock > 10
-                                                                        ? "bg-yellow-50 text-yellow-700"
-                                                                        : "bg-red-50 text-red-700"
-                                                            }`}
+                                                            className={`px-3 py-1 text-xs rounded-full font-medium inline-block ${product.stock > 20 ? "bg-green-50 text-green-700" : product.stock > 10 ? "bg-yellow-50 text-yellow-700" : "bg-red-50 text-red-700"}`}
                                                        >
                                                             {product.stock} عدد
                                                        </span>
                                                   </td>
-                                                  <td className="px-0 md:px-6 py-2 md:py-4 hidden lg:table-cell text-xs md:text-sm text-gray-600">
+                                                  <td className="px-6 py-4 text-sm text-gray-600 hidden lg:table-cell">
                                                        {product.sales}
                                                   </td>
-                                                  <td className="px-0 md:px-6 py-2 md:py-4 block md:table-cell">
+                                                  <td className="px-6 py-4">
                                                        <div className="flex items-center gap-2">
                                                             <button
                                                                  onClick={() =>
@@ -238,58 +301,23 @@ const Products = () => {
                          </table>
                     </div>
 
-                    {/* Pagination */}
-                    <div className="px-3 md:px-6 py-3 md:py-4 border-t border-gray-200 flex flex-col md:flex-row md:items-center md:justify-between gap-3 md:gap-0">
-                         <p className="text-sm text-gray-600">
-                              نمایش {filteredProducts.length} از {totalItems} محصول
-                         </p>
-                         <div className="flex items-center gap-2 flex-wrap">
-                              <button
-                                   onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-                                   className="px-2 md:px-3 py-1 border border-gray-700 rounded-lg hover:bg-gray-100 disabled:opacity-50 text-xs md:text-sm"
-                                   disabled={currentPage === 1}
-                              >
-                                   قبلی
-                              </button>
-
-                              {pageNumbers.map((num) => (
-                                   <button
-                                        key={num}
-                                        onClick={() => setCurrentPage(num)}
-                                        className={`px-2 md:px-3 py-1 rounded-lg text-xs md:text-sm transition-all ${
-                                             currentPage === num
-                                                  ? "bg-tech-navy-melo text-white"
-                                                  : "border border-gray-700 hover:bg-gray-100"
-                                        }`}
-                                   >
-                                        {num}
-                                   </button>
-                              ))}
-
-                              <button
-                                   onClick={() =>
-                                        setCurrentPage((prev) => Math.min(prev + 1, totalPages))
-                                   }
-                                   className="px-2 md:px-3 py-1 border border-gray-700 rounded-lg hover:bg-gray-100 disabled:opacity-50 text-xs md:text-sm"
-                                   disabled={currentPage === totalPages}
-                              >
-                                   بعدی
-                              </button>
-                         </div>
-                    </div>
+                    <TablePagination
+                         currentPage={currentPage}
+                         setCurrentPage={setCurrentPage}
+                         totalPages={totalPages}
+                         totalItems={totalItems}
+                         shownCount={filteredProducts.length}
+                         unitName="محصول"
+                    />
                </div>
 
-               {/* Add Product Modal */}
+               {/* Modals */}
                <AddProductModal show={showAddModal} onClose={() => setShowAddModal(false)} />
-
-               {/* Edit Product Modal */}
                <EditProductModal
                     show={showEditModal}
                     onClose={() => setShowEditModal(false)}
                     product={selectedProduct}
                />
-
-               {/* Delete Product Modal */}
                <DeleteProductModal
                     show={showDeleteModal}
                     onClose={() => setShowDeleteModal(false)}

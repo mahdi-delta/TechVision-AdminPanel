@@ -29,8 +29,8 @@ const NotificationDropdown = () => {
                </button>
 
                {showNotifications && (
-                    <div className="absolute left-0 mt-2 w-80 bg-white rounded-xl shadow-md border border-gray-200 overflow-hidden">
-                         <div className="p-4 bg-linear-to-r from-tech-accent to-blue-600">
+                    <div className="absolute -left-12 mt-2 w-80 bg-white rounded-xl shadow-md border border-tech-navy-melo/40 overflow-hidden">
+                         <div className="p-4 bg-linear-to-r from-tech-navy to-tech-navy-melo">
                               <h3 className="text-base font-bold text-white">اعلان‌ها</h3>
                               <p className="text-xs text-white/80 mt-1">
                                    {notifications.filter((n) => n.unread).length} اعلان خوانده نشده
@@ -52,7 +52,7 @@ const NotificationDropdown = () => {
                                                   <p className="text-sm text-gray-900 mb-1 font-medium">
                                                        {notif.text}
                                                   </p>
-                                                  <p className="text-xs text-blue-600">
+                                                  <p className="text-xs text-tech-accent">
                                                        {notif.time}
                                                   </p>
                                              </div>
@@ -61,7 +61,7 @@ const NotificationDropdown = () => {
                               ))}
                          </div>
                          <div className="p-3 text-center border-t border-gray-200 bg-gray-50">
-                              <button className="text-sm text-blue-600 hover:text-blue-700 font-medium">
+                              <button className="text-sm text-tech-navy-melo hover:text-tech-navy font-medium">
                                    مشاهده همه اعلان‌ها
                               </button>
                          </div>
