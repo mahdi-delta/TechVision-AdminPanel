@@ -182,7 +182,7 @@ const AddUserModal = ({ show, onClose, user, isEditing = false }) => {
                                                   </button>
                                              </div>
                                         ) : (
-                                             <div className="w-20 h-20 rounded-full bg-linear-to-br from-tech-accent to-blue-600 flex items-center justify-center text-white font-bold text-2xl">
+                                             <div className="w-20 h-20 rounded-full bg-linear-to-br from-tech-navy to-tech-navy-melo flex items-center justify-center text-white font-bold text-2xl">
                                                   {getAvatarInitial()}
                                              </div>
                                         )}
@@ -203,7 +203,7 @@ const AddUserModal = ({ show, onClose, user, isEditing = false }) => {
                                                   ? "تغییر تصویر"
                                                   : "انتخاب تصویر"}
                                         </label>
-                                        <p className="text-xs text-blue-600 mt-2">
+                                        <p className="text-xs text-tech-accent mt-2">
                                              در صورت عدم انتخاب، حرف اول نام نمایش داده می‌شود
                                         </p>
                                    </div>
@@ -220,7 +220,7 @@ const AddUserModal = ({ show, onClose, user, isEditing = false }) => {
                               </button>
                               <button
                                    type="submit"
-                                   className="flex-1 px-4 py-2.5 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors font-medium text-sm"
+                                   className="flex-1 px-4 py-2.5 bg-tech-navy-melo text-white rounded-xl hover:bg-tech-navy/80 transition-colors font-medium text-sm"
                               >
                                    {isEditing ? "ذخیره تغییرات" : "افزودن کاربر"}
                               </button>

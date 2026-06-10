@@ -64,7 +64,7 @@ const Users = () => {
      return (
           <div className="space-y-4 md:space-y-6">
                {/* Stats Grid */}
-               <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 px-3 md:px-0">
+               <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 md:px-0">
                     <StatsCard title="کل کاربران" value={users.length} />
                     <StatsCard
                          title="کاربران فعال"
@@ -80,7 +80,7 @@ const Users = () => {
                </div>
 
                {/* Main Card Container */}
-               <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden mx-3 md:mx-0">
+               <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
                     <TableControls
                          title="لیست کاربران"
                          searchQuery={searchQuery}

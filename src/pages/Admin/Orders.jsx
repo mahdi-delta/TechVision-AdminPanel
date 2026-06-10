@@ -10,6 +10,7 @@ import SearchInput from "../../components/AdminComponents/common/SearchInput";
 import OrderViewModal from "../../components/AdminComponents/orders/OrderViewModal";
 import OrderEditModal from "../../components/AdminComponents/orders/OrderEditModal";
 import CustomDropdown from "../../components/AdminComponents/common/CustomDropdown";
+import StatsCard from "../../components/AdminComponents/common/StatsCard";
 
 const Orders = () => {
      const orders = useOrderStore((state) => state.orders);
@@ -75,63 +76,20 @@ const Orders = () => {
      return (
           <div className="space-y-4 md:space-y-6">
                {/* Stats Grid */}
-               <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 px-3 md:px-0">
-                    <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100">
-                         <div className="flex items-start justify-between">
-                              <div className="flex-1">
-                                   <p className="text-sm text-gray-600 mb-2">کل سفارشات</p>
-                                   <h3 className="text-2xl font-bold text-gray-900 max-sm:text-xl">
-                                        {totalOrders}
-                                   </h3>
-                              </div>
-                              <div className="bg-blue-50 p-3 rounded-xl max-sm:hidden">
-                                   {getIcon("کل سفارشات")}
-                              </div>
-                         </div>
-                    </div>
-                    <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100">
-                         <div className="flex items-start justify-between">
-                              <div className="flex-1">
-                                   <p className="text-sm text-gray-600 mb-2">در انتظار</p>
-                                   <h3 className="text-2xl font-bold text-yellow-600 max-sm:text-xl">
-                                        {pendingOrders}
-                                   </h3>
-                              </div>
-                              <div className="bg-yellow-50 p-3 rounded-xl max-sm:hidden">
-                                   {getIcon("در انتظار")}
-                              </div>
-                         </div>
-                    </div>
-                    <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100">
-                         <div className="flex items-start justify-between">
-                              <div className="flex-1">
-                                   <p className="text-sm text-gray-600 mb-2">تکمیل شده</p>
-                                   <h3 className="text-2xl font-bold text-green-600 max-sm:text-xl">
-                                        {completedOrders}
-                                   </h3>
-                              </div>
-                              <div className="bg-green-50 p-3 rounded-xl max-sm:hidden">
-                                   {getIcon("تکمیل شده")}
-                              </div>
-                         </div>
-                    </div>
-                    <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100">
-                         <div className="flex items-start justify-between">
-                              <div className="flex-1">
-                                   <p className="text-sm text-gray-600 mb-2">درآمد کل</p>
-                                   <h3 className="text-2xl font-bold text-gray-900 max-sm:text-xl">
-                                        {totalRevenue}
-                                   </h3>
-                              </div>
-                              <div className="bg-purple-50 p-3 rounded-xl max-sm:hidden">
-                                   {getIcon("درآمد کل")}
-                              </div>
-                         </div>
-                    </div>
+               <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 md:px-0">
+                    <StatsCard
+                         title="کل سفارشات"
+                         value={totalOrders}
+                         valueColor="text-blue-600"
+                         icon={getIcon("کل سفارشات")}
+                    />
+                    <StatsCard title=" در انتظار" value={pendingOrders} valueColor="text-yellow-600" icon={getIcon("در انتظار")} />
+                    <StatsCard title="تکمیل شده" value={completedOrders} valueColor="text-green-600" icon={getIcon("تکمیل شده")} />
+                    <StatsCard title="درآمد کل" value={totalRevenue} valueColor="text-purple-600" icon={getIcon("درآمد کل")} />
                </div>
 
                {/* Main Card Container */}
-               <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden mx-3 md:mx-0">
+               <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
                     {/* Header */}
                     <TableControls
                          title="سفارشات اخیر"

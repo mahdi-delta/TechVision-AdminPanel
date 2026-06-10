@@ -4,11 +4,11 @@ const StatsCard = ({ title, value, icon, iconBg, valueColor = "text-gray-900" })
                <div className="flex items-center justify-between">
                     <div>
                          <p className="text-sm text-tech-navy-melo mb-2 font-medium">{title}</p>
-                         <h3 className={`text-3xl font-bold ${valueColor}`}>{value}</h3>
+                         <h3 className={`text-3xl font-bold max-sm:text-2xl ${valueColor}`}>{value}</h3>
                     </div>
                     {icon && (
                          <div
-                              className={`w-14 h-14 rounded-xl flex items-center justify-center text-2xl ${iconBg} shadow-sm`}
+                              className={`w-14 h-14 rounded-xl flex items-center justify-center text-2xl ${iconBg} max-sm:hidden`}
                          >
                               {icon}
                          </div>

@@ -55,7 +55,7 @@ const Products = () => {
      return (
           <div className="space-y-4 md:space-y-6">
                {/* Stats Grid */}
-               <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 px-3 md:px-0">
+               <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 md:px-0">
                     <StatsCard title="کل محصولات" value={products.length} />
                     <StatsCard title="موجودی کل" value={totalStock} valueColor="text-blue-600" />
                     <StatsCard title="موجودی کم" value={lowStock} valueColor="text-orange-600" />
@@ -67,7 +67,7 @@ const Products = () => {
                </div>
 
                {/* Main Card Container */}
-               <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden mx-3 md:mx-0">
+               <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
                     <TableControls
                          title="لیست محصولات"
                          searchQuery={searchQuery}
@@ -245,7 +245,7 @@ const Products = () => {
                                              >
                                                   <td className="px-6 py-4">
                                                        <div className="flex items-center gap-3">
-                                                            <div className="w-11 h-11 rounded-xl bg-gray-50 flex items-center justify-center text-xl shrink-0 border border-gray-150">
+                                                            <div className="w-11 h-11 rounded-xl bg-gray-50 flex items-center justify-center text-xl shrink-0">
                                                                  {product.image}
                                                             </div>
                                                             <div className="min-w-0">
