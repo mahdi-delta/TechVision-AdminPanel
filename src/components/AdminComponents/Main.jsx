@@ -1,38 +1,10 @@
-import { usePage } from "../../context/PageContext";
-import Dashboard from "../../pages/Admin/Dashboard";
-import Products from "../../pages/Admin/Products";
-import Users from "../../pages/Admin/Users";
-import Orders from "../../pages/Admin/Orders";
-import Settings from "../../pages/Admin/Settings";
+import { Outlet } from "react-router-dom";
 
 const Main = () => {
-     const { activePage } = usePage();
-
-     const renderPageContent = () => {
-          switch (activePage) {
-               case "داشبورد":
-                    return <Dashboard />;
-               case "محصولات":
-                    return <Products />;
-               case "کاربران":
-                    return <Users />;
-               case "سفارشات":
-                    return <Orders />;
-               case "تنظیمات":
-                    return <Settings />;
-               default:
-                    return (
-                         <div className="bg-white rounded-lg shadow p-6">
-                              <p className="text-tech-navy-melo">صفحه مورد نظر یافت نشد</p>
-                         </div>
-                    );
-          }
-     };
-
      return (
-          <div className="p-6 md:p-8 flex-1 overflow-auto bg-gray-50">
-               <div className="max-w-7xl mx-auto">{renderPageContent()}</div>
-          </div>
+          <main className="flex-1 h-full overflow-y-auto bg-gray-50 p-4 md:p-6">
+               <Outlet />
+          </main>
      );
 };
 

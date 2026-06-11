@@ -1,11 +1,21 @@
-import { usePage } from "../../context/PageContext";
+import { useLocation } from "react-router-dom";
 import SearchInput from "./common/SearchInput";
 import NotificationDropdown from "./header/NotificationDropdown";
 import ProfileDropdown from "./header/ProfileDropdown";
 import { Menu } from "lucide-react";
 
 const Header = ({ onSidebarToggle }) => {
-     const { activePage } = usePage();
+     const location = useLocation();
+
+     const pageTitles = {
+          "/admin": "داشبورد",
+          "/admin/products": "لیست محصولات",
+          "/admin/users": "لیست کاربران",
+          "/admin/orders": "سفارشات اخیر",
+          "/admin/settings": "تنظیمات",
+     };
+
+     const activePage = pageTitles[location.pathname] || "پنل مدیریت";
 
      return (
           <div className="bg-white/95 border-b border-gray-300 backdrop-blur-sm z-10">

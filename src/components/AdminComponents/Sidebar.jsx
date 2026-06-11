@@ -55,7 +55,7 @@ const Sidebar = ({ onToggle }) => {
 
                <button
                     className={
-                         "absolute sm:flex justify-center items-center -left-5 top-1/3 border-2 border-gray-200 bg-white shadow-sm aspect-square w-10 rounded-full transition-all duration-300 hover:scale-110 hover:bg-gray-50 text-gray-600 md:flex hidden" +
+                         "absolute sm:flex justify-center items-center -left-5 top-1/3 border-2 border-gray-200 bg-white shadow-sm aspect-square w-10 rounded-full transition-all duration-300 hover:scale-110 hover:bg-gray-50 text-gray-600 md:flex hidden " +
                          (SiderbarStatus === "closed" ? "transform -translate-x-6 rotate-180" : "")
                     }
                     onClick={handleSidebarStatus}
