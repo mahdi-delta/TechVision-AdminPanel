@@ -1,13 +1,15 @@
 import { useState } from "react";
-import { Edit2, Trash2 } from "lucide-react";
 import { useUserStore } from "../../store/adminStore/useUserStore";
 import { useTable } from "../../hooks/useTable";
 import TableSkeleton from "../../components/AdminComponents/common/TableSkeleton";
-import StatsCard from "../../components/AdminComponents/common/StatsCard";
 import TableControls from "../../components/AdminComponents/common/TableControls";
 import TablePagination from "../../components/AdminComponents/common/TablePagination";
+import StatsCard from "../../components/AdminComponents/common/StatsCard";
+import UserGrowthChart from "../../components/AdminComponents/users/charts/UserGrowthChart"; 
+import UserActivityChart from "../../components/AdminComponents/users/charts/UserActivityChart";
 import AddUserModal from "../../components/AdminComponents/users/AddUserModal";
 import DeleteUserModal from "../../components/AdminComponents/users/DeleteUserModal";
+import { Edit2, Trash2 } from "lucide-react";
 
 const Users = () => {
      const users = useUserStore((state) => state.users);
@@ -64,7 +66,7 @@ const Users = () => {
      return (
           <div className="space-y-4 md:space-y-6">
                {/* Stats Grid */}
-               <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 md:px-0">
+               <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 px-3 md:px-0">
                     <StatsCard title="کل کاربران" value={users.length} />
                     <StatsCard
                          title="کاربران فعال"
@@ -79,8 +81,15 @@ const Users = () => {
                     <StatsCard title="کاربر جدید امروز" value={2} valueColor="text-purple-600" />
                </div>
 
+               {/* 👈 اضافه شد - بخش نمودارهای هماهنگ و پویای کاربران */}
+               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 px-3 md:px-0">
+                    <UserGrowthChart />
+                    <UserActivityChart />
+               </div>
+
                {/* Main Card Container */}
-               <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+               <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden mx-3 md:mx-0">
+                    {/* Header */}
                     <TableControls
                          title="لیست کاربران"
                          searchQuery={searchQuery}
@@ -93,7 +102,7 @@ const Users = () => {
                          searchPlaceholder="جستجو در کاربران..."
                     />
 
-                    {/* نمای موبایل */}
+                    {/* نمای موبایل (کارت‌های اختصاصی) */}
                     <div className="md:hidden space-y-3 p-3 bg-gray-50/50">
                          {isLoading ? (
                               [1, 2, 3].map((n) => (
@@ -188,7 +197,7 @@ const Users = () => {
                          )}
                     </div>
 
-                    {/* نمای دسکتاپ */}
+                    {/* نمای دسکتاپ (جدول کلاسیک) */}
                     <div className="hidden md:block overflow-x-auto">
                          <table className="w-full">
                               <thead className="bg-gray-50">
@@ -311,6 +320,7 @@ const Users = () => {
                          </table>
                     </div>
 
+                    {/* پجینیشن داینامیک و مشترک */}
                     <TablePagination
                          currentPage={currentPage}
                          setCurrentPage={setCurrentPage}
