@@ -155,10 +155,6 @@ const Login = () => {
                         <Logo className="w-10 h-10 fill-white"/>
                               پنل مدیریت تک‌ویژن
                          </h1>
-                         <p className="text-gray-400 text-sm leading-relaxed font-medium">
-                              بستر هوشمند، مدرن و هماهنگِ تحلیلِ موجودی انبار، فرآیندهای مالی،
-                              فاکتورهای فروش و مدیریت اعضای سیستم فروشگاهی تک‌ویژن.
-                         </p>
                     </div>
                </div>
           </div>
