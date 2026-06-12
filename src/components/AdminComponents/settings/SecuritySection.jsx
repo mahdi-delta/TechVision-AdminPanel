@@ -1,10 +1,13 @@
 import { useFormik } from "formik";
 import { passwordValidationSchema } from "../../../validation/settingValidation";
+import { useAuthStore } from "../../../store/adminStore/useAuthStore";
 import { SettingsInput } from "./SettingsInput";
 import { SettingsToggle } from "./SettingsToggle";
 import { KeyRound, LockKeyholeIcon } from "lucide-react";
 
 export const SecuritySection = ({ twoFactor, onTwoFactorChange }) => {
+     const updatePassword = useAuthStore((state) => state.updatePassword);
+
      const passwordFormik = useFormik({
           initialValues: {
                currentPassword: "",
@@ -12,8 +15,14 @@ export const SecuritySection = ({ twoFactor, onTwoFactorChange }) => {
           },
           validationSchema: passwordValidationSchema,
           onSubmit: (values, { resetForm }) => {
-               alert("رمز عبور با موفقیت تغییر یافت!");
-               resetForm();
+               const result = updatePassword(values.currentPassword, values.newPassword);
+
+               if (result.success) {
+                    alert(result.message);
+                    resetForm();
+               } else {
+                    alert(result.message);
+               }
           },
      });
 
@@ -21,7 +30,7 @@ export const SecuritySection = ({ twoFactor, onTwoFactorChange }) => {
           <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-3 md:p-6 mx-3 md:mx-0">
                <div className="flex items-center gap-3 mb-4 md:mb-6">
                     <div className="w-10 h-10 rounded-full bg-tech-navy/90 flex items-center justify-center text-xl">
-                         <LockKeyholeIcon className="stroke-white"/>
+                         <LockKeyholeIcon className="stroke-white" />
                     </div>
                     <h2 className="text-lg md:text-xl font-semibold text-gray-900">امنیت</h2>
                </div>
@@ -53,7 +62,7 @@ export const SecuritySection = ({ twoFactor, onTwoFactorChange }) => {
                     </div>
 
                     <SettingsToggle
-                         icon={<KeyRound className=" stroke-2"/>}
+                         icon={<KeyRound className=" stroke-2" />}
                          title="احراز هویت دو مرحله‌ای"
                          description="امنیت بیشتر با تایید دو مرحله‌ای"
                          name="twoFactor"

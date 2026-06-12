@@ -5,23 +5,7 @@ export const useAuthStore = create(
      persist(
           (set, get) => ({
                users: [],
-               currentUser: {
-                    name: "Admin delta",
-                    email: "admin@techvision.com",
-                    phone: "09123456789",
-                    role: "admin",
-                    siteName: "Tech Vision",
-                    siteDescription: "پنل مدیریتی فروشگاه آنلاین محصولات تکنولوژی",
-                    language: "فارسی",
-                    timezone: "تهران (UTC+3:30)",
-                    darkMode: false,
-                    advancedStats: true,
-                    compactMode: false,
-                    emailNotifications: true,
-                    newOrders: true,
-                    productStock: true,
-                    twoFactor: false,
-               },
+               currentUser: null,
 
                register: (userData) => {
                     const { users } = get();
@@ -60,6 +44,40 @@ export const useAuthStore = create(
                          users: updatedUsers,
                     });
                },
+
+               updatePassword: (currentPassword, newPassword) => {
+                    const { currentUser, users } = get();
+                    if (!currentUser)
+                         return {
+                              success: false,
+                              message: "کاربری یافت نشد. لطفاً ابتدا وارد شوید.",
+                         };
+
+                    const userInList = users.find((u) => u.email === currentUser.email);
+                    const savedPassword = userInList?.password || "123456";
+
+                    if (currentPassword !== savedPassword) {
+                         return { success: false, message: "رمز عبور فعلی اشتباه است." };
+                    }
+
+                    const updatedUser = { ...currentUser, password: newPassword };
+
+                    const updatedUsers = users.map((u) =>
+                         u.email === currentUser.email ? { ...u, password: newPassword } : u,
+                    );
+
+                    const userExists = users.some((u) => u.email === currentUser.email);
+                    const finalUsers = userExists
+                         ? updatedUsers
+                         : [...users, { ...updatedUser, password: newPassword }];
+
+                    set({
+                         currentUser: updatedUser,
+                         users: finalUsers,
+                    });
+
+                    return { success: true, message: "رمز عبور با موفقیت تغییر یافت!" };
+               },
           }),
           {
                name: "auth-storage",
@@ -69,7 +87,7 @@ export const useAuthStore = create(
                          ...persistedState,
                          currentUser: {
                               ...currentState.currentUser,
-                              ...(persistedState?.currentUser || {}),   
+                              ...(persistedState?.currentUser || {}),
                          },
                     };
                },

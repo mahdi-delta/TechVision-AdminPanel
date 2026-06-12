@@ -42,7 +42,7 @@ const Settings = () => {
      };
 
      const handleCancel = () => {
-          window.Location.reload();
+          window.location.reload();
           alert("تغییرات لغو شد.");
      };
 
