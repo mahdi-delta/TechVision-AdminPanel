@@ -298,7 +298,6 @@ const Products = () => {
                          </table>
                     </div>
 
-                    {/* پجینیشن داینامیک محصول */}
                     <TablePagination
                          currentPage={currentPage}
                          setCurrentPage={setCurrentPage}

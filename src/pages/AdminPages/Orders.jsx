@@ -107,7 +107,6 @@ const Orders = () => {
                          searchPlaceholder="جستجو در سفارشات..."
                     />
 
-                    {/* نمای موبایل (کارت‌های اختصاصی) */}
                     <div className="md:hidden space-y-3 p-3 bg-gray-50/50">
                          {isLoading ? (
                               [1, 2, 3].map((n) => (
@@ -209,7 +208,6 @@ const Orders = () => {
                          )}
                     </div>
 
-                    {/* نمای دسکتاپ (جدول کلاسیک) */}
                     <div className="hidden md:block overflow-x-auto">
                          <table className="w-full">
                               <thead className="bg-gray-50">

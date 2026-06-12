@@ -81,7 +81,6 @@ const Users = () => {
                     <StatsCard title="کاربر جدید امروز" value={2} valueColor="text-purple-600" />
                </div>
 
-               {/* 👈 اضافه شد - بخش نمودارهای هماهنگ و پویای کاربران */}
                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 px-3 md:px-0">
                     <UserGrowthChart />
                     <UserActivityChart />
@@ -102,7 +101,6 @@ const Users = () => {
                          searchPlaceholder="جستجو در کاربران..."
                     />
 
-                    {/* نمای موبایل (کارت‌های اختصاصی) */}
                     <div className="md:hidden space-y-3 p-3 bg-gray-50/50">
                          {isLoading ? (
                               [1, 2, 3].map((n) => (
@@ -197,7 +195,6 @@ const Users = () => {
                          )}
                     </div>
 
-                    {/* نمای دسکتاپ (جدول کلاسیک) */}
                     <div className="hidden md:block overflow-x-auto">
                          <table className="w-full">
                               <thead className="bg-gray-50">
@@ -320,7 +317,6 @@ const Users = () => {
                          </table>
                     </div>
 
-                    {/* پجینیشن داینامیک و مشترک */}
                     <TablePagination
                          currentPage={currentPage}
                          setCurrentPage={setCurrentPage}
