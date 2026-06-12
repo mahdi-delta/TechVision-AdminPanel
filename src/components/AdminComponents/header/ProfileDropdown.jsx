@@ -1,9 +1,8 @@
 import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import { User, Settings, HelpCircle, LogOut } from "lucide-react";
+import { User2, Settings, HelpCircle, LogOut } from "lucide-react";
 import useClickOutside from "../../../hooks/useClickOutside";
 import { useAuthStore } from "../../../store/adminStore/useAuthStore";
-import profile from "../../../assets/images/profileImage.png";
 
 const ProfileDropdown = () => {
      const [showProfile, setShowProfile] = useState(false);
@@ -24,15 +23,8 @@ const ProfileDropdown = () => {
                     onClick={() => setShowProfile(!showProfile)}
                     className="flex items-center gap-3 pl-4 border-l border-gray-200 hover:opacity-80 transition-opacity rounded-lg pr-2 hover:bg-gray-50"
                >
-                    <div className="w-10 h-10 rounded-full bg-linear-to-br from-tech-accent to-blue-600 flex items-center justify-center text-white font-bold cursor-pointer hover:scale-110 transition-transform shadow-sm overflow-hidden">
-                         {profile ? (
-                              <img
-                                   src={profile}
-                                   className="rounded-full w-full h-full object-cover"
-                              />
-                         ) : (
-                              currentUser.initials
-                         )}
+                    <div className="w-10 h-10 rounded-full bg-linear-to-br from-tech-navy to-tech-navy-melo flex items-center justify-center text-white font-bold cursor-pointer hover:scale-110 transition-transform shadow-sm overflow-hidden">
+                         <User2 />
                     </div>
                     <div className="text-right hidden sm:block">
                          <p className="text-sm font-semibold text-gray-900">{currentUser.name}</p>
@@ -48,7 +40,7 @@ const ProfileDropdown = () => {
                                    onClick={() => setShowProfile(false)}
                                    className="w-full text-right px-4 py-2.5 hover:bg-gray-100 rounded-xl transition-colors text-sm text-gray-900 flex items-center gap-3 group"
                               >
-                                   <User className="w-5 h-5 text-tech-navy-melo group-hover:fill-gray-400" />
+                                   <User2 className="w-5 h-5 text-tech-navy-melo group-hover:fill-gray-400" />
                                    <span>پروفایل من</span>
                               </Link>
                               <Link

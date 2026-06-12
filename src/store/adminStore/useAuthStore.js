@@ -6,11 +6,11 @@ export const useAuthStore = create(
           (set, get) => ({
                users: [],
                currentUser: {
-                    name: "محمد مهدی قربانی",
-                    email: "mahdi@techvision.com",
-                    phone: "09198862561",
+                    name: "Admin delta",
+                    email: "admin@techvision.com",
+                    phone: "09123456789",
                     role: "admin",
-                    siteName: "TechVision",
+                    siteName: "Tech Vision",
                     siteDescription: "پنل مدیریتی فروشگاه آنلاین محصولات تکنولوژی",
                     language: "فارسی",
                     timezone: "تهران (UTC+3:30)",
