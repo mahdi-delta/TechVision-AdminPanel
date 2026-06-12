@@ -74,7 +74,6 @@ const Dashboard = () => {
           },
      ];
 
-     // مرتب‌سازی سفارشات بر اساس شماره سفارش به صورت نزولی و انتخاب ۶ سفارش آخر 👈
      const recentOrdersList = [...orders].sort((a, b) => b.id - a.id).slice(0, 6);
 
      const handleOpenViewModal = (order) => {

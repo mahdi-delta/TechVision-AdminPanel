@@ -1,6 +1,5 @@
 import { NavLink } from "react-router-dom";
 
-// تابع کمکی برای تخصیص مسیر (Route) هماهنگ با عنوان آیتم‌ها
 const getRoutePath = (title) => {
      switch (title) {
           case "داشبورد":

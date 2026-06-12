@@ -20,7 +20,6 @@ const Products = () => {
      const [showDeleteModal, setShowDeleteModal] = useState(false);
      const [selectedProduct, setSelectedProduct] = useState(null);
 
-     // اتصال لیست محصولات به هوک مشترک جدول
      const {
           processedData: filteredProducts,
           totalItems,

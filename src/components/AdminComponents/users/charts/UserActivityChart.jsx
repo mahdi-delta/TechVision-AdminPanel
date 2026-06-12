@@ -1,7 +1,6 @@
 import { ResponsiveContainer, PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 import { useUserStore } from "../../../../store/adminStore/useUserStore";
 
-// تعریف تولتیپ به صورت مجزا برای جلوگیری از خطای رندرینگ
 const CustomTooltip = ({ active, payload }) => {
      if (active && payload && payload.length) {
           return (
@@ -17,7 +16,6 @@ const CustomTooltip = ({ active, payload }) => {
 const UserActivityChart = () => {
      const users = useUserStore((state) => state.users);
 
-     // محاسبه زندهٔ آمار وضعیت کاربران از استور
      const activeCount = users.filter((u) => u.status === "فعال").length;
      const inactiveCount = users.filter((u) => u.status === "غیرفعال").length;
 

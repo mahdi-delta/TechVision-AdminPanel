@@ -45,14 +45,13 @@ const UserGrowthChart = () => {
           users.forEach((user) => {
                if (user.joinDate) {
                     const parts = user.joinDate.split("/");
-                    const month = parts[1]; // استخراج ماه (مثلاً "08")
+                    const month = parts[1];
                     if (month && monthNames[month]) {
                          counts[month] = (counts[month] || 0) + 1;
                     }
                }
           });
 
-          // مرتب‌سازی ماه‌ها از فروردین تا اسفند
           return Object.keys(counts)
                .sort()
                .map((monthKey) => ({

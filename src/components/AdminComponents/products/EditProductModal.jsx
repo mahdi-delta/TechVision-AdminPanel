@@ -27,7 +27,6 @@ const EditProductModal = ({ show, onClose, product }) => {
           },
      });
 
-     // همگام‌سازی استیت فرمیک به محض لود شدن محصول انتخابی
      useEffect(() => {
           if (product) {
                formik.setValues({
