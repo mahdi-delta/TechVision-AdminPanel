@@ -7,7 +7,6 @@ export const useOrderStore = create(
           (set, get) => ({
                orders: ordersData,
 
-               // اکشن بروزرسانی وضعیت یک سفارش خاص
                updateOrderStatus: (orderId, newStatus) => {
                     const { orders } = get();
                     const updatedOrders = orders.map((order) =>

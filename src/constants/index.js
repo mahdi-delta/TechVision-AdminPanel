@@ -28,5 +28,4 @@ export const settingsItem = {
      icon: SettingsIcon,
 };
 
-// برای سازگاری با کد قبلی
 export const sidebarItems = [...mainMenuItems, settingsItem];
