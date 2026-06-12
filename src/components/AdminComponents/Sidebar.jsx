@@ -50,6 +50,14 @@ const Sidebar = ({ onToggle }) => {
                               <div className="border-t border-gray-200 my-3"></div>
                               <SidebarItems item={settingsItem} isSettings={true} />
                          </div>
+                         <div className="px-1 pt-4 text-center border-t border-gray-100">
+                              <p className="text-[10px] text-gray-400 font-semibold tracking-wider">
+                                   © 2026 TechVision . All rights reserved.
+                              </p>
+                              <p className="text-[9px] text-tech-navy-melo font-medium mt-0.5">
+                                   Version 1.0.0
+                              </p>
+                         </div>
                     </main>
                )}
 

@@ -20,8 +20,7 @@ const Login = () => {
 
                if (isSuccess) {
                     navigate("/admin");
-               }
-               else if (values.email === "admin@techvision.com" && values.password === "123456") {
+               } else if (values.email === "admin@techvision.com" && values.password === "123456") {
                     useAuthStore.setState({
                          currentUser: {
                               name: "Admin",
@@ -152,9 +151,12 @@ const Login = () => {
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(99,102,241,0.1),transparent_45%)]"></div>
                     <div className="max-w-md text-right space-y-4 z-10">
                          <h1 className="flex gap-6 text-4xl font-extrabold tracking-tight">
-                        <Logo className="w-10 h-10 fill-white"/>
+                              <Logo className="w-10 h-10 fill-white" />
                               پنل مدیریت تک‌ویژن
                          </h1>
+                         <p className="text-center  text-[11px] text-gray-400 font-medium mt-6 tracking-wide">
+                              © 2026 TechVision. All rights reserved
+                         </p>
                     </div>
                </div>
           </div>
