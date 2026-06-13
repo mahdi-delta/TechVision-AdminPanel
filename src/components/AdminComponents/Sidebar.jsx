@@ -52,10 +52,10 @@ const Sidebar = ({ onToggle }) => {
                          </div>
                          <div className="px-1 pt-4 text-center border-t border-gray-100">
                               <p className="text-[10px] text-gray-400 font-semibold tracking-wider">
-                                   © 2026 TechVision . All rights reserved.
+                                   حقوق مادی و معنوی محفوظ است © ۱۴۰۵
                               </p>
-                              <p className="text-[9px] text-tech-navy-melo font-medium mt-0.5">
-                                   Version 1.0.0
+                              <p className="text-[9px] text-gray-400 font-medium mt-0.5">
+                                  (mahdi-delta) توسعه‌دهنده: محمد مهدی قربانی (نسخه ۱.۰.۰)
                               </p>
                          </div>
                     </main>

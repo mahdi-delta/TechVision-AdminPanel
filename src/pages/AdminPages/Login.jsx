@@ -143,6 +143,10 @@ const Login = () => {
                                    <ShieldAlert className="w-5 h-5 text-tech-navy-melobg-tech-navy-melo" />
                                    <span>ورود سریع به عنوان مدیر (دمو)</span>
                               </button>
+                              <p className="text-center  text-[11px] text-gray-400 font-medium mt-6 tracking-wide">
+                                   تمامی حقوق مادی و معنوی این سایت متعلق به محمد مهدی قربانی
+                                   می‌باشد. © ۱۴۰۵ (mahdi-delta)
+                              </p>
                          </form>
                     </div>
                </div>
@@ -154,9 +158,6 @@ const Login = () => {
                               <Logo className="w-10 h-10 fill-white" />
                               پنل مدیریت تک‌ویژن
                          </h1>
-                         <p className="text-center  text-[11px] text-gray-400 font-medium mt-6 tracking-wide">
-                              © 2026 TechVision. All rights reserved
-                         </p>
                     </div>
                </div>
           </div>

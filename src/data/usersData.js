@@ -1,3 +1,36 @@
+// src/data/usersData.js
+
+export const usersStatsData = [
+     {
+          id: 1,
+          title: "کل کاربران",
+          value: "1,248",
+          icon: "👥",
+          bgColor: "bg-tech-bg",
+     },
+     {
+          id: 2,
+          title: "کاربران فعال",
+          value: "892",
+          icon: "✅",
+          bgColor: "bg-green-100",
+     },
+     {
+          id: 3,
+          title: "کاربران جدید",
+          value: "156",
+          icon: "✨",
+          bgColor: "bg-purple-100",
+     },
+     {
+          id: 4,
+          title: "کاربران غیرفعال",
+          value: "200",
+          icon: "⏸️",
+          bgColor: "bg-orange-100",
+     },
+];
+
 export const usersTableData = [
      {
           id: 1,
@@ -7,7 +40,7 @@ export const usersTableData = [
           status: "فعال",
           avatar: "ع",
           joinDate: "1402/08/15",
-          orders: 23,
+          orders: 0,
      },
      {
           id: 2,
@@ -47,7 +80,7 @@ export const usersTableData = [
           status: "فعال",
           avatar: "ح",
           joinDate: "1402/06/12",
-          orders: 47,
+          orders: 0,
      },
      {
           id: 6,
@@ -77,7 +110,7 @@ export const usersTableData = [
           status: "فعال",
           avatar: "ن",
           joinDate: "1402/09/01",
-          orders: 19,
+          orders: 0,
      },
      {
           id: 9,
@@ -137,7 +170,7 @@ export const usersTableData = [
           status: "فعال",
           avatar: "ن",
           joinDate: "1402/04/10",
-          orders: 53,
+          orders: 0,
      },
      {
           id: 15,
