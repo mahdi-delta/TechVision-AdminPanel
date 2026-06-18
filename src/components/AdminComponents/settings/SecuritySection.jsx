@@ -39,7 +39,7 @@ export const SecuritySection = ({ twoFactor, onTwoFactorChange }) => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                          <SettingsInput
                               label="رمز عبور فعلی"
-                              type="password"
+                              type="text"
                               name="currentPassword"
                               placeholder="رمز عبور فعلی..."
                               value={passwordFormik.values.currentPassword}
@@ -50,7 +50,7 @@ export const SecuritySection = ({ twoFactor, onTwoFactorChange }) => {
                          />
                          <SettingsInput
                               label="رمز عبور جدید"
-                              type="password"
+                              type="text"
                               name="newPassword"
                               placeholder="رمز عبور جدید..."
                               value={passwordFormik.values.newPassword}

@@ -105,7 +105,8 @@ const Login = () => {
                                    <div className="relative flex items-center">
                                         <Lock className="absolute right-4 w-5 h-5 text-gray-400" />
                                         <input
-                                             type="password"
+                                             type="text"
+                                             style={{ WebkitTextSecurity: "disc" }}
                                              name="password"
                                              value={formik.values.password}
                                              onChange={formik.handleChange}
@@ -138,12 +139,13 @@ const Login = () => {
                               <button
                                    type="button"
                                    onClick={handleQuickLogin}
-                                   className="w-full py-3 border-2 border-tech-navy-melobg-tech-navy-melo hover:border-tech-navy-melobg-tech-navy-melo bg-tech-navy-melo50 hover:bg-tech-navy-melotext-tech-navy-melobg-tech-navy-melo rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all cursor-pointer"
+                                   className="w-full py-3 border-2 border-tech-navy-melo/20 hover:border-tech-navy-melo/40 bg-tech-navy-melo/5 hover:bg-tech-navy-melo/10 text-tech-navy-melo rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all cursor-pointer"
                               >
-                                   <ShieldAlert className="w-5 h-5 text-tech-navy-melobg-tech-navy-melo" />
+                                   <ShieldAlert className="w-5 h-5 text-tech-navy-melo" />
                                    <span>ورود سریع به عنوان مدیر (دمو)</span>
                               </button>
-                              <p className="text-center  text-[11px] text-gray-400 font-medium mt-6 tracking-wide">
+
+                              <p className="text-center text-[11px] text-gray-400 font-medium mt-6 tracking-wide leading-relaxed">
                                    تمامی حقوق مادی و معنوی این سایت متعلق به محمد مهدی قربانی
                                    می‌باشد. © ۱۴۰۵ (mahdi-delta)
                               </p>
