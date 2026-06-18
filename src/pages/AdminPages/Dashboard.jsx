@@ -159,7 +159,6 @@ const Dashboard = () => {
                                                        "۱ سال گذشته",
                                                        "۶ ماه گذشته",
                                                        "این ماه",
-                                                       "امروز",
                                                   ]}
                                                   value={chartPeriod}
                                                   onChange={setChartPeriod}
