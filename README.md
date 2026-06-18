@@ -16,6 +16,13 @@ Manage users, products, and orders — with real-time charts, protected routing,
 
 ---
 
+### panel email : admin@techvision.com
+### panel password : 123456
+### << and you can also use fast login button>>
+
+
+---
+
 ## Preview
 
 <img src="./src/assets/images/mockup.png" width="1000px" />
@@ -70,7 +77,7 @@ Manage users, products, and orders — with real-time charts, protected routing,
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 | Category             | Technology       | Version         |
 | -------------------- | ---------------- | --------------- |
@@ -85,7 +92,7 @@ Manage users, products, and orders — with real-time charts, protected routing,
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 TechVision-AdminPanel/
@@ -112,7 +119,7 @@ TechVision-AdminPanel/
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### Prerequisites
 
@@ -139,19 +146,19 @@ Open [http://localhost:5173](http://localhost:5173) in your browser.
 
 ---
 
-## 🔒 Authentication Flow
+##  Authentication Flow
 
 The app uses a JWT-ready login flow with Zustand for auth state management. On login, the user's session is stored in the global store. All pages except `/login` are wrapped in a `ProtectedRoute` component that checks for a valid session before rendering — unauthenticated users are redirected automatically.
 
 ---
 
-## ✅ Form Validation
+##  Form Validation
 
 Every form in the app is built with **Formik** for state handling and **Yup** for schema-based validation — covering required fields, email format, password strength, numeric ranges, and more.
 
 ---
 
-## 🗂️ Pages Overview
+##  Pages Overview
 
 | Page      | Route        | Description                                     |
 | --------- | ------------ | ----------------------------------------------- |
@@ -164,20 +171,20 @@ Every form in the app is built with **Formik** for state handling and **Yup** fo
 
 ---
 
-## 📦 State Management
+##  State Management
 
 Global state is handled entirely by **Zustand**, split into focused stores per domain (auth, users, products, orders). This eliminates prop drilling and keeps component logic clean and readable.
 
 
 ---
 
-## 📱 Responsive Design
+##  Responsive Design
 
 The layout is fully responsive using **Tailwind CSS v4** with a mobile-first approach. The sidebar collapses on smaller screens, tables scroll horizontally, and forms stack gracefully across all breakpoints.
 
 ---
 
-## 📄 License
+##  License
 
 Distributed under the [MIT License](./LICENSE).
 
@@ -185,7 +192,7 @@ Distributed under the [MIT License](./LICENSE).
 
 <div align="center">
 
-Made with ❤️ by [Mahdi](https://github.com/mahdi-delta)
+Made by [Mahdi-delta](https://github.com/mahdi-delta)
 
 ⭐ If you found this project useful, give it a star!
 
