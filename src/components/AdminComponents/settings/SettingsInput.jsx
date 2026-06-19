@@ -1,5 +1,5 @@
 export const SettingsInput = ({ label, error, touched, isTextArea = false, ...props }) => {
-     const baseClassName = `w-full px-4 py-2.5 rounded-xl  border border-tech-navy/20 outline-tech-navy-melo/40 outline-1 outline-offset-3 outline-solid focus:border-tech-navy-melo/70 focus:outline-tech-navy outline-none text-sm transition-colors ${
+     const baseClassName = `w-full px-4 py-2.5 rounded-xl  border border-tech-navy/20 outline-tech-navy-melo/40 outline-0 outline-offset-3 outline-solid focus:border-tech-navy-melo/70 focus:outline-tech-navy outline-none text-sm transition-colors ${
           props.disabled
                ? "bg-gray-50 text-tech-navy border-tech-navy-melo/30 cursor-not-allowed"
                : error && touched

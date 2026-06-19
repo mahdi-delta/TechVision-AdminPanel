@@ -12,7 +12,7 @@ export const DisplaySection = () => {
                          <PaintRoller className="stroke-white"/>
                     </div>
                     <h2 className="text-lg md:text-xl font-semibold text-gray-900">
-                         تنظیمات نمایش
+                         تنظیمات نمایش <span className="text-tech-accent">(به زودی)</span>
                     </h2>
                </div>
                <div className="space-y-3 md:space-y-4">
