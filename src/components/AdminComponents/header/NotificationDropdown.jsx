@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { MessageSquare, Clock } from "lucide-react";
+import { Bell, ShoppingBag, AlertCircle, UserPlus, CheckCircle } from "lucide-react";
 import useClickOutside from "../../../hooks/useClickOutside";
 
 const NotificationDropdown = () => {
@@ -13,56 +13,95 @@ const NotificationDropdown = () => {
      });
 
      const notifications = [
-          { id: 1, text: "سفارش جدید ثبت شد", time: "۵ دقیقه پیش", unread: true },
-          { id: 2, text: "موجودی محصول کاهش یافت", time: "۱ ساعت پیش", unread: true },
-          { id: 3, text: "کاربر جدید ثبت‌نام کرد", time: "۲ ساعت پیش", unread: false },
+          {
+               id: 1,
+               type: "order",
+               text: "سفارش جدید #1050 ثبت شد",
+               time: "۵ دقیقه پیش",
+               unread: true,
+          },
+          {
+               id: 2,
+               type: "alert",
+               text: "موجودی لپ‌تاپ Dell کاهش یافت",
+               time: "۱ ساعت پیش",
+               unread: true,
+          },
+          {
+               id: 3,
+               type: "user",
+               text: "کاربر جدید (سینا) ثبت‌نام کرد",
+               time: "۲ ساعت پیش",
+               unread: false,
+          },
      ];
+
+     const unreadCount = notifications.filter((n) => n.unread).length;
+
+     const getIcon = (type) => {
+          switch (type) {
+               case "order":
+                    return <ShoppingBag className="w-5 h-5 text-tech-navy-melo" />;
+               case "alert":
+                    return <AlertCircle className="w-5 h-5 text-tech-navy-melo" />;
+               case "user":
+                    return <UserPlus className="w-5 h-5 text-tech-navy-melo" />;
+               default:
+                    return <Bell className="w-5 h-5 text-tech-navy-melo" />;
+          }
+     };
 
      return (
           <div className="relative" ref={dropdownRef}>
                <button
                     onClick={() => setShowNotifications(!showNotifications)}
-                    className="relative p-2 rounded-lg hover:bg-gray-50 transition-colors group"
+                    className="relative p-2 rounded-lg hover:bg-gray-100 transition-colors outline-none"
                >
-                    <MessageSquare className="w-5 h-5 text-gray-600 group-hover:fill-gray-400 transition-fill" />
-                    <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+                    <Bell className="w-5 h-5 text-tech-navy-melo" />
+                    {unreadCount > 0 && (
+                         <span className="absolute top-1.5 right-2 w-2 h-2 rounded-full bg-red-500 border border-white"></span>
+                    )}
                </button>
 
                {showNotifications && (
-                    <div className="absolute -left-12 mt-2 w-80 bg-white rounded-xl shadow-md border border-tech-navy-melo/40 overflow-hidden">
-                         <div className="p-4 bg-linear-to-r from-tech-navy to-tech-navy-melo">
-                              <h3 className="text-base font-bold text-white">اعلان‌ها</h3>
-                              <p className="text-xs text-white/80 mt-1">
-                                   {notifications.filter((n) => n.unread).length} اعلان خوانده نشده
-                              </p>
+                    <div className="absolute left-0 mt-2 w-72 bg-white rounded-xl shadow-md border border-gray-200 z-50 overflow-hidden">
+                         <div className="px-4 py-3 border-b border-gray-100 flex justify-between items-center">
+                              <span className="text-sm font-semibold text-gray-900">اعلان‌ها</span>
+                              {unreadCount > 0 && (
+                                   <span className="text-xs font-medium text-blue-600 bg-blue-50 px-2 py-0.5 rounded-md">
+                                        {unreadCount} جدید
+                                   </span>
+                              )}
                          </div>
-                         <div className="max-h-96 overflow-y-auto">
+
+                         <div className="max-h-80 overflow-y-auto">
                               {notifications.map((notif) => (
-                                   <div
+                                   <button
                                         key={notif.id}
-                                        className={`p-4 border-b border-gray-100 hover:bg-gray-50 cursor-pointer transition-colors ${
-                                             notif.unread ? "bg-gray-50" : ""
-                                        }`}
+                                        className="w-full text-right flex items-start gap-3 px-4 py-3 hover:bg-gray-50 transition-colors border-b border-gray-50 last:border-0 group"
                                    >
-                                        <div className="flex items-start gap-3">
-                                             {notif.unread && (
-                                                  <div className="w-2 h-2 rounded-full bg-tech-accent mt-1.5"></div>
-                                             )}
-                                             <div className="flex-1">
-                                                  <p className="text-sm text-gray-900 mb-1 font-medium">
-                                                       {notif.text}
-                                                  </p>
-                                                  <p className="text-xs text-tech-accent">
-                                                       {notif.time}
-                                                  </p>
-                                             </div>
+                                        <div className="shrink-0 mt-0.5 opacity-80 group-hover:opacity-100 transition-opacity">
+                                             {getIcon(notif.type)}
                                         </div>
-                                   </div>
+                                        <div className="flex-1 min-w-0">
+                                             <p
+                                                  className={`text-sm mb-1 truncate ${notif.unread ? "font-semibold text-gray-900" : "font-medium text-gray-600"}`}
+                                             >
+                                                  {notif.text}
+                                             </p>
+                                             <p className="text-xs text-gray-400">{notif.time}</p>
+                                        </div>
+                                        {notif.unread && (
+                                             <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2 shrink-0"></div>
+                                        )}
+                                   </button>
                               ))}
                          </div>
-                         <div className="p-3 text-center border-t border-gray-200 bg-gray-50">
-                              <button className="text-sm text-tech-navy-melo hover:text-tech-navy font-medium">
-                                   مشاهده همه اعلان‌ها
+
+                         <div className="border-t border-gray-200 p-2">
+                              <button className="w-full py-2 text-sm font-medium text-gray-700 hover:text-tech-navy-melo hover:bg-gray-50 rounded-lg transition-colors flex items-center justify-center gap-2">
+                                   <CheckCircle className="w-4 h-4" />
+                                   خواندن همه
                               </button>
                          </div>
                     </div>
