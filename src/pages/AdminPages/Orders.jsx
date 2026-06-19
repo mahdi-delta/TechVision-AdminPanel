@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ShoppingBag, Clock, CheckCircle, DollarSign, Edit2, Eye } from "lucide-react";
+import { ShoppingBag, Clock, CheckCircle, Banknote, Edit2, Eye } from "lucide-react";
 import { useOrderStore } from "../../store/adminStore/useOrderStore";
 import { useTable } from "../../hooks/useTable";
 import TableSkeleton from "../../components/AdminComponents/common/TableSkeleton";
@@ -67,7 +67,7 @@ const Orders = () => {
                case "تکمیل شده":
                     return <CheckCircle className="w-7 h-7 text-green-600" />;
                case "درآمد کل":
-                    return <DollarSign className="w-7 h-7 text-purple-600" />;
+                    return <Banknote className="w-7 h-7 text-purple-600" />;
                default:
                     return null;
           }
@@ -83,9 +83,24 @@ const Orders = () => {
                          valueColor="text-blue-600"
                          icon={getIcon("کل سفارشات")}
                     />
-                    <StatsCard title=" در انتظار" value={pendingOrders} valueColor="text-yellow-600" icon={getIcon("در انتظار")} />
-                    <StatsCard title="تکمیل شده" value={completedOrders} valueColor="text-green-600" icon={getIcon("تکمیل شده")} />
-                    <StatsCard title="درآمد کل" value={totalRevenue} valueColor="text-purple-600" icon={getIcon("درآمد کل")} />
+                    <StatsCard
+                         title=" در انتظار"
+                         value={pendingOrders}
+                         valueColor="text-yellow-600"
+                         icon={getIcon("در انتظار")}
+                    />
+                    <StatsCard
+                         title="تکمیل شده"
+                         value={completedOrders}
+                         valueColor="text-green-600"
+                         icon={getIcon("تکمیل شده")}
+                    />
+                    <StatsCard
+                         title="درآمد کل"
+                         value={totalRevenue}
+                         valueColor="text-purple-600"
+                         icon={getIcon("درآمد کل")}
+                    />
                </div>
 
                {/* Main Card Container */}

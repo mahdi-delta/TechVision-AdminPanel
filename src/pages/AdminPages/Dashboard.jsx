@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { DollarSign, ShoppingBag, AlertCircle, Users } from "lucide-react";
+import { Banknote, ShoppingBag, AlertCircle, Users } from "lucide-react";
 import { useOrderStore } from "../../store/adminStore/useOrderStore";
 import { useProductStore } from "../../store/adminStore/useProductStore";
 import { useUserStore } from "../../store/adminStore/useUserStore";
@@ -84,7 +84,7 @@ const Dashboard = () => {
      const getIcon = (title) => {
           switch (title) {
                case "فروش کل":
-                    return <DollarSign className="w-5 h-5 md:w-7 md:h-7 text-blue-600" />;
+                    return <Banknote className="w-5 h-5 md:w-7 md:h-7 text-blue-600" />;
                case "سفارشات جدید":
                     return <ShoppingBag className="w-5 h-5 md:w-7 md:h-7 text-purple-600" />;
                case "محصولات ناموجود":
