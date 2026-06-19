@@ -27,10 +27,10 @@ const SidebarItems = ({ item }) => {
                     to={routePath}
                     end={routePath === "/admin"}
                     className={({ isActive }) =>
-                         `w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 group ${
+                         `w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 group border${
                               isActive
-                                   ? "bg-gray-100 text-gray-900 font-medium"
-                                   : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                                   ? " border-gray-400/30 bg-gray-200/50 text-gray-900 font-medium"
+                                   : " border-gray-400/0 text-gray-600 hover:bg-gray-100 hover:text-gray-900"
                          }`
                     }
                >
@@ -41,7 +41,7 @@ const SidebarItems = ({ item }) => {
                                         className={`w-full h-full ${
                                              isActive
                                                   ? "fill-gray-400"
-                                                  : "fill-white group-hover:fill-gray-700"
+                                                  : "fill-white group-hover:fill-gray-600"
                                         }`}
                                    />
                               </span>
