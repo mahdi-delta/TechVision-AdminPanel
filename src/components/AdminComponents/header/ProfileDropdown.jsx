@@ -21,10 +21,10 @@ const ProfileDropdown = () => {
           <div className="relative" ref={dropdownRef}>
                <button
                     onClick={() => setShowProfile(!showProfile)}
-                    className="flex items-center gap-3 pl-4 border-l border-gray-200 hover:opacity-80 transition-opacity rounded-lg pr-2 hover:bg-gray-50"
+                    className="flex items-center gap-3 pl-4 py-1 bg-gray-200/40 rounded-xl border border-gray-400/40 hover:border-gray-400 transition-colors group"
                >
-                    <div className="w-10 h-10 rounded-full bg-linear-to-br from-tech-navy to-tech-navy-melo flex items-center justify-center text-white font-bold cursor-pointer hover:scale-110 transition-transform shadow-sm overflow-hidden">
-                         <User2 />
+                    <div className="w-10 h-10 rounded-full flex items-center justify-center text-tech-navy/80 font-bold cursor-pointer overflow-hidden">
+                         <User2 className="stroke-2 group-hover:fill-gray-400"/>
                     </div>
                     <div className="text-right hidden sm:block">
                          <p className="text-sm font-semibold text-gray-900">{currentUser.name}</p>
