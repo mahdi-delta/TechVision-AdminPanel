@@ -68,6 +68,7 @@ export const SecuritySection = ({ twoFactor, onTwoFactorChange }) => {
                          name="twoFactor"
                          checked={twoFactor}
                          onChange={onTwoFactorChange}
+                         disabled={true}
                     />
 
                     <button
